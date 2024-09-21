@@ -26,7 +26,7 @@ function createNav(currPage){
         if(p.page == currPage){
             listItem = `
                 <li>
-                    <a class="activeNav">${p.page}</a>
+                    <a class="active-nav">${p.page}</a>
                 </li>
             `;
         }
@@ -58,7 +58,7 @@ async function addDecoration(side){
     let url = `${(currPage == 'Home') ? '':'/'}svgs/Star-small.svg`;
     const starSVG = await fetch(url)
         .then(response => response.text());
-        
+
     const starWrapper = document.createElement('div');
     starWrapper.classList.add('star-wrapper');
 

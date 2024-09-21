@@ -51,7 +51,6 @@ a,
 }
 
 a:hover{
-    color: var(--titanium-white);
     cursor: pointer;
 }
 
@@ -79,6 +78,7 @@ a:hover{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-inline: 1rem;
 }
 .navbar ul{
     height: 2rem;
@@ -93,6 +93,19 @@ a:hover{
 }
 .navbar li{
     margin-inline: 0.5rem;
+}
+.navbar a{
+    font-weight: bold;
+    border: var(--stroke-width) solid transparent;
+    border-radius: 1rem;
+    padding-inline: 0.5rem;
+}
+.navbar a:hover{
+    border: var(--stroke-width) solid var(--titanium-white);
+}
+.active-nav{
+    background-color: var(--titanium-white);
+    color: var(--rich-black);
 }
 
 /* #region CabinetGrotesk */
