@@ -18,7 +18,6 @@ console.log(currPage);
 function createNav(currPage){
     const list = document.createElement('ul');
     let allPages = '';
-
     pages.map( p => {
         let listItem;
         let url = `${(currPage == 'Home') ? '':'/'}${p.url}`;   // manages the folder hierarchy for the url
@@ -51,13 +50,32 @@ function createNav(currPage){
  * creates the decorative elements of the navbar
  * @param {String} side left or right side of the navbar
  */
-function addDecoration(side){
+async function addDecoration(side){
     const decoration = document.createElement('div');
-    const starSVG = document.createElement('svg');
+    decoration.classList.add('star-decoration');
+
+    // gets the 'svg' from the svgs file
+    let url = `${(currPage == 'Home') ? '':'/'}svgs/Star-small.svg`;
+    const starSVG = await fetch(url)
+        .then(response => response.text());
+        
+    const starWrapper = document.createElement('div');
+    starWrapper.classList.add('star-wrapper');
+
     const line = document.createElement('div');
+    line.classList.add('line-decoration');
     
-    decoration.appendChild(side === 'left' ? starSVG : line);
-    decoration.appendChild(side === 'left' ? line : starSVG);
+    starWrapper.innerHTML = starSVG;
+
+    // appends the elements in a specific order depending on the 'side'
+    decoration.appendChild(side === 'left' ? starWrapper : line);
+    decoration.appendChild(side === 'left' ? line : starWrapper);
+
+    // appends into DOM before (left) 'ul' using 'insertBefore'
+    // appends into DOM after (right) 'ul' using 'appendChild'
+    (side === 'left') ? nav.insertBefore(decoration,nav.querySelector('ul')) : nav.appendChild(decoration);
 }
 
 createNav(currPage);
+addDecoration('left');
+addDecoration('right');
