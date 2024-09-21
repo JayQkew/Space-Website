@@ -3,9 +3,9 @@ const currPage = document.querySelector('title').innerText;
 
 const pages = [
     {page: 'Home', url: 'index.html'},
-    {page: 'Explore', url: 'explore/index.html'},
-    {page: 'Design', url: 'design/index.html'},
-    {page: 'About', url: 'about/index.html'}
+    {page: 'Explore', url: 'explore/explore.html'},
+    {page: 'Design', url: 'design/design.html'},
+    {page: 'About', url: 'about/about.html'}
 ];
 
 console.log(currPage);
