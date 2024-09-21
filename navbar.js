@@ -55,7 +55,7 @@ async function addDecoration(side){
     decoration.classList.add('star-decoration');
 
     // gets the 'svg' from the svgs file
-    let url = `${(currPage == 'Home') ? '':'/'}svgs/Star-small.svg`;
+    let url = `${(currPage == 'Home') ? '':'../'}svgs/Star-small.svg`;
     const starSVG = await fetch(url)
         .then(response => response.text());
 
