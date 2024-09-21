@@ -1,0 +1,28 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+:root{
+    --background-gradient: linear-gradient(180deg, rgba(5,2,23,1) 54%, rgba(13,5,67,1) 100%);
+
+    /* Tones */
+    --rich-black: #050217;
+    --titanium-white: #FFFFFF;
+
+    /* Cool Colors */
+    --mercury-purple: #A95ACE;
+    --earth-gradient: linear-gradient(0deg, #0057ff 0%, #86d3ff 100%);
+    --uranus-blue: #2BF2FF;
+    --neptune-blue: #5F45FF;
+
+    /* Warm Colors */
+    --banana-yellow: #FFC700;
+    --sun-yellow: #FFA724;
+    --venus-orange: #FF6813;
+    --mars-red: #FF6813;
+    --jupiter-orange: #FF8A00;
+    --saturn-yellow: #FFD600;
+
+}
