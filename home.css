@@ -1,0 +1,22 @@
+.hero-section{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-block: 17.5rem;
+}
+
+.hero-section blockquote p{
+    font-family: 'ClashDisplay-Bold';
+    font-size: 5rem;
+    font-weight: 700;
+    margin-block: 1rem;
+}
+
+.hero-section p{
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-top: 0;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
