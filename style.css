@@ -91,7 +91,7 @@ header{
     padding: 0.5rem;
     margin-block: auto;
     border: var(--stroke-width) solid var(--titanium-white);
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -102,7 +102,7 @@ header{
 .navbar a{
     font-weight: bold;
     border: var(--stroke-width) solid transparent;
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     padding-inline: 0.5rem;
 }
 .navbar a:hover{
