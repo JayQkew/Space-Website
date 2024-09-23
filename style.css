@@ -121,6 +121,12 @@ hgroup:not(.card-headings){
     color: var(--banana-yellow);
 }
 
+.card{
+    border: var(--stroke-width) solid var(--titanium-white);
+    border-radius: 1.5rem;
+    padding: 1rem;
+}
+
 /* #region CabinetGrotesk */
 @font-face {
     font-family: 'CabinetGrotesk-Thin';
