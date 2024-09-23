@@ -113,6 +113,10 @@ header{
     color: var(--rich-black);
 }
 
+hgroup:not(.card-headings){
+    text-align: center;
+}
+
 .banana-text{
     color: var(--banana-yellow);
 }
