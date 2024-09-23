@@ -74,6 +74,11 @@ a:hover{
     flex-grow: 2;
 }
 
+header{
+    position: sticky;
+    top: 1rem;
+}
+
 .navbar{
     display: flex;
     flex-direction: row;
@@ -106,6 +111,10 @@ a:hover{
 .active-nav{
     background-color: var(--titanium-white);
     color: var(--rich-black);
+}
+
+.banana-text{
+    color: var(--banana-yellow);
 }
 
 /* #region CabinetGrotesk */
