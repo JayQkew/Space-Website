@@ -1,8 +1,12 @@
+:root{
+    --card-img-dimensions: 20rem;
+}
+
 .hero-section{
     display: flex;
     flex-direction: column;
     gap: 0;
-    margin-block: 19rem;
+    margin-block: 20rem;
 }
 
 .hero-section blockquote p{
@@ -21,15 +25,30 @@
     justify-content: center;
 }
 
+.heading-section{
+    margin-bottom: 3rem;
+}
+
 .card-container{
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 3rem;
+    padding: 1rem;
+    margin-bottom: 15rem;
 }
 
 .card{
+    width: var(--card-img-dimensions);
     border: var(--stroke-width) solid var(--titanium-white);
     border-radius: 1.5rem;
     padding: 1rem;
+}
+
+.card .svg-container{
+    display: flex;
+    height: var(--card-img-dimensions);
+    border-bottom:  var(--stroke-width) solid var(--titanium-white);
+    justify-content: center;
+    align-items: center;
 }
