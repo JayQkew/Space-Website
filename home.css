@@ -27,3 +27,9 @@
     justify-content: center;
     gap: 3rem;
 }
+
+.card{
+    border: var(--stroke-width) solid var(--titanium-white);
+    border-radius: 1.5rem;
+    padding: 1rem;
+}
