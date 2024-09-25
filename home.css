@@ -25,8 +25,41 @@
     justify-content: center;
 }
 
-.heading-section{
+.fact-section{
     margin-bottom: 3rem;
+}
+
+.heading-section{
+    margin-bottom: 25rem;
+}
+
+.decorated{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-inline: 1rem;
+}
+
+.banana-decorated{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-inline: 1rem; 
+}
+
+.banana-decorated svg{
+    margin-top: 5rem;
+}
+
+
+.heading-section h2{
+    font-size: 2rem;
+    margin-inline: 0.5rem;
+}
+.heading-section p{
+    font-size: 1.5rem;
+    margin-inline: 0.5rem;
 }
 
 .card-container{
@@ -46,9 +79,13 @@
 }
 
 .card .svg-container{
+    z-index: 0;
     display: flex;
     height: var(--card-img-dimensions);
-    border-bottom:  var(--stroke-width) solid var(--titanium-white);
+    border-radius: 1.5rem;
+    border:  var(--stroke-width) solid var(--titanium-white);
     justify-content: center;
+    /* background-color: hsla(0, 0%, 100%, 0.175); */
+    /* backdrop-filter: blur(10px); */
     align-items: center;
 }
