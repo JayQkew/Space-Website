@@ -40,18 +40,6 @@
     margin-inline: 1rem;
 }
 
-.banana-decorated{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-inline: 1rem; 
-}
-
-.banana-decorated svg{
-    margin-top: 5rem;
-}
-
 
 .heading-section h2{
     font-size: 2rem;
@@ -88,4 +76,29 @@
     /* background-color: hsla(0, 0%, 100%, 0.175); */
     /* backdrop-filter: blur(10px); */
     align-items: center;
+}
+
+.banana-decorated{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-inline: 1rem; 
+}
+
+.banana-decorated p{
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.banana-decorated h2{
+    font-family: 'ClashDisplay-Bold';
+    font-size: 5rem;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
+.banana-decorated svg{
+    margin-top: 5rem;
 }
