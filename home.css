@@ -102,3 +102,33 @@
 .banana-decorated svg{
     margin-top: 5rem;
 }
+
+.banana-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banana-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border:  var(--stroke-width) solid var(--titanium-white);
+    border-radius: 1.5rem;
+    width: 16rem;
+    height: fit-content;
+    padding: 1rem;
+}
+
+.banana-card ul{
+    list-style: none;
+    padding-inline: 1rem;
+    margin: 0;
+    width: 16rem;
+}
+
+.banana-card ul li{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
