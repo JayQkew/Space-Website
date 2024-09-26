@@ -29,4 +29,4 @@ function unitConversion(data, currUnit){
     return console.log(`${currUnit} doesnt need conversion`)
 }
 
-export default bananaStuff;
+export default bananaData;
