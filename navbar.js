@@ -8,8 +8,6 @@ const pages = [
     {page: 'About', url: 'about/about.html'}
 ];
 
-console.log(currPage);
-
 /**
  * creates a 'ul' of links to other pages of the website
  * the url's are declared in the 'pages' array using objects
@@ -17,6 +15,7 @@ console.log(currPage);
  */
 function createNav(currPage){
     const list = document.createElement('ul');
+    list.classList.add('decorate');
     let allPages = '';
     pages.map( p => {
         let listItem;
@@ -44,28 +43,28 @@ function createNav(currPage){
     // adds the string as HTML to the 'ul'
     list.innerHTML = allPages;
     nav.appendChild(list);
+
 }
 
 /**
  * creates the decorative elements of the navbar
  * @param {String} side left or right side of the navbar
+ * @param {Node} node node to decorate around 
  */
-async function addDecoration(side){
+function addDecoration(side, node){
     const decoration = document.createElement('div');
     decoration.classList.add('star-decoration');
 
-    // gets the 'svg' from the svgs file
-    let url = `${(currPage == 'Home') ? '':'../'}svgs/Star-small.svg`;
-    const starSVG = await fetch(url)
-        .then(response => response.text());
+    const starSVG =  `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 0C20.3795 19.3127 20.6874 19.6204 40 20C20.6874 20.3796 20.3795 20.6873 20 40C19.6205 20.6873 19.3129 20.3796 0 20C19.3129 19.6204 19.6205 19.3127 20 0Z" fill="white"/>
+        </svg>`
 
     const starWrapper = document.createElement('div');
     starWrapper.classList.add('star-wrapper');
+    starWrapper.innerHTML = starSVG;
 
     const line = document.createElement('div');
     line.classList.add('line-decoration');
-    
-    starWrapper.innerHTML = starSVG;
 
     // appends the elements in a specific order depending on the 'side'
     decoration.appendChild(side === 'left' ? starWrapper : line);
@@ -73,9 +72,16 @@ async function addDecoration(side){
 
     // appends into DOM before (left) 'ul' using 'insertBefore'
     // appends into DOM after (right) 'ul' using 'appendChild'
-    (side === 'left') ? nav.insertBefore(decoration,nav.querySelector('ul')) : nav.appendChild(decoration);
+    (side === 'left') ? node.parentElement.insertBefore(decoration,node) : node.parentElement.appendChild(decoration);
+}
+
+function decoratePage(){
+    const decorateElements = document.querySelectorAll('.decorate');
+    Array.from(decorateElements).map(element =>{
+        addDecoration('left', element);
+        addDecoration('right', element);
+    })
 }
 
 createNav(currPage);
-addDecoration('left');
-addDecoration('right');
+decoratePage();
