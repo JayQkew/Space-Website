@@ -11,6 +11,15 @@ hgroup:not(.card-headings){
     margin-block: 21.5rem;
 }
 
+hgroup h2{
+    font-size: 2rem;
+    margin-block: 0;
+}
+hgroup p{
+    font-size: 1.5rem;
+    margin-block: 0;
+}
+
 /* #region Hero Section */
 
 .hero-section{
@@ -27,26 +36,23 @@ blockquote{
     margin: 0;
 }
 
-.hero-section blockquote p{
+.hero-section hgroup h2{
     font-family: 'ClashDisplay-Bold';
     font-size: var(--hero-fs);
     margin-block: 0;
 }
 
-.hero-section p{
+.hero-section hgroup p{
     font-size: var(--heading-fs);
     margin-block: 1rem;
 }
-/* #endregion */
 
-hgroup h2{
-    font-size: 2rem;
-    margin-block: 0;
+.hero-section svg{
+    margin: 5rem;
+    width: 100%;
+    height: 20rem;
 }
-hgroup p{
-    font-size: 1.5rem;
-    margin-block: 0;
-}
+/* #endregion */
 
 /* #region planet cards */
 .card-container{
@@ -55,7 +61,6 @@ hgroup p{
     justify-content: center;
     gap: 3rem;
     padding: 1rem;
-    margin-bottom: 15rem;
 }
 
 .card{
@@ -86,35 +91,12 @@ hgroup p{
 
 /* #endregion */
 
-.banana-decorated{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-inline: 1rem; 
-}
-
-.banana-decorated p{
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 0;
-}
-
-.banana-decorated h2{
-    font-family: 'ClashDisplay-Bold';
-    font-size: 5rem;
-    font-weight: 700;
-    margin-top: 1rem;
-}
-
-.banana-decorated svg{
-    margin-top: 5rem;
-}
-
+/* #region banana section */
 .banana-section{
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 2rem;
 }
 
 .banana-card{
@@ -122,21 +104,53 @@ hgroup p{
     flex-direction: column;
     align-items: center;
     border:  var(--stroke-width) solid var(--titanium-white);
-    border-radius: 1.5rem;
-    width: 16rem;
+    border-radius: var(--border-radius);
+    width: var(--card-img-dimensions);
     height: fit-content;
     padding: 1rem;
 }
 
+.banana-card svg{
+    padding: 1rem;
+    border: var(--stroke-width) solid var(--titanium-white);
+    border-radius: var(--border-radius);
+    width: 100%;
+    height: 100%;
+}
+
+.banana-stats{
+    width: 100%;
+}
+
 .banana-card ul{
     list-style: none;
-    padding-inline: 1rem;
+    padding-inline: 0.5rem;
     margin: 0;
-    width: 16rem;
+    margin-top: 2rem;
+    width: 100%;
 }
 
 .banana-card ul li{
     display: flex;
+    gap: auto;
     flex-direction: row;
     justify-content: space-between;
+    height: fit-content;
+    font-size: 1rem;
+}
+
+.banana-card ul li p{
+    margin-block: 0.5rem;
+}
+
+.description{
+    width: 30rem;
+    font-size: 1.5rem;
+}
+/* #endregion */
+
+.button-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

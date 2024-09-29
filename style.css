@@ -136,6 +136,17 @@ header{
     color: var(--banana-yellow);
 }
 
+.banana-button{
+    font-family: 'ClashDisplay-Semibold';
+    font-size: var(--subheading-fs);
+    color: var(--rich-black);
+    background-color: var(--banana-yellow);
+    border: transparent;
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
 
 
 /* #region CabinetGrotesk */
