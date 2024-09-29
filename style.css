@@ -127,6 +127,7 @@ header{
     border: var(--stroke-width) solid var(--titanium-white);
 }
 .active-nav{
+    font-weight: bold;
     background-color: var(--titanium-white);
     color: var(--rich-black);
 }
