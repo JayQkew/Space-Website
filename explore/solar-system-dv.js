@@ -6,6 +6,7 @@ const RADIUS = window.innerWidth,
 let svg;
 let planetData;
 let minDistance, maxDistance;
+let minRadius, maxRadius;
 
 fetch(url)
     .then(response => {
@@ -19,11 +20,16 @@ fetch(url)
         const celestialBodies = data.bodies;
 
         // Filter the array to get only the planets and the Sun
-        planetData = celestialBodies.filter(body => body.isPlanet || body.englishName === 'Sun');
+        planetData = celestialBodies.filter(body => body.isPlanet /*|| body.englishName === 'Sun'*/);
+
+        planetData.sort((a, b) => a.semimajorAxis - b.semimajorAxis);
         
         minDistance = d3.min(planetData, data => data.semimajorAxis);
         maxDistance = d3.max(planetData, data => data.semimajorAxis);
-        // console.log(planetData);
+
+        minRadius = d3.min(planetData, data => data.meanRadius);
+        maxRadius = d3.max(planetData, data => data.meanRadius);
+        console.log(planetData);
 
         svg = d3.select('.solar-system')
                 .attr('height', RADIUS*2)
@@ -31,16 +37,22 @@ fetch(url)
                 .append('g')
                 .attr('height', RADIUS*2)
                 .attr('width', RADIUS)
-                .attr('transform', `translate(0,${RADIUS/2.25})`);
+                .attr('transform', `translate(0,${RADIUS/2.5})`);
         
         const dScale = d3.scaleLinear()
                         .domain([minDistance, maxDistance])
-                        .range([100, RADIUS]);
+                        .range([10, RADIUS-MARGIN]);
+        
+        const aScale = d3.scalePow()
+                        .exponent(2)
+                        .domain([0, 10])
+                        .range([4, 3.5]);
+        
+        const rScale = d3.scaleLinear()
+                        .domain([minRadius, maxRadius])
+                        .range([5, 75]);
 
-        const link = d3.linkRadial() 
-                        .angle(d => 0) 
-                        .radius(d => dScale(d.semimajorAxis)); 
-
+        // create semimajorAxis lines
         svg.selectAll('circle')
             .data(planetData)
             .enter()
@@ -52,10 +64,18 @@ fetch(url)
             .style('stroke', 'white')  // Outline color
             .style('stroke-width', 1);
 
-        d3.selectAll("path") 
-            .data(data) 
-            .join("path") 
-            .attr("d", link) 
+        let multi = 3.71;
+        //create planets on the lines
+        svg.selectAll('circle.planet')
+            .data(planetData)
+            .enter()
+            .append('circle')
+            .attr('cx', (d,i) => dScale(d.semimajorAxis) * Math.cos(aScale(i)*Math.PI/2))
+            .attr('cy', (d,i) => dScale(d.semimajorAxis) * Math.sin(aScale(i)*Math.PI/2))
+            .attr('r', d => rScale(d.meanRadius))
+            .attr('fill', 'white')
+
+        
     })
     .catch(error => {
         console.error('Error fetching planet data:', error);
