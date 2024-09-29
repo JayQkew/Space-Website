@@ -17,53 +17,56 @@ fetch(url)
         return response.json();
     })
     .then(data => {
-        // The 'bodies' property contains an array of all celestial bodies
         const celestialBodies = data.bodies;
 
         // Filter the array to get only the planets and the Sun
         planetData = celestialBodies.filter(body => body.isPlanet || body.englishName === 'Sun');
 
-        planetData.sort((a, b) => a.semimajorAxis - b.semimajorAxis);
-        
-        minDistance = d3.min(planetData, data => data.semimajorAxis);
-        maxDistance = d3.max(planetData, data => data.semimajorAxis);
-
-        planetData.sort((a,b) => a.meanRadius - b.meanRadius);
+        //sorts the array based on meanRadius
+        planetData.sort((a, b) => a.meanRadius - b.meanRadius);
         minRadius = d3.min(planetData, data => data.meanRadius);
-        maxRadius = planetData[planetData.length-2].meanRadius;
-        console.log(planetData[planetData.length-2]);
+        maxRadius = planetData[planetData.length-2].meanRadius; //we dont want to include the sun so its 'planetData[planetData.length-2]'
 
+        //sorts the array based on distance from the sun (semimajorAxis)
         planetData.sort((a, b) => a.semimajorAxis - b.semimajorAxis);
+        minDistance = 0;    //the suns distance from the sun...
+        maxDistance = d3.max(planetData, data => data.semimajorAxis);
 
         svg = d3.select('.solar-system')
                 .attr('height', RADIUS*2)
                 .attr('width', RADIUS)
+                .attr('transform', `translate(0,${-RADIUS/2})`)
                 .append('g')
                 .attr('height', RADIUS*2)
                 .attr('width', RADIUS)
-                .attr('transform', `translate(${MARGIN/2},${RADIUS/2.5})`);
+                .attr('transform', `translate(${MARGIN/2},${RADIUS})`);
         
+        // distance scale
         const dScale = d3.scaleLinear()
                         .domain([minDistance, maxDistance])
                         .range([SUNRADIUS, RADIUS-MARGIN]);
         
+        // angle scale
+        let minAngle = 4,
+            maxAngle = 3.5;
         let aScale = d3.scalePow()
                         .exponent(2)
                         .domain([0, 9])
-                        .range([4, 3.675]);
+                        .range([minAngle, maxAngle]);
         
+        // radius scale
         const rScale = d3.scaleLinear()
                         .domain([minRadius, maxRadius])
                         .range([5, 35]);
 
-        // create semimajorAxis lines
-        svg.selectAll('circle.orbit')
+        // create semimajorAxis lines for each planet
+        svg.selectAll('circle')
             .data(planetData)
             .enter()
             .append('circle')
-            .attr('r', d => dScale(d.semimajorAxis)) // Use scaled semimajor axis as radius
             .attr('cx', 0)
             .attr('cy', 0)
+            .attr('r', d => dScale(d.semimajorAxis)) // Use scaled semimajor axis as radius
             .style('fill', 'none')  // No fill for outline effect
             .style('stroke', 'white')  // Outline color
             .style('stroke-width', 1);
@@ -73,6 +76,7 @@ fetch(url)
                             .data(planetData)
                             .enter()
                             .append('circle')
+                            .attr('class', d => d.englishName)
                             .attr('cx', (d,i) => {
                                 let xPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(i)*Math.PI/2);
                                 return xPos;
@@ -89,14 +93,13 @@ fetch(url)
                             .attr('fill', 'white');
 
         window.addEventListener('scroll', () => {
-            // Adjust scaleValue based on scroll position
-            let scaleValue = window.scrollY / RADIUS*2; // Adjust the denominator for sensitivity
-            console.log(scaleValue);
-            let startDelta = (5-4) * scaleValue; // Adjust starting value toward 5
-            let endDelta = (5-3.675) * scaleValue; // Adjust ending value toward 5
+            let scaleValue = window.scrollY / RADIUS*2; // get scroll percentage of svg
 
-            let newRangeStart = 4 + startDelta;
-            let newRangeEnd = 3.675 + endDelta;
+            let startDelta = (5-minAngle) * scaleValue; // calc delta via percentage for start value
+            let endDelta = (5-maxAngle) * scaleValue;   // calc delta via percentage for end value
+
+            let newRangeStart = minAngle + startDelta;
+            let newRangeEnd = maxAngle + endDelta;
     
             // Update the range of the scale
             aScale.range([newRangeStart, newRangeEnd]);
