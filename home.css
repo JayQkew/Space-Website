@@ -4,6 +4,7 @@
 
 hgroup:not(.card-headings){
     text-align: center;
+    margin-block: 1rem;
 }
 
 .page-section{
@@ -38,16 +39,16 @@ blockquote{
 }
 /* #endregion */
 
-
-.heading-section h2{
+hgroup h2{
     font-size: 2rem;
-    margin-inline: 0.5rem;
+    margin-block: 0;
 }
-.heading-section p{
+hgroup p{
     font-size: 1.5rem;
-    margin-inline: 0.5rem;
+    margin-block: 0;
 }
 
+/* #region planet cards */
 .card-container{
     display: flex;
     flex-direction: row;
@@ -71,10 +72,19 @@ blockquote{
     border-radius: 1.5rem;
     border:  var(--stroke-width) solid var(--titanium-white);
     justify-content: center;
-    /* background-color: hsla(0, 0%, 100%, 0.175); */
-    /* backdrop-filter: blur(10px); */
     align-items: center;
 }
+
+.card p{
+    margin-block: 0.5rem;
+    font-size: 1rem;
+}
+
+.card h3{
+    font-size: 1.5rem;
+}
+
+/* #endregion */
 
 .banana-decorated{
     display: flex;

@@ -42,8 +42,8 @@ function createCard(){
                 <hgroup class="card-headings">
                     <h3>${planetName}</h3>
                     <p>${planetFact}</p>
+                    <p>${scale}</p>
                 </hgroup>
-                <p>${scale}</p>
             </article>        
         `
 
