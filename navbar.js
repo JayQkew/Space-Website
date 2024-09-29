@@ -78,6 +78,7 @@ function addDecoration(side, node){
 function decoratePage(){
     const decorateElements = document.querySelectorAll('.decorate');
     Array.from(decorateElements).map(element =>{
+        element.parentElement.classList.add('decorate-parent');
         addDecoration('left', element);
         addDecoration('right', element);
     })

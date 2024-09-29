@@ -27,6 +27,11 @@
 
     --stroke-width: 0.5px;
     --glass-blur: 1rem;
+    --border-radius: 1.5rem;
+    
+    --hero-fs: 5rem;
+    --heading-fs: 2rem;
+    --subheading-fs: 1.5rem;
 }
 
 body{
@@ -75,6 +80,12 @@ a:hover{
     flex-grow: 2;
 }
 
+.decorate-parent{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-inline: 1rem;
+}
 /* #endregion */
 
 /* #region navbar styling */
@@ -96,7 +107,7 @@ header{
     padding: 0.5rem;
     margin-block: auto;
     /* border: var(--stroke-width) solid var(--titanium-white); */
-    border-radius: 1.5rem;
+    border-radius: var(--border-radius);
     background-color: hsla(0, 0%, 100%, 0.175);
     backdrop-filter: blur(var(--glass-blur));
     display: flex;
@@ -109,7 +120,7 @@ header{
 .navbar a{
     font-weight: bold;
     border: var(--stroke-width) solid transparent;
-    border-radius: 1.5rem;
+    border-radius: var(--border-radius);
     padding-inline: 0.5rem;
 }
 .navbar a:hover{
@@ -120,10 +131,6 @@ header{
     color: var(--rich-black);
 }
 /* #endregion */
-
-hgroup:not(.card-headings){
-    text-align: center;
-}
 
 .banana-text{
     color: var(--banana-yellow);
