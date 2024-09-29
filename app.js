@@ -1,5 +1,6 @@
 const nav = document.querySelector('.navbar');
 const currPage = document.querySelector('title').innerText;
+const exploreBtn = document.querySelector('.explore-btn');
 
 const pages = [
     {page: 'Home', url: 'index.html'},
@@ -81,6 +82,12 @@ function decoratePage(){
         element.parentElement.classList.add('decorate-parent');
         addDecoration('left', element);
         addDecoration('right', element);
+    })
+}
+
+if(window.location.href == 'index.html'){
+    exploreBtn.addEventListener('click', () =>{
+        window.location.href = 'explore/explore.html';
     })
 }
 

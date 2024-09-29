@@ -136,7 +136,7 @@ header{
     color: var(--banana-yellow);
 }
 
-.banana-button{
+.banana-btn{
     font-family: 'ClashDisplay-Semibold';
     font-size: var(--subheading-fs);
     color: var(--rich-black);
