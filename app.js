@@ -1,6 +1,5 @@
 const nav = document.querySelector('.navbar');
 const currPage = document.querySelector('title').innerText;
-const exploreBtn = document.querySelector('.explore-btn');
 
 const pages = [
     {page: 'Home', url: 'index.html'},
@@ -86,12 +85,6 @@ function decoratePage(){
 }
 
 console.log(window.location.href);
-
-if(window.location.href == '../index.html'){
-    exploreBtn.addEventListener('click', () =>{
-        window.location.href = 'explore/explore.html';
-    })
-}
 
 createNav(currPage);
 decoratePage();

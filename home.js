@@ -1,4 +1,8 @@
+import banana from './banana-data.js';
+
 const cardContainer = document.querySelector('.card-container');
+const exploreBtn = document.querySelector('.explore-btn');
+const bananaStatCard = document.querySelector('.banana-stats');
 
 const planetCards = [
     {
@@ -27,7 +31,7 @@ const planetCards = [
     }
 ];
 
-function createCard(){
+function createPlanetCards(){
     planetCards.map(card =>{
         const svg = card.svg;
         const planetName = card.planetName;
@@ -51,4 +55,50 @@ function createCard(){
     });
 }
 
-createCard();
+exploreBtn.addEventListener('click', () =>{
+    window.location.href = 'explore/explore.html';
+})
+
+
+function fillBananaData(){
+    //gets the key value pairs of the banaan object
+    const bananaStats = Object.entries(banana);
+    const ul = document.createElement('ul');
+    bananaStats.map(stats =>{
+        //stats[0] is the key
+        //stats[1] is the value
+
+        let unitOfMeasurement;
+
+        switch(stats[0]){
+            case 'mass':
+                unitOfMeasurement = 'g';
+                break;
+            case 'length':
+            case 'radius':
+                unitOfMeasurement = 'cm';
+                break;
+            case 'volume':
+                unitOfMeasurement = 'cm³';
+                break;
+            case 'density':
+                unitOfMeasurement = 'g/cm³';
+                break;
+            default:
+                unitOfMeasurement = '';
+                break;
+        }
+
+        let stat = `
+            <li>
+                <p>${stats[0]}</p>
+                <p>${stats[1]} ${unitOfMeasurement}</p>
+            </li>
+        `
+        ul.innerHTML += stat;
+    })
+    bananaStatCard.appendChild(ul);
+}
+
+fillBananaData();
+createPlanetCards();
