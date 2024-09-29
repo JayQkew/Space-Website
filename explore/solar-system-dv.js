@@ -41,7 +41,7 @@ fetch(url)
                 .append('g')
                 .attr('height', RADIUS*2)
                 .attr('width', RADIUS)
-                .attr('transform', `translate(0,${RADIUS/2.5})`);
+                .attr('transform', `translate(${MARGIN/2},${RADIUS/2.5})`);
         
         const dScale = d3.scaleLinear()
                         .domain([minDistance, maxDistance])
@@ -68,7 +68,6 @@ fetch(url)
             .style('stroke', 'white')  // Outline color
             .style('stroke-width', 1);
 
-        let multi = 3.71;
         //create planets on the lines
         let planets = svg.selectAll('circle.planet')
                             .data(planetData)
@@ -91,7 +90,7 @@ fetch(url)
 
         window.addEventListener('scroll', () => {
             // Adjust scaleValue based on scroll position
-            let scaleValue = window.scrollY / window.innerHeight; // Adjust the denominator for sensitivity
+            let scaleValue = window.scrollY / RADIUS*2; // Adjust the denominator for sensitivity
             console.log(scaleValue);
             let startDelta = (5-4) * scaleValue; // Adjust starting value toward 5
             let endDelta = (5-3.675) * scaleValue; // Adjust ending value toward 5
