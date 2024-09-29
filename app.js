@@ -85,7 +85,7 @@ function decoratePage(){
     })
 }
 
-if(window.location.href == 'index.html'){
+if(window.location.href == '../index.html'){
     exploreBtn.addEventListener('click', () =>{
         window.location.href = 'explore/explore.html';
     })
