@@ -95,7 +95,7 @@ fetch(url)
 
 
         const zoom = d3.zoom()
-        .scaleExtent([1, 10]) // Allow zoom between 1x to 10x
+        // .scaleExtent([1, 10]) // Allow zoom between 1x to 10x
         .on('zoom', (event) => {
             // Apply the transformation on zoom
             svg.attr('transform', event.transform);
@@ -115,9 +115,9 @@ fetch(url)
             let newRangeEnd = maxAngle + endDelta;
     
             // Update the range of the scale
+            aScale.range([newRangeStart, newRangeEnd]);
             if(scaleValue <= 1){
-                aScale.range([newRangeStart, newRangeEnd]);
-    
+
                 planets
                     .attr('cx', d => {
                         let xPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(d.semimajorAxis) * Math.PI / 2);
@@ -129,54 +129,63 @@ fetch(url)
                     });
             }
             else{
+
                 let focusPlanet;
-                if (scaleValue < 1.5) {
+                if (scaleValue < 1.2) {
                     // Focus on the Sun
                     focusPlanet = planetData[0];
-                    d3.select('.sun').attr('fill', 'red');
-                } else if (scaleValue < 2) {
+                    d3.select('.sun').attr('stroke-width', '2').attr('stroke', 'red');
+                } else if (scaleValue < 1.3) { // 1.2 + 0.1
                     // Focus on the closest planet (e.g., Mercury)
                     focusPlanet = planetData[1];
-                    d3.select('.mercury').attr('fill', 'red');
-                } else if (scaleValue < 2.5) {
+                    d3.select('.mercury').attr('stroke-width', '2').attr('stroke', 'red');
+                } else if (scaleValue < 1.4) { // 1.3 + 0.1
                     // Focus on Venus
                     focusPlanet = planetData[2];
-                    d3.select('.venus').attr('fill', 'red');
-                } else if (scaleValue < 3) {
+                    d3.select('.venus').attr('stroke-width', '2').attr('stroke', 'red');
+                } else if (scaleValue < 1.5) { // 1.4 + 0.1
                     // Focus on Earth
                     focusPlanet = planetData[3];
-                    d3.select('.earth').attr('fill', 'red');
-                } else if (scaleValue < 3.5) {
+                    d3.select('.earth').attr('stroke-width', '2').attr('stroke', 'red');
+                } else if (scaleValue < 1.6) { // 1.5 + 0.1
                     // Focus on Mars
                     focusPlanet = planetData[4];
-                    d3.select('.mars').attr('fill', 'red');
-                } else if (scaleValue < 4) {
+                    d3.select('.mars').attr('stroke-width', '2').attr('stroke', 'red');
+                } else if (scaleValue < 1.7) { // 1.6 + 0.1
                     // Focus on Jupiter
                     focusPlanet = planetData[5];
-                    d3.select('.jupiter').attr('fill', 'red');
-                } else if (scaleValue < 4.5) {
+                    d3.select('.jupiter').attr('stroke-width', '2').attr('stroke', 'red');
+                } else if (scaleValue < 1.8) { // 1.7 + 0.1
                     // Focus on Saturn
                     focusPlanet = planetData[6];
-                    d3.select('.saturn').attr('fill', 'red');
-                } else if (scaleValue < 5) {
+                    d3.select('.saturn').attr('stroke-width', '2').attr('stroke', 'red');
+                } else if (scaleValue < 1.9) { // 1.8 + 0.1
                     // Focus on Uranus
                     focusPlanet = planetData[7];
-                    d3.select('.uranus').attr('fill', 'red');
-                } else if (scaleValue < 5.5) {
+                    d3.select('.uranus').attr('stroke-width', '2').attr('stroke', 'red');
+                } else if (scaleValue < 2.0) { // 1.9 + 0.1
                     // Focus on Neptune
                     focusPlanet = planetData[8];
-                    d3.select('.neptune').attr('fill', 'red');
+                    d3.select('.neptune').attr('stroke-width', '2').attr('stroke', 'red');
                 }
+                                
                 // Calculate the desired transform for zoom
                 const y = focusPlanet.englishName === 'Sun' ? 0 : dScale(focusPlanet.semimajorAxis);
                 const scale = 2;
 
+                const currentTransform = d3.zoomTransform(svg.node());
+                const currentX = currentTransform.x;
+                const currentY = currentTransform.y;
+                const currentScale = currentTransform.k;
+
                 // Center the planet on the screen
                 const svgHeight = window.innerHeight/2;  // Height of the screen (viewBox)
 
-                d3.select('.solar-system').transition()
+                d3.select('.solar-system')
+                .transition()
                 .duration(500)
-                .call(zoom.transform, d3.zoomIdentity.translate(RADIUS / 2, (svgHeight + window.scrollY + RADIUS/2 - y*scale)).scale(scale));
+                .call(zoom.transform, d3.zoomIdentity.translate(RADIUS / 2, (svgHeight + window.scrollY + RADIUS/2 - y*scale))
+                .scale(scale));
                 
             }
         });
