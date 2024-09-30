@@ -1,6 +1,6 @@
 //get data
 const url = 'https://api.le-systeme-solaire.net/rest/bodies/';
-const RADIUS = window.innerWidth,
+const RADIUS = window.innerWidth-50,
     MARGIN = 50,
     SUNRADIUS = 100;
 
@@ -35,7 +35,8 @@ fetch(url)
         svg = d3.select('.solar-system')
                 .attr('height', RADIUS*2)
                 .attr('width', RADIUS)
-                .attr('transform', `translate(0,${-RADIUS/2})`)
+                .attr('transform-origin', '50% left')
+                .attr('transform', `translate(0,${-RADIUS/1.75})`)
                 .append('g')
                 .attr('height', RADIUS*2)
                 .attr('width', RADIUS)
@@ -48,10 +49,10 @@ fetch(url)
         
         // angle scale
         let minAngle = 4,
-            maxAngle = 3.5;
-        let aScale = d3.scalePow()
-                        .exponent(2)
-                        .domain([0, 9])
+            maxAngle = 3.75;
+        let aScale = d3.scaleLinear()
+                        // .exponent(2)
+                        .domain([minDistance, maxDistance])
                         .range([minAngle, maxAngle]);
         
         // radius scale
@@ -78,11 +79,11 @@ fetch(url)
                             .append('circle')
                             .attr('class', d => d.englishName)
                             .attr('cx', (d,i) => {
-                                let xPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(i)*Math.PI/2);
+                                let xPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(d.semimajorAxis)*Math.PI/2);
                                 return xPos;
                             })
                             .attr('cy', (d,i) => {
-                                let yPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.sin(aScale(i)*Math.PI/2);
+                                let yPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.sin(aScale(d.semimajorAxis)*Math.PI/2);
                                 return yPos;
                             })
                             .attr('r', d => {
@@ -93,6 +94,8 @@ fetch(url)
                             .attr('fill', 'white');
 
         window.addEventListener('scroll', () => {
+        console.log(visualViewport.pageTop)
+
             let scaleValue = window.scrollY / RADIUS*2; // get scroll percentage of svg
 
             let startDelta = (5-minAngle) * scaleValue; // calc delta via percentage for start value
@@ -106,11 +109,11 @@ fetch(url)
 
             planets
                 .attr('cx', (d, i) => {
-                    let xPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(i) * Math.PI / 2);
+                    let xPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(d.semimajorAxis) * Math.PI / 2);
                     return xPos;
                 })
                 .attr('cy', (d, i) => {
-                    let yPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.sin(aScale(i) * Math.PI / 2);
+                    let yPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.sin(aScale(d.semimajorAxis) * Math.PI / 2);
                     return yPos;
                 });
         });
