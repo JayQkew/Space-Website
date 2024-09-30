@@ -1,6 +1,6 @@
 //get data
 const url = 'https://api.le-systeme-solaire.net/rest/bodies/';
-const RADIUS = window.innerWidth-50,
+const RADIUS = window.innerWidth,
     MARGIN = 50,
     SUNRADIUS = 100;
 
@@ -129,7 +129,6 @@ fetch(url)
                     });
             }
             else{
-
                 let focusPlanet;
                 if (scaleValue < 1.2) {
                     // Focus on the Sun
@@ -187,6 +186,7 @@ fetch(url)
                 .call(zoom.transform, d3.zoomIdentity.translate(RADIUS / 2, (svgHeight + window.scrollY + RADIUS/2 - y*scale))
                 .scale(scale));
                 
+
             }
         });
 
