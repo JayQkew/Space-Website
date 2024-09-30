@@ -92,6 +92,7 @@ a:hover{
 header{
     position: sticky;
     top: 1rem;
+    z-index: 1;
 }
 
 .navbar{
@@ -99,6 +100,7 @@ header{
     flex-direction: row;
     justify-content: space-between;
     margin-inline: 1rem;
+    z-index: 1;
 }
 .navbar ul{
     z-index: 1;
@@ -116,12 +118,14 @@ header{
 }
 .navbar li{
     margin-inline: 0.5rem;
+    z-index: 1;
 }
 .navbar a{
     font-weight: bold;
     border: var(--stroke-width) solid transparent;
     border-radius: var(--border-radius);
     padding-inline: 0.5rem;
+    z-index: 1;
 }
 .navbar a:hover{
     border: var(--stroke-width) solid var(--titanium-white);

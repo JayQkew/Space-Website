@@ -35,7 +35,7 @@ fetch(url)
         svg = d3.select('.solar-system')
                 .attr('height', RADIUS*5)
                 .attr('width', RADIUS)
-                .attr('transform-origin', '50% left')
+                .attr('transform-origin', 'top left')
                 .attr('transform', `translate(0,${-RADIUS/1.75})`)
                 .append('g')
                 .attr('height', RADIUS*2)
@@ -168,13 +168,16 @@ fetch(url)
                     d3.select('.neptune').attr('fill', 'red');
                 }
                 // Calculate the desired transform for zoom
-                const x = dScale(focusPlanet.semimajorAxis) * Math.cos(aScale(focusPlanet.semimajorAxis) * Math.PI / 2);
-                const y = dScale(focusPlanet.semimajorAxis);
-                const scale = scaleValue; // Set desired zoom scale level
+                const y = focusPlanet.englishName === 'Sun' ? 0 : dScale(focusPlanet.semimajorAxis);
+                const scale = 2;
+
+                // Center the planet on the screen
+                const svgHeight = window.innerHeight/2;  // Height of the screen (viewBox)
 
                 d3.select('.solar-system').transition()
                 .duration(500)
-                .call(zoom.transform, d3.zoomIdentity.translate(RADIUS / 2, window.scrollY - y*1.25 + RADIUS/1.25).scale(1.5));
+                .call(zoom.transform, d3.zoomIdentity.translate(RADIUS / 2, (svgHeight + window.scrollY + RADIUS/2 - y*scale)).scale(scale));
+                
             }
         });
 
