@@ -63,19 +63,19 @@ fetch(url)
         const rScale = d3
             .scaleLinear()
             .domain([minRadius, maxRadius])
-            .range([5, 35]);
+            .range([3, 35]);
 
         // create semimajorAxis lines for each planet
         svg.selectAll('circle')
             .data(planetData)
             .enter()
             .append('circle')
+            .attr('class', 'semimajorAxis')
             .attr('cx', 0)
             .attr('cy', 0)
             .attr('r', d => dScale(d.semimajorAxis)) // Use scaled semimajor axis as radius
             .style('fill', 'none')  // No fill for outline effect
             .style('stroke', 'white')  // Outline color
-            .style('stroke-width', 1);
 
         //create planets on the lines
         let planets = svg
@@ -110,7 +110,7 @@ fetch(url)
         window.addEventListener('scroll', () => {
             
             let scrollValue = window.scrollY / RADIUS*2; // get scroll percentage of svg
-            console.log(scrollValue);
+            //console.log(scrollValue);
             
             let startDelta = (5-minAngle) * scrollValue; // calc delta via percentage for start value
             let endDelta = (5-maxAngle) * scrollValue;   // calc delta via percentage for end value
@@ -124,7 +124,6 @@ fetch(url)
             const SCROLLTHRESH = 1;
 
             if(scrollValue <= SCROLLTHRESH){
-
                 planets
                     .attr('cx', d => {
                         let xPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(d.semimajorAxis) * Math.PI / 2);
@@ -138,39 +137,20 @@ fetch(url)
             else{
                 let focusPlanet;
                 
-
-                if (scrollValue < 1.2) {
-                    // Focus on the Sun
-                    focusPlanet = findPlanet('Sun');
-                } else if (scrollValue < 1.4) { // 1.2 + 0.1
-                    // Focus on the closest planet (e.g., Mercury)
-                    focusPlanet = findPlanet('Mercury');
-                } else if (scrollValue < 1.6) { // 1.3 + 0.1
-                    // Focus on Venus
-                    focusPlanet = findPlanet('Venus');
-                } else if (scrollValue < 1.8) { // 1.4 + 0.1
-                    // Focus on Earth
-                    focusPlanet = findPlanet('Earth');
-                } else if (scrollValue < 2) { // 1.5 + 0.1
-                    // Focus on Mars
-                    focusPlanet = findPlanet('Mars');
-                } else if (scrollValue < 2.2) { // 1.6 + 0.1
-                    // Focus on Jupiter
-                    focusPlanet = findPlanet('Jupiter');
-                } else if (scrollValue < 2.4) { // 1.7 + 0.1
-                    // Focus on Saturn
-                    focusPlanet = findPlanet('Saturn');
-                } else if (scrollValue < 2.6) { // 1.8 + 0.1
-                    // Focus on Uranus
-                    focusPlanet = findPlanet('Uranus');
-                } else if (scrollValue < 2.8) { // 1.9 + 0.1
-                    // Focus on Neptune
-                    focusPlanet = findPlanet('Neptune');
-                }
-                                
+                if (scrollValue < 1.2)focusPlanet = findPlanet('Sun');
+                else if (scrollValue < 1.4) focusPlanet = findPlanet('Mercury');
+                else if (scrollValue < 1.6) focusPlanet = findPlanet('Venus');
+                else if (scrollValue < 1.8) focusPlanet = findPlanet('Earth');
+                else if (scrollValue < 2.0) focusPlanet = findPlanet('Mars');
+                else if (scrollValue < 2.2) focusPlanet = findPlanet('Jupiter');
+                else if (scrollValue < 2.4) focusPlanet = findPlanet('Saturn');
+                else if (scrollValue < 2.6) focusPlanet = findPlanet('Uranus');
+                else if (scrollValue < 2.8) focusPlanet = findPlanet('Neptune');
+                                                
                 // Calculate the desired transform for zoom
                 const y = focusPlanet.englishName === 'Sun' ? 0 : dScale(focusPlanet.semimajorAxis);
-                const scale = 2;
+                let scale = calcScale((focusPlanet.englishName == 'Sun') ? 100: rScale(focusPlanet.meanRadius));
+                let strokeWidth = calcStrokeWidth((focusPlanet.englishName == 'Sun') ? 100: rScale(focusPlanet.meanRadius));
 
                 const currentTransform = d3.zoomTransform(svg.node());
                 const currentX = currentTransform.x;
@@ -183,18 +163,31 @@ fetch(url)
                 d3.select('.ss-inner')
                 .transition()
                 .duration(1200)
-                .call(zoom.transform, d3.zoomIdentity.translate(RADIUS / 2, (svgHeight + window.scrollY + RADIUS/2 - y*scale))
-                .scale(scale));
-                
+                .call(zoom.transform, d3.zoomIdentity
+                    .translate(RADIUS / 3, svgHeight)
+                .scale(scale))
+                .on("start", () => {
+                    d3.zoomIdentity.x = MARGIN/2;
+                    d3.zoomIdentity.y = window.scrollY + RADIUS/2 - y*scale;
+                });
 
+                d3.selectAll('.semimajorAxis')
+                .transition()
+                .duration(500)
+                .style('stroke-width', strokeWidth)
+                .on("start", () => console.log("Transition started")) // Check if transition starts
+                .on("end", () => console.log("Transition ended")); // Check if transition completes
             }
         });
-
     })
     .catch(error => {
         console.error('Error fetching planet data:', error);
     });
 
+/**
+ * @param {String} englishName planet to find
+ * @returns focused planet
+ */
 function findPlanet(englishName){
     let selectPlanet;
 
@@ -210,4 +203,40 @@ function findPlanet(englishName){
     })
 
     return selectPlanet;
+}
+
+/**
+ * calculates the scale of within a range based on a radius
+ * @param {Number} radius radius to base the scale on
+ * @returns the scale 
+ */
+function calcScale(radius){
+    const MAX_SCALE = 20,
+     MIN_SCALE = 4;
+    let diffScale = MAX_SCALE-MIN_SCALE;
+    
+    const MAX_RADIUS = SUNRADIUS,
+    MIN_RADIUS = 5;
+    let diffRadius = MAX_RADIUS-MIN_RADIUS;
+
+    let percentage = radius/diffRadius;
+    let scaleDelta = diffScale*percentage;
+
+    return MAX_SCALE-scaleDelta;
+}
+
+function calcStrokeWidth(radius){
+    const MAX_WIDTH = 1,
+     MIN_WIDTH = 0.1;
+    let diffWidth = MAX_WIDTH-MIN_WIDTH;
+    
+    const MAX_RADIUS = SUNRADIUS,
+    MIN_RADIUS = 5;
+    let diffRadius = MAX_RADIUS-MIN_RADIUS;
+
+    let percentage = radius/diffRadius;
+    let widthDelta = diffWidth*percentage;
+
+    console.log(MIN_WIDTH+widthDelta);
+    return MIN_WIDTH+widthDelta;
 }

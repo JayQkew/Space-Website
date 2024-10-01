@@ -34,7 +34,11 @@
     fill: var(--neptune-blue);
 }
 
-.focusPlanet{
+/* .focusPlanet{
     stroke-width: 2;
     stroke: aliceblue;
-}
+} */
+
+/* .semimajorAxis{
+    stroke-width: 1px;
+} */
