@@ -167,6 +167,7 @@ fetch(url)
                     .translate(RADIUS / 3, svgHeight)
                 .scale(scale))
                 .on("start", () => {
+                    //fixed zoom here
                     d3.zoomIdentity.x = MARGIN/2;
                     d3.zoomIdentity.y = window.scrollY + RADIUS/2 - y*scale;
                 });
