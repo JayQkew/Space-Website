@@ -1,0 +1,35 @@
+.sun{
+    fill: var(--sun-yellow);
+}
+
+.mercury{
+    fill: var(--mercury-purple);
+}
+
+.venus{
+    fill: var(--venus-orange);
+}
+
+.earth{
+    fill: var(--earth-blue);
+}
+
+.mars{
+    fill: var(--mars-red);
+}
+
+.jupiter{
+    fill: var(--jupiter-orange);
+}
+
+.saturn{
+    fill: var(--saturn-yellow);
+}
+
+.uranus{
+    fill: var(--uranus-blue);
+}
+
+.neptune{
+    fill: var(--neptune-blue);
+}
