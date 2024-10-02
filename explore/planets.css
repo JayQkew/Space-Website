@@ -37,5 +37,61 @@
 /* #endregion */
 
 /* #region Planet Stat Card */
+.planet-stats-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.planet-stats-card{
+    position: fixed;
+    top: 47.5%;
+    right: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-radius);
+    /* border:  var(--stroke-width) solid var(--titanium-white); */
+    width: fit-content;
+    padding: 1rem;
+    background-color: hsla(0, 0%, 100%, 0.175);
+    backdrop-filter: blur(var(--glass-blur));
+}
+
+.planet-stats-card ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.planet-stats-card li{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-block: 0.25rem;
+    width: 100%;
+}
+
+.stat-key{
+    text-align: left;
+}
+
+.stat-value{
+    text-align: right;
+}
+
+.btn-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+}
 /* #endregion */

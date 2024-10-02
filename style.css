@@ -153,6 +153,17 @@ header{
     cursor: pointer;
 }
 
+button{
+    font-family: 'ClashDisplay-Semibold';
+    font-size: var(--subheading-fs);
+    color: var(--rich-black);
+    background-color: var(--titanium-white);
+    border: transparent;
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
 
 
 /* #region CabinetGrotesk */
