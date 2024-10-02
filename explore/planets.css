@@ -1,3 +1,4 @@
+/* #region Planets */
 .sun{
     fill: var(--sun-yellow);
 }
@@ -33,12 +34,8 @@
 .neptune{
     fill: var(--neptune-blue);
 }
+/* #endregion */
 
-/* .focusPlanet{
-    stroke-width: 2;
-    stroke: aliceblue;
-} */
+/* #region Planet Stat Card */
 
-/* .semimajorAxis{
-    stroke-width: 1px;
-} */
+/* #endregion */

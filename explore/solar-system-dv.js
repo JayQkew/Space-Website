@@ -34,7 +34,7 @@ fetch(url)
 
         svg = d3
             .select('.solar-system')
-            .attr('height', RADIUS*5)
+            .attr('height', RADIUS*2.5)
             .attr('width', RADIUS)
             .attr('transform-origin', 'top left')
             .attr('transform', `translate(0,${-RADIUS/1.75})`)
@@ -149,7 +149,7 @@ fetch(url)
                         return yPos;
                     });
             }
-            else{
+            else if (scrollValue < 2.8){
                 let focusPlanet;
 
                 planets
@@ -196,6 +196,18 @@ fetch(url)
                 .transition()
                 .duration(500)
                 .style('stroke-width', strokeWidth);
+            }
+            else{
+                d3.select('.ss-inner')
+                .transition()
+                .duration(1200)
+                .attr('transform', `translate(${MARGIN/2},${RADIUS})`)
+                .call(zoom.transform, d3.zoomIdentity
+                    .translate(0, 0))
+                .on('start', () => {
+                    d3.zoomIdentity.x = MARGIN/2;
+                    d3.zoomIdentity.y = RADIUS;
+                });
             }
         });
     })
