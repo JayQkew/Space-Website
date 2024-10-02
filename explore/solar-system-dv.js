@@ -124,6 +124,21 @@ fetch(url)
             const SCROLLTHRESH = 1;
 
             if(scrollValue <= SCROLLTHRESH){
+                // d3.select('.ss-inner')
+                // .transition()
+                // .duration(1200)
+                
+                d3.select('.ss-inner')
+                .transition()
+                .duration(1200)
+                .attr('transform', `translate(${MARGIN/2},${RADIUS})`)
+                .call(zoom.transform, d3.zoomIdentity
+                    .translate(0, 0))
+                .on('start', () => {
+                    d3.zoomIdentity.x = MARGIN/2;
+                    d3.zoomIdentity.y = RADIUS;
+                });
+
                 planets
                     .attr('cx', d => {
                         let xPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(d.semimajorAxis) * Math.PI / 2);
@@ -136,6 +151,16 @@ fetch(url)
             }
             else{
                 let focusPlanet;
+
+                planets
+                .attr('cx', d => {
+                    let xPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(5 * Math.PI / 2);
+                    return xPos;
+                })
+                .attr('cy', d => {
+                    let yPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.sin(5 * Math.PI / 2);
+                    return yPos;
+                });
                 
                 if (scrollValue < 1.2)focusPlanet = findPlanet('Sun');
                 else if (scrollValue < 1.4) focusPlanet = findPlanet('Mercury');
@@ -151,11 +176,6 @@ fetch(url)
                 const y = focusPlanet.englishName === 'Sun' ? 0 : dScale(focusPlanet.semimajorAxis);
                 let scale = calcScale((focusPlanet.englishName == 'Sun') ? 100: rScale(focusPlanet.meanRadius));
                 let strokeWidth = calcStrokeWidth((focusPlanet.englishName == 'Sun') ? 100: rScale(focusPlanet.meanRadius));
-
-                const currentTransform = d3.zoomTransform(svg.node());
-                const currentX = currentTransform.x;
-                const currentY = currentTransform.y;
-                const currentScale = currentTransform.k;
 
                 // Center the planet on the screen
                 const svgHeight = window.innerHeight/2;  // Height of the screen (viewBox)
@@ -175,9 +195,7 @@ fetch(url)
                 d3.selectAll('.semimajorAxis')
                 .transition()
                 .duration(500)
-                .style('stroke-width', strokeWidth)
-                .on("start", () => console.log("Transition started")) // Check if transition starts
-                .on("end", () => console.log("Transition ended")); // Check if transition completes
+                .style('stroke-width', strokeWidth);
             }
         });
     })
