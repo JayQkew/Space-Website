@@ -210,7 +210,7 @@ function renderSolarSystem(planetData){
             .transition()
             .duration(1200)
             .call(zoom.transform, d3.zoomIdentity
-                .translate(RADIUS / 3, svgHeight)
+                .translate(RADIUS / 3, svgHeight + MARGIN)
             .scale(scale))
             .on("start", () => {
                 //fixed zoom here
@@ -224,6 +224,8 @@ function renderSolarSystem(planetData){
             .style('stroke-width', strokeWidth);
         }
         else{
+            document.querySelector('.planet-stats-card').style.display = 'none';
+
             d3.select('.ss-inner')
             .transition()
             .duration(1200)
@@ -302,4 +304,3 @@ function calcStrokeWidth(radius){
 
     return MIN_WIDTH+widthDelta;
 }
-

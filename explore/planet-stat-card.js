@@ -48,7 +48,15 @@ function createStatCard(){
     let focusPlanet = getFocusPlanet();
 
     let cardInnerHTML = `
-            <h3>${focusPlanet.englishName}</h3>
+        <div class="decorate-parent">
+        <div class="star-decoration"><div class="star-wrapper"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 0C20.3795 19.3127 20.6874 19.6204 40 20C20.6874 20.3796 20.3795 20.6873 20 40C19.6205 20.6873 19.3129 20.3796 0 20C19.3129 19.6204 19.6205 19.3127 20 0Z" fill="white"></path>
+        </svg></div><div class="line-decoration"></div></div>
+            <h3 class="decorate">${focusPlanet.englishName}</h3>
+        <div class="star-decoration"><div class="line-decoration"></div><div class="star-wrapper"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 0C20.3795 19.3127 20.6874 19.6204 40 20C20.6874 20.3796 20.3795 20.6873 20 40C19.6205 20.6873 19.3129 20.3796 0 20C19.3129 19.6204 19.6205 19.3127 20 0Z" fill="white"></path>
+        </svg></div></div>
+        </div>
             <div class="btn-container">
                 <button class="banana-btn">Banana</button>
                 <button>Regular</button>

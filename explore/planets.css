@@ -59,6 +59,16 @@
     backdrop-filter: blur(var(--glass-blur));
 }
 
+.planet-stats-card h3{
+    font-size: 2rem;
+    text-align: center;
+    height: fit-content;
+}
+
+.decorate-parent:not(.navbar){
+    width: 100%;
+}
+
 .planet-stats-card ul{
     display: flex;
     flex-direction: column;
