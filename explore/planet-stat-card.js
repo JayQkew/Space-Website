@@ -34,6 +34,10 @@ const statTypes = [
 window.addEventListener('scroll', () => {
     if (window.scrollY >= 755){
         createStatCard();
+        statCard.style.display = 'flex';
+    }
+    else{
+        statCard.style.display = 'none';
     }
 })
 

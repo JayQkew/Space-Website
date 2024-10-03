@@ -46,14 +46,14 @@
 .planet-stats-card{
     position: fixed;
     top: 35%;
-    right: 20%;
-    display: flex;
+    right: 10%;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: var(--border-radius);
     /* border:  var(--stroke-width) solid var(--titanium-white); */
-    width: fit-content;
+    width: 30rem;
     padding: 1rem;
     background-color: hsla(0, 0%, 100%, 0.175);
     backdrop-filter: blur(var(--glass-blur));
