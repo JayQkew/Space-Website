@@ -1,7 +1,12 @@
 import { fetchPlanetData, getFocusPlanet } from "./solar-system-dv.js";
 import bananaData from "../banana-data.js";
 
-let statCard = document.querySelector('.planet-stats-card');
+const statCard = document.querySelector('.planet-stats-card');
+
+
+const STATMODE_BANANA = 'banana',
+    STATMODE_REGULAR = 'regular';
+let statMode = STATMODE_REGULAR;
 
 const statTypes = [
     {
@@ -31,20 +36,10 @@ const statTypes = [
     }
 ]
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY >= 755){
-        createStatCard();
-        statCard.style.display = 'flex';
-    }
-    else{
-        statCard.style.display = 'none';
-    }
-})
-
 /**
  * creates the stat card for the current planet
  */
-function createStatCard(){
+export function createStatCard(){
     let focusPlanet = getFocusPlanet();
 
     let cardInnerHTML = `
@@ -65,38 +60,129 @@ function createStatCard(){
 
     statCard.innerHTML = cardInnerHTML;
 
+    const bananaStatBtn = document.querySelector('.banana-stat-btn');
+    const statBtn = document.querySelector('.stat-btn');
+
+    //changes the stat mode to banana
+    bananaStatBtn.addEventListener('click', () =>{
+        statMode = STATMODE_BANANA;
+        updateStats(focusPlanet);
+    })
+    
+    //changes the stat mode to regular
+    statBtn.addEventListener('click', () =>{
+        statMode = STATMODE_REGULAR;
+        updateStats(focusPlanet);
+    })
+
     addStats(focusPlanet);
 }
 
-
+/**
+ * adds the stats to the planetStatCard
+ * @param {Array} focusPlanet 
+ */
 function addStats(focusPlanet){
     let ul = document.createElement('ul');
     statTypes.map(stat => {
-        let statType = stat.type;
         let li = `
             <li>
                 <span class="stat-key">${stat.name}</span>
-                <span class="stat-value">${statCheck(focusPlanet, stat)}</span>
+                <span class="stat-value" data-type="${stat.type}">${statCheck(focusPlanet, stat)}</span>
             </li>
         `
         ul.innerHTML += li;
         
-        console.log(typeof focusPlanet[stat.type])
     });
 
     statCard.appendChild(ul);
 }
 
+function updateStats(focusPlanet){
+    let statValues = document.querySelectorAll('.stat-value');
+    statValues.forEach(s => {
+        // Find the matching stat object using the data-type attribute
+        let statType = s.getAttribute('data-type');
+        let stat = statTypes.find(st => st.type == statType);
+
+        if (stat) {
+            s.innerHTML = statCheck(focusPlanet, stat);
+        } else {
+            console.error(`Stat type "${statType}" not found in statTypes.`);
+            s.innerHTML = 'N/A';
+        }
+    });
+}
+
+
+/**
+ * gets the value for each stat type
+ * @param {Array} focusPlanet 
+ * @param {any} stat stat type
+ * @returns 
+ */
 function statCheck(focusPlanet, stat){
     if(typeof focusPlanet[stat.type] == 'object'){
         if(stat.type === 'mass'){
-            return focusPlanet[stat.type].massValue + ' x 10<sup>' + focusPlanet[stat.type].massExponent +'</sup> ' + stat.unit;
+            if (statMode === STATMODE_REGULAR){
+                return focusPlanet[stat.type].massValue + ' x 10<sup>' + focusPlanet[stat.type].massExponent +'</sup> ' + stat.unit;
+            }
+            else{
+                return calcBananas(focusPlanet, stat);
+            }
         }
         else{
-            return focusPlanet[stat.type].volValue + ' x 10<sup>' + focusPlanet[stat.type].volExponent + '</sup> ' + stat.unit;
+            if (statMode === STATMODE_REGULAR){
+                return focusPlanet[stat.type].volValue + ' x 10<sup>' + focusPlanet[stat.type].volExponent + '</sup> ' + stat.unit;
+            }
+            else{
+                return calcBananas(focusPlanet, stat);
+            }
         }
     }
     else{
-        return focusPlanet[stat.type] + ' ' + stat.unit;
+        if (statMode === STATMODE_REGULAR){
+            return focusPlanet[stat.type] + ' ' + stat.unit;
+        }
+        else{
+            return calcBananas(focusPlanet, stat);
+        }
+    }
+}
+
+function calcBananas(focusPlanet, stat) {
+    switch (stat.type) {
+        case 'mass':
+            // Assuming the average banana mass is 120 grams (0.12 kg)
+            const bananaMass = 0.12; // kg
+            let massInBananas = focusPlanet.mass.massValue * Math.pow(10, focusPlanet.mass.massExponent) / bananaMass;
+            return massInBananas.toLocaleString() + ' bananas';
+
+        case 'semimajorAxis':
+            // Assuming the average length of a banana is 20 cm (0.2 meters or 0.0002 km)
+            const bananaLength = 0.0002; // km
+            let axisInBananas = focusPlanet.semimajorAxis / bananaLength;
+            return axisInBananas.toLocaleString() + ' bananas';
+
+        case 'meanRadius':
+            // Assuming a banana’s average radius (width) is 2 cm (0.02 meters or 0.00002 km)
+            const bananaRadius = 0.00002; // km
+            let radiusInBananas = focusPlanet.meanRadius / bananaRadius;
+            return radiusInBananas.toLocaleString() + ' bananas';
+
+        case 'vol':
+            // Assuming the volume of a banana is approximately 0.115 liters (0.000115 km^3)
+            const bananaVolume = 0.000115; // km^3
+            let volInBananas = focusPlanet.vol.volValue * Math.pow(10, focusPlanet.vol.volExponent) / bananaVolume;
+            return volInBananas.toLocaleString() + ' bananas';
+
+        case 'density':
+            // Assuming the density of a banana is 0.94 g/cm^3 (since bananas are slightly less dense than water)
+            const bananaDensity = 0.94; // g/cm^3
+            let densityInBananas = focusPlanet.density / bananaDensity;
+            return densityInBananas.toFixed(2) + ' bananas';
+
+        default:
+            return 'N/A';
     }
 }

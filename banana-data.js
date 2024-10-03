@@ -11,7 +11,7 @@ const bananaData = {
  * @param {Number} data data to convert
  * @param {String} currUnit unit of that data
  */
-function unitConversion(data, currUnit){
+export function unitConversion(data, currUnit){
     if(currUnit === 'g'){
         //to kg
         return data/1000;

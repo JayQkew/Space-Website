@@ -9,6 +9,10 @@ let _planetData;
 let focusPlanet;
 let minDistance, maxDistance;
 let minRadius, maxRadius;
+const planetStatsCard = document.querySelector('.planet-stats-card');
+
+import { createStatCard } from "./planet-stat-card.js";
+            
 
 fetchPlanetData().then(planetData => {
     _planetData = planetData;
@@ -153,6 +157,7 @@ function renderSolarSystem(planetData){
             // d3.select('.ss-inner')
             // .transition()
             // .duration(1200)
+            planetStatsCard.style.display = 'none';
 
             d3.select('.ss-inner')
             .transition()
@@ -176,8 +181,7 @@ function renderSolarSystem(planetData){
                 });
         }
         else if (scrollValue < 2.8){
-            console.log(window.scrollY);
-
+            planetStatsCard.style.display = 'flex';
             planets
                 .attr('cx', d => {
                     let xPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(5 * Math.PI / 2);
@@ -197,7 +201,9 @@ function renderSolarSystem(planetData){
             else if (scrollValue < 2.4) focusPlanet = findPlanet('Saturn');
             else if (scrollValue < 2.6) focusPlanet = findPlanet('Uranus');
             else if (scrollValue < 2.8) focusPlanet = findPlanet('Neptune');
-                                            
+            
+            createStatCard();
+            
             // Calculate the desired transform for zoom
             const y = focusPlanet.englishName === 'Sun' ? 0 : dScale(focusPlanet.semimajorAxis);
             let scale = calcScale((focusPlanet.englishName == 'Sun') ? 100: rScale(focusPlanet.meanRadius));
@@ -224,7 +230,7 @@ function renderSolarSystem(planetData){
             .style('stroke-width', strokeWidth);
         }
         else{
-            document.querySelector('.planet-stats-card').style.display = 'none';
+            planetStatsCard.style.display = 'none';
 
             d3.select('.ss-inner')
             .transition()
