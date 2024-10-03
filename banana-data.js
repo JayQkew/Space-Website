@@ -4,7 +4,6 @@ const bananaData = {
     radius: 2.5,     // Average radius in centimeters
     volume: 118,     // Approximate volume in cubic centimeters
     density: 0.96,   // Approximate density in g/cm³
-    discovered: 1836 // Year of discovery/first recorded
 };
 
 /**

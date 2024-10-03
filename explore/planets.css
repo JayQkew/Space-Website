@@ -45,7 +45,7 @@
 
 .planet-stats-card{
     position: fixed;
-    top: 47.5%;
+    top: 35%;
     right: 20%;
     display: flex;
     flex-direction: column;
