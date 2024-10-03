@@ -125,7 +125,7 @@ function statCheck(focusPlanet, stat){
     if(typeof focusPlanet[stat.type] == 'object'){
         if(stat.type === 'mass'){
             if (statMode === STATMODE_REGULAR){
-                return focusPlanet[stat.type].massValue + ' x 10<sup>' + focusPlanet[stat.type].massExponent +'</sup> ' + stat.unit;
+                return focusPlanet[stat.type].massValue + ' x 10<sup>' + focusPlanet[stat.type].massExponent +'</sup> <span class="units">' + stat.unit + '</span>';
             }
             else{
                 return calcBananas(focusPlanet, stat);
@@ -133,7 +133,7 @@ function statCheck(focusPlanet, stat){
         }
         else{
             if (statMode === STATMODE_REGULAR){
-                return focusPlanet[stat.type].volValue + ' x 10<sup>' + focusPlanet[stat.type].volExponent + '</sup> ' + stat.unit;
+                return focusPlanet[stat.type].volValue + ' x 10<sup>' + focusPlanet[stat.type].volExponent + '</sup> <span class="units">' + stat.unit + '</span>';
             }
             else{
                 return calcBananas(focusPlanet, stat);
@@ -142,7 +142,7 @@ function statCheck(focusPlanet, stat){
     }
     else{
         if (statMode === STATMODE_REGULAR){
-            return focusPlanet[stat.type] + ' ' + stat.unit;
+            return focusPlanet[stat.type] + ' <span class="units">' + stat.unit + '</span>';
         }
         else{
             return calcBananas(focusPlanet, stat);
@@ -156,31 +156,31 @@ function calcBananas(focusPlanet, stat) {
             // Assuming the average banana mass is 120 grams (0.12 kg)
             const bananaMass = 0.12; // kg
             let massInBananas = focusPlanet.mass.massValue * Math.pow(10, focusPlanet.mass.massExponent) / bananaMass;
-            return massInBananas.toLocaleString() + ' bananas';
+            return massInBananas.toLocaleString() + ' <span class="banana-word">bananas</span>';
 
         case 'semimajorAxis':
             // Assuming the average length of a banana is 20 cm (0.2 meters or 0.0002 km)
             const bananaLength = 0.0002; // km
             let axisInBananas = focusPlanet.semimajorAxis / bananaLength;
-            return axisInBananas.toLocaleString() + ' bananas';
+            return axisInBananas.toLocaleString() + ' <span class="banana-word">bananas</span>';
 
         case 'meanRadius':
             // Assuming a banana’s average radius (width) is 2 cm (0.02 meters or 0.00002 km)
             const bananaRadius = 0.00002; // km
             let radiusInBananas = focusPlanet.meanRadius / bananaRadius;
-            return radiusInBananas.toLocaleString() + ' bananas';
+            return radiusInBananas.toLocaleString() + ' <span class="banana-word">bananas</span>';
 
         case 'vol':
             // Assuming the volume of a banana is approximately 0.115 liters (0.000115 km^3)
             const bananaVolume = 0.000115; // km^3
             let volInBananas = focusPlanet.vol.volValue * Math.pow(10, focusPlanet.vol.volExponent) / bananaVolume;
-            return volInBananas.toLocaleString() + ' bananas';
+            return volInBananas.toLocaleString() + ' <span class="banana-word">bananas</span>';
 
         case 'density':
             // Assuming the density of a banana is 0.94 g/cm^3 (since bananas are slightly less dense than water)
             const bananaDensity = 0.94; // g/cm^3
             let densityInBananas = focusPlanet.density / bananaDensity;
-            return densityInBananas.toFixed(2) + ' bananas';
+            return densityInBananas.toFixed(2) + ' <span class="banana-word">bananas</span>';
 
         default:
             return 'N/A';
