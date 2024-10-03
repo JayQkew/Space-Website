@@ -138,3 +138,34 @@
 .units{
     padding-left: 0.25rem;
 }
+
+.planet-basket{
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 10%;
+    width: fit-content;
+    background-color: hsla(0, 0%, 100%, 0.175);
+    backdrop-filter: blur(var(--glass-blur));
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-inline: auto;
+}
+
+.planet-basket h3{
+    margin-inline: 1rem;
+    margin-bottom: 1rem;
+}
+
+.planet-basket ul{
+    list-style: none;
+    border-radius: var(--border-radius);
+    border:  var(--stroke-width) solid var(--titanium-white);
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+    align-items: center;
+    padding: 0.5rem;
+}

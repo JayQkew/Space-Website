@@ -1,0 +1,1 @@
+let planets = d3.selectAll('.planet');

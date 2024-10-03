@@ -115,7 +115,7 @@ function renderSolarSystem(planetData){
         .data(planetData)
         .enter()
         .append('circle')
-        .attr('class', d => d.englishName.toLowerCase())
+        .attr('class', d => d.englishName.toLowerCase() + ' planet')
         .attr('cx', d => {
             let xPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(d.semimajorAxis)*Math.PI/2);
             return xPos;
@@ -169,6 +169,11 @@ function renderSolarSystem(planetData){
                 d3.zoomIdentity.x = MARGIN/2;
                 d3.zoomIdentity.y = RADIUS;
             });
+
+            d3.select('.solar-system')
+            .transition()
+            .duration(1200)
+            .attr('height', RADIUS*2.5);
 
             planets
                 .attr('cx', d => {
@@ -228,6 +233,11 @@ function renderSolarSystem(planetData){
             .transition()
             .duration(500)
             .style('stroke-width', strokeWidth);
+
+            d3.select('.solar-system')
+            .transition()
+            .duration(500)
+            .attr('height', RADIUS*2.5);
         }
         else{
             planetStatsCard.style.display = 'none';
@@ -242,6 +252,11 @@ function renderSolarSystem(planetData){
                 d3.zoomIdentity.x = MARGIN/2;
                 d3.zoomIdentity.y = RADIUS;
             });
+
+            d3.select('.solar-system')
+            .transition()
+            .duration(1200)
+            .attr('height', RADIUS*1.5);
         }
     });
 
