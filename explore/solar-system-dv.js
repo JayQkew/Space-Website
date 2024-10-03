@@ -7,6 +7,7 @@ const RADIUS = window.innerWidth,
 let svg;
 let _planetData;
 let focusPlanet;
+let planets;
 let minDistance, maxDistance;
 let minRadius, maxRadius;
 const planetStatsCard = document.querySelector('.planet-stats-card');
@@ -110,7 +111,7 @@ function renderSolarSystem(planetData){
         .style('stroke', 'white')  // Outline color
 
     //create planets on the lines
-    let planets = svg
+    planets = svg
         .selectAll('circle.planet')
         .data(planetData)
         .enter()
@@ -268,6 +269,10 @@ function renderSolarSystem(planetData){
  */
 export function getFocusPlanet(){
     return focusPlanet;
+}
+
+export function getPlanets(){
+    return planets;
 }
 
 /**
