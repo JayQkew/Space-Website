@@ -58,8 +58,8 @@ function createStatCard(){
         </svg></div></div>
         </div>
             <div class="btn-container">
-                <button class="banana-btn">Banana</button>
-                <button>Regular</button>
+                <button class="banana-stat-btn">Banana</button>
+                <button class="stat-btn">Regular</button>
             </div>
     `
 

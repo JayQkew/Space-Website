@@ -105,3 +105,27 @@
     gap: 2.5rem;
 }
 /* #endregion */
+
+/* #region Buttons */
+.banana-stat-btn{
+    font-family: 'ClashDisplay-Semibold';
+    font-size: 1.25rem;
+    color: var(--rich-black);
+    background-color: var(--banana-yellow);
+    border: transparent;
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.stat-btn{
+    font-family: 'ClashDisplay-Semibold';
+    font-size: 1.25rem;
+    color: var(--rich-black);
+    background-color: var(--titanium-white);
+    border: transparent;
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    cursor: pointer;
+}
+/* #endregion */
