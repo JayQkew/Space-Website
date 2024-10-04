@@ -281,7 +281,7 @@ function updatePlanetBasket() {
         .scalePow()
         .exponent(1)
         .domain([minRadius, maxRadius])
-        .range([4, 25]);
+        .range([4, 10]);
 
     // Create a new `li` for each selected planet
     let li = ul.selectAll('li')
@@ -295,11 +295,11 @@ function updatePlanetBasket() {
     // Append an SVG to each `li`
     li.append('svg')
         .attr('width', d => {
-            let radius = (d.englishName === 'Sun') ? 60 : rScale(d.meanRadius);
+            let radius = (d.englishName === 'Sun') ? 15 : rScale(d.meanRadius);
             return radius;
         })  // Width of SVG container
         .attr('height', d => {
-            let radius = (d.englishName === 'Sun') ? 60 : rScale(d.meanRadius);
+            let radius = (d.englishName === 'Sun') ? 15 : rScale(d.meanRadius);
             return radius;
         })  // Height of SVG container
         .attr('class', 'planet-svg-container')
@@ -307,7 +307,7 @@ function updatePlanetBasket() {
         .attr('cx', '50%')  // Center of the circle (x)
         .attr('cy', '50%')  // Center of the circle (y)
         .attr('r', d => {
-            let radius = (d.englishName === 'Sun') ? 60/2 : rScale(d.meanRadius)/2;
+            let radius = (d.englishName === 'Sun') ? 15/2 : rScale(d.meanRadius)/2;
             return radius;
         })  // Scale radius based on meanRadius
         .attr('class', d => d.englishName.toLowerCase())  // Color of the circle
