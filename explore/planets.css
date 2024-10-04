@@ -145,10 +145,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    top: 15%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    align-items: center;;
+    right: 25%;
+    transform: translate(50%, 50%);
     background-color: hsla(0, 0%, 100%, 0.175);
     backdrop-filter: blur(var(--glass-blur));
     border-radius: var(--border-radius);

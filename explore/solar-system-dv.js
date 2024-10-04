@@ -11,7 +11,7 @@ let planets;
 let minDistance, maxDistance;
 let minRadius, maxRadius;
 const planetStatsCard = document.querySelector('.planet-stats-card');
-let selectedPlanets = [];
+export let selectedPlanets = [];
 
 
 import { createStatCard } from "./planet-stat-card.js";
@@ -90,7 +90,6 @@ function renderSolarSystem(planetData){
         maxAngle = 3.75;
     let aScale = d3
         .scaleLinear()
-        // .exponent(2)
         .domain([minDistance, maxDistance])
         .range([minAngle, maxAngle]);
 
@@ -132,16 +131,17 @@ function renderSolarSystem(planetData){
             return radius;
         })
         .on('click', (event, d) =>{
-            console.log(typeof d);
             let planet = d;
             if(!selectedPlanets.includes(planet)){
                 selectedPlanets.push(planet);
-                console.log('added ' + planet.englishName)
+                console.log(selectedPlanets)
             }
             else{
-                selectedPlanets.filter(p => p !== planet);
-                console.log('removed ' + planet.englishName)
+                selectedPlanets = selectedPlanets.filter(p => p !== planet);
+                console.log(selectedPlanets)
             }
+
+            updatePlanetBasket();
         });
     
     const zoom = d3
@@ -274,7 +274,41 @@ function renderSolarSystem(planetData){
             .attr('height', RADIUS*1.5);
         }
     });
+}
 
+function updatePlanetBasket() {
+    let ul = d3.select('.planet-basket ul');
+    ul.selectAll('li').remove(); // Clear existing items in the list
+
+    
+
+    const rScale = d3
+        .scalePow()
+        .exponent(1)
+        .domain([minRadius, maxRadius])
+        .range([6, 30]);
+
+    // Create a new `li` for each selected planet
+    let li = ul.selectAll('li')
+        .data(selectedPlanets)
+        .enter()
+        .append('li')
+        .style('display', 'flex')  // Flex display for SVG and text alignment
+        .style('align-items', 'center')
+        .style('gap', '10px');  // Add spacing between SVG and text
+
+    // Append an SVG to each `li`
+    li.append('svg')
+        .attr('width', 75)  // Width of SVG container
+        .attr('height', 75)  // Height of SVG container
+        .append('circle')  // Append a circle to each SVG
+        .attr('cx', '50%')  // Center of the circle (x)
+        .attr('cy', '50%')  // Center of the circle (y)
+        .attr('r', d => {
+            let radius = (d.englishName === 'Sun') ? 75/2 : rScale(d.meanRadius);
+            return radius;
+        })  // Scale radius based on meanRadius
+        .attr('class', d => d.englishName.toLowerCase());  // Color of the circle
 }
 
 /**
