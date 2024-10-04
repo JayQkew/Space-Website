@@ -134,11 +134,9 @@ function renderSolarSystem(planetData){
             let planet = d;
             if(!selectedPlanets.includes(planet)){
                 selectedPlanets.push(planet);
-                console.log(selectedPlanets)
             }
             else{
                 selectedPlanets = selectedPlanets.filter(p => p !== planet);
-                console.log(selectedPlanets)
             }
 
             updatePlanetBasket();
@@ -308,7 +306,18 @@ function updatePlanetBasket() {
             let radius = (d.englishName === 'Sun') ? 75/2 : rScale(d.meanRadius);
             return radius;
         })  // Scale radius based on meanRadius
-        .attr('class', d => d.englishName.toLowerCase());  // Color of the circle
+        .attr('class', d => d.englishName.toLowerCase())  // Color of the circle
+        .on('click', (event, d) =>{
+            let planet = d;
+            if(!selectedPlanets.includes(planet)){
+                selectedPlanets.push(planet);
+            }
+            else{
+                selectedPlanets = selectedPlanets.filter(p => p !== planet);
+            }
+
+            updatePlanetBasket();
+        });
 }
 
 /**
