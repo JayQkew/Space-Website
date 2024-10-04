@@ -277,9 +277,6 @@ function renderSolarSystem(planetData){
 function updatePlanetBasket() {
     let ul = d3.select('.planet-basket ul');
     ul.selectAll('li').remove(); // Clear existing items in the list
-
-    
-
     const rScale = d3
         .scalePow()
         .exponent(1)
