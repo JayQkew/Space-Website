@@ -146,6 +146,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    top: 7.5%;
     right: 25%;
     transform: translate(50%, 50%);
     background-color: hsla(0, 0%, 100%, 0.175);
