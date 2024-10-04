@@ -140,13 +140,15 @@
 }
 
 .planet-basket{
-    position: sticky;
+    z-index: 10;
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    top: 10%;
-    width: fit-content;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: hsla(0, 0%, 100%, 0.175);
     backdrop-filter: blur(var(--glass-blur));
     border-radius: var(--border-radius);

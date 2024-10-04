@@ -11,6 +11,8 @@ let planets;
 let minDistance, maxDistance;
 let minRadius, maxRadius;
 const planetStatsCard = document.querySelector('.planet-stats-card');
+let selectedPlanets = [];
+
 
 import { createStatCard } from "./planet-stat-card.js";
             
@@ -128,6 +130,18 @@ function renderSolarSystem(planetData){
         .attr('r', d => {
             let radius = (d.englishName === 'Sun') ? SUNRADIUS : rScale(d.meanRadius);
             return radius;
+        })
+        .on('click', (event, d) =>{
+            console.log(typeof d);
+            let planet = d;
+            if(!selectedPlanets.includes(planet)){
+                selectedPlanets.push(planet);
+                console.log('added ' + planet.englishName)
+            }
+            else{
+                selectedPlanets.filter(p => p !== planet);
+                console.log('removed ' + planet.englishName)
+            }
         });
     
     const zoom = d3
@@ -216,13 +230,13 @@ function renderSolarSystem(planetData){
             let strokeWidth = calcStrokeWidth((focusPlanet.englishName == 'Sun') ? 100: rScale(focusPlanet.meanRadius));
 
             // Center the planet on the screen
-            const svgHeight = window.innerHeight/2;  // Height of the screen (viewBox)
+            const windowHeight = window.innerHeight/2;  // Height of the screen (viewBox)
 
             d3.select('.ss-inner')
             .transition()
             .duration(1200)
             .call(zoom.transform, d3.zoomIdentity
-                .translate(RADIUS / 3, svgHeight + MARGIN)
+                .translate(RADIUS / 3, windowHeight + MARGIN * 1.225)
             .scale(scale))
             .on("start", () => {
                 //fixed zoom here
