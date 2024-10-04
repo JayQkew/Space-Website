@@ -1,4 +1,8 @@
 /* #region Planets */
+.planet{
+    cursor: pointer;
+}
+
 .sun{
     fill: var(--sun-yellow);
 }
@@ -45,14 +49,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: fit-content;
+    height: fit-content;
     z-index: 10;
 }
 
 .planet-stats-card{
     z-index: inherit;
-    position: fixed;
-    top: 35%;
-    right: 10%;
+    position: absolute;
+    bottom: 50%;
+    right: 50%;
+    transform: translate(50%, 50%);
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -94,6 +101,7 @@
     align-items: center;
     margin-block: 0.25rem;
     width: 100%;
+
 }
 
 .stat-key{
@@ -147,13 +155,13 @@
 
 .planet-basket{
     z-index: 10;
-    position: fixed;
     display: flex;
+    position:inherit;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    top: 7.5%;
-    right: 25%;
+    bottom: 75%;
+    right: 50%;
     transform: translate(50%, 50%);
     background-color: hsla(0, 0%, 100%, 0.175);
     backdrop-filter: blur(var(--glass-blur));
@@ -179,5 +187,16 @@
 }
 
 aside{
-    z-index: 100;
+    z-index: 10;
+    position: fixed;
+    height: 100%;
+    width: 0%;
+    /* display: flex;
+    flex-direction: column;
+    gap: 10rem; */
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
 }
