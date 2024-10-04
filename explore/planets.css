@@ -145,7 +145,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;;
+    align-items: center;
     right: 25%;
     transform: translate(50%, 50%);
     background-color: hsla(0, 0%, 100%, 0.175);
