@@ -9,7 +9,8 @@ let _planetData;
 let focusPlanet;
 let planets;
 let minDistance, maxDistance;
-let minRadius, maxRadius;
+let planetDataViz = false;
+export let minRadius, maxRadius;
 const planetStatsCard = document.querySelector('.planet-stats-card');
 export let selectedPlanets = [];
 
@@ -251,6 +252,8 @@ function renderSolarSystem(planetData){
             .transition()
             .duration(500)
             .attr('height', RADIUS*2.5);
+
+            planetDataViz = false;
         }
         else{
             planetStatsCard.style.display = 'none';
@@ -270,8 +273,14 @@ function renderSolarSystem(planetData){
             .transition()
             .duration(1200)
             .attr('height', RADIUS*1.5);
+
+            if(planetDataViz === false){
+                createBubbles();
+                planetDataViz = true;
+            }
         }
     });
+    
 }
 
 function updatePlanetBasket() {
@@ -307,21 +316,23 @@ function updatePlanetBasket() {
         .attr('cx', '50%')  // Center of the circle (x)
         .attr('cy', '50%')  // Center of the circle (y)
         .attr('r', d => {
-            let radius = (d.englishName === 'Sun') ? 15/2 : rScale(d.meanRadius)/2;
+            let radius = (d.englishName === 'Sun') ? 15 / 2 : rScale(d.meanRadius) / 2;
             return radius;
         })  // Scale radius based on meanRadius
         .attr('class', d => d.englishName.toLowerCase())  // Color of the circle
-        .on('click', (event, d) =>{
+        .on('click', (event, d) => {
             let planet = d;
-            if(!selectedPlanets.includes(planet)){
+            if (!selectedPlanets.includes(planet)) {
                 selectedPlanets.push(planet);
-            }
-            else{
+            } else {
                 selectedPlanets = selectedPlanets.filter(p => p !== planet);
             }
 
             updatePlanetBasket();
+            createBubbles();  // Call createBubbles every time selectedPlanets is changed
         });
+
+    createBubbles();  // Update bubbles whenever the basket is updated
 }
 
 /**
@@ -390,4 +401,51 @@ function calcStrokeWidth(radius){
     let widthDelta = diffWidth*percentage;
 
     return MIN_WIDTH+widthDelta;
+}
+
+function createBubbles() {
+    const svgContainer = d3.select('.planet-data-viz');
+
+    // Check if the svg already exists, if not, create a new one
+    let svg = svgContainer.select('svg');
+    if (svg.empty()) {
+        svg = svgContainer
+            .append('svg')
+            .attr('height', window.innerHeight)
+            .attr('width', window.innerWidth);
+    }
+
+    let rScale = d3.scaleLinear()
+        .domain([d3.min(_planetData, d => d.meanRadius), d3.max(_planetData, d => d.meanRadius)])
+        .range([18, 210]);
+
+    const forceX = d3.forceX(window.innerWidth / 2).strength(0.04);
+    const forceY = d3.forceY(window.innerHeight / 2).strength(0.05);
+    const collideForce = d3.forceCollide(d => rScale(d.meanRadius));
+    const manyBody = d3.forceManyBody().strength(-100);
+
+    const simulation = d3.forceSimulation()
+        .force('x', forceX)
+        .force('y', forceY)
+        .force('collide', collideForce)
+        .force('manyBody', manyBody);
+
+    // Bind data to circles, using 'join' to handle enter, update, and exit selections
+    let bubbles = svg
+        .selectAll('circle')
+        .data(selectedPlanets)  // Use a unique key (e.g., id or name)
+        .join(
+            enter => enter.append('circle')
+                .attr('r', d => rScale(d.meanRadius))
+                .attr('class', d => d.englishName.toLowerCase()),
+            update => update,  // Update existing circles
+            exit => exit.remove()  // Remove unneeded circles
+        );
+
+    // Update the positions of bubbles on each tick of the simulation
+    simulation.nodes(selectedPlanets).on('tick', () => {
+        bubbles
+            .attr('cx', d => d.x)
+            .attr('cy', d => d.y);
+    });
 }
