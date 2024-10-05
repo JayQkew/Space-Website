@@ -1,4 +1,5 @@
 const nav = document.querySelector('.navbar');
+const footer = document.querySelector('footer');
 const currPage = document.querySelector('title').innerText;
 
 const pages = [
@@ -44,6 +45,31 @@ function createNav(currPage){
     list.innerHTML = allPages;
     nav.appendChild(list);
 
+}
+
+function createFooter(){
+    footer.innerHTML = `
+        <article class="footer-content">
+            <section class="footer-section about">
+                <h3>About This Project</h3>
+                <p>
+                    This project explores the wonders of our solar system using a banana for scale. Developed as part of a school project, it combines art, data visualization, and a passion for space.
+                </p>
+            </section>
+    
+            <section class="footer-section contact">
+                <h3>Contact</h3>
+                <ul>
+                    <li>GitHub: <a href="https://github.com/jayqkew" target="_blank">JayQkew</a></li>
+                    <li>LinkedIn: <a href="www.linkedin.com/in/jay-lee-shih-236742291" target="_blank">My LinkedIn</a></li>
+                </ul>
+            </section>
+        </article>
+    
+        <div class="footer-bottom">
+            <p>&copy; 2024 Space Explorer | Designed by Jay-Lee Shih. All Rights Reserved.</p>
+        </div>
+    `
 }
 
 /**
