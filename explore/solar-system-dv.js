@@ -7,7 +7,7 @@ const RADIUS = window.innerWidth,
 let svg;
 let _planetData;
 let focusPlanet;
-let planets;
+let planets, planetText;
 let minDistance, maxDistance;
 let planetDataViz = false;
 export let minRadius, maxRadius;
@@ -141,7 +141,41 @@ function renderSolarSystem(planetData){
             }
 
             updatePlanetBasket();
+        })    
+        .on('mouseover', function(event, d) {
+            // Show the text label on hover
+            console.log('hover over ' + d.englishName);
+            d3.select(`.${d.englishName.toLowerCase()}-label`).style('display', () => {
+                if(window.scrollY / RADIUS*2 < 1){
+                    return 'block';
+                }
+                else{
+                    return 'none';
+                }
+            });
+        })
+        .on('mouseout', function(event, d) {
+            // Hide the text label when not hovering
+            d3.select(`.${d.englishName.toLowerCase()}-label`).style('display', 'none');
         });
+
+    planetText = svg.selectAll('text.planet')
+        .data(planetData)
+        .enter()
+        .append('text')
+        .attr('class',d => `${d.englishName.toLowerCase()}-label`)
+        .attr('x', d => {
+            let xPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(d.semimajorAxis) * Math.PI / 2);
+            return xPos + 10; // Offset the label slightly to the right
+        })
+        .attr('y', d => {
+            let yPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.sin(aScale(d.semimajorAxis) * Math.PI / 2);
+            return yPos + 5; // Offset the label slightly below the planet
+        })
+        .style('display', 'none') // Initially hide the labels
+        .style('fill', 'white') // Set text color to white
+        .style('font-size', '12px') // Set font size
+        .text(d => d.englishName); // Set the text content to the planet's name
     
     const zoom = d3
         .zoom()
@@ -198,6 +232,17 @@ function renderSolarSystem(planetData){
                     let yPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.sin(aScale(d.semimajorAxis) * Math.PI / 2);
                     return yPos;
                 });
+            
+            planetText
+                .attr('x', d => {
+                    let xPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(d.semimajorAxis) * Math.PI / 2);
+                    return xPos + 10;
+                })
+                .attr('y', d => {
+                    let yPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.sin(aScale(d.semimajorAxis) * Math.PI / 2);
+                    return yPos + 5;
+                });
+
         }
         else if (scrollValue < 2.8){
             planetStatsCard.style.display = 'flex';
@@ -210,6 +255,8 @@ function renderSolarSystem(planetData){
                     let yPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.sin(5 * Math.PI / 2);
                     return yPos;
                 });
+            planetText
+                .style('display', 'none');
             
             if (scrollValue < 1.2)focusPlanet = findPlanet('Sun');
             else if (scrollValue < 1.4) focusPlanet = findPlanet('Mercury');
