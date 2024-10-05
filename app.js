@@ -61,7 +61,7 @@ function createFooter(){
                 <h3>Contact</h3>
                 <ul>
                     <li>GitHub: <a href="https://github.com/jayqkew" target="_blank">JayQkew</a></li>
-                    <li>LinkedIn: <a href="www.linkedin.com/in/jay-lee-shih-236742291" target="_blank">My LinkedIn</a></li>
+                    <li>LinkedIn: <a href="https://www.linkedin.com/in/jay-lee-shih-236742291" target="_blank">My LinkedIn</a></li>
                 </ul>
             </section>
         </article>
