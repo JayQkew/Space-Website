@@ -166,11 +166,12 @@ function renderSolarSystem(planetData){
         .attr('class',d => `${d.englishName.toLowerCase()}-label`)
         .attr('x', d => {
             let xPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(d.semimajorAxis) * Math.PI / 2);
-            return xPos + 10; // Offset the label slightly to the right
+            return xPos;
         })
         .attr('y', d => {
             let yPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.sin(aScale(d.semimajorAxis) * Math.PI / 2);
-            return yPos + 5; // Offset the label slightly below the planet
+            let radius = (d.englishName === 'Sun') ? SUNRADIUS : rScale(d.meanRadius);
+            return yPos - radius - 15;
         })
         .style('display', 'none') // Initially hide the labels
         .style('fill', 'white') // Set text color to white
@@ -236,11 +237,12 @@ function renderSolarSystem(planetData){
             planetText
                 .attr('x', d => {
                     let xPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(d.semimajorAxis) * Math.PI / 2);
-                    return xPos + 10;
+                    return xPos;
                 })
                 .attr('y', d => {
                     let yPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.sin(aScale(d.semimajorAxis) * Math.PI / 2);
-                    return yPos + 5;
+                    let radius = (d.englishName === 'Sun') ? SUNRADIUS : rScale(d.meanRadius);
+                    return yPos - radius - 15;
                 });
 
         }
