@@ -416,7 +416,7 @@ function createBubbles() {
     }
 
     let rScale = d3.scaleLinear()
-        .domain([d3.min(_planetData, d => d.meanRadius), d3.max(_planetData, d => d.meanRadius)])
+        .domain(d3.extent(_planetData, d => d.meanRadius))
         .range([18, 210]);
 
     const forceX = d3.forceX(window.innerWidth / 2).strength(0.04);
@@ -424,8 +424,18 @@ function createBubbles() {
     const collideForce = d3.forceCollide(d => rScale(d.meanRadius));
     const manyBody = d3.forceManyBody().strength(-100);
 
+    const mScale = d3.scaleLinear()
+        .domain(d3.extent(selectedPlanets, d => massNum(d)))
+        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth/4]);
+    const forceMass = d3.forceX(d => mScale(massNum(d)));
+
+    let _rScale = d3.scaleLinear()
+        .domain(d3.extent(selectedPlanets, d => d.meanRadius))
+        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth/4]);
+    const forceRadius = d3.forceX(d => _rScale(d.meanRadius));
+
     const simulation = d3.forceSimulation()
-        .force('x', forceX)
+        .force('x', forceRadius)
         .force('y', forceY)
         .force('collide', collideForce)
         .force('manyBody', manyBody);
@@ -437,7 +447,7 @@ function createBubbles() {
         .join(
             enter => enter.append('circle')
                 .attr('r', d => rScale(d.meanRadius))
-                .attr('class', d => d.englishName.toLowerCase()),
+                .attr('class', d => d.englishName.toLowerCase() + ' planet'),
             update => update,  // Update existing circles
             exit => exit.remove()  // Remove unneeded circles
         );
@@ -448,4 +458,14 @@ function createBubbles() {
             .attr('cx', d => d.x)
             .attr('cy', d => d.y);
     });
+
+    simulation.alpha(1).restart();
+}
+
+/**
+ * @param {Object} planet 
+ * @returns numerical value of the scientific notation
+ */
+function massNum(planet){
+    return planet.mass.massValue * Math.pow(10, planet.mass.massExponent);
 }
