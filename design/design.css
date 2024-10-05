@@ -44,15 +44,33 @@ article{
     object-fit: cover;
 }
 
-.style-guide-container{
-    width: 1005;
+.style-guide{
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 }
 
-.style-guide-wrapper{
+.style-guide-explain{
+    font-size: 1.5rem;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.style-guide-container{
     width: 70%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin: 1rem;
+}
+
+.style-guide-wrapper{
+    width: 100%;
     border: var(--stroke-width) solid var(--titanium-white);
     border-radius: var(--border-radius);
     margin: 1rem;
