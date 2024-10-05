@@ -39,6 +39,7 @@
 
 body{
     background: var(--background-gradient);
+    background-repeat:round;
     font-family: 'ClashDisplay-Regular',
         'CabinetGrotesk-Regular',
         'DM Sans';
