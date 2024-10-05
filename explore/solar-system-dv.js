@@ -433,7 +433,7 @@ function createBubbles() {
     // Bind data to circles, using 'join' to handle enter, update, and exit selections
     let bubbles = svg
         .selectAll('circle')
-        .data(selectedPlanets)  // Use a unique key (e.g., id or name)
+        .data(selectedPlanets, d => d.englishName)  // Use a unique key (e.g., id or name)
         .join(
             enter => enter.append('circle')
                 .attr('r', d => rScale(d.meanRadius))
