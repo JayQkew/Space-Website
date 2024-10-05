@@ -1,11 +1,42 @@
-h1, h2{
-    text-align: center;
-}
-
 h1{
     margin: 3rem;
+    text-align: center;
 }
 
 h2{
     margin: 1.5rem;
+    text-align: center;
+}
+
+.wireframes-container{
+    display: flex;
+    flex-direction: row;
+    justify-content:end;
+    width: 100%;
+    padding-inline: 1rem;
+}
+
+.fid-container{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.wireframe-wrapper{
+    width: 100%;
+    height: 25.5rem;
+    overflow: hidden;
+    margin-block: 0.5rem;
+    background-color: var(--titanium-white);
+    border: var(--stroke-width) solid var(--titanium-white);
+    border-radius: var(--border-radius);
+}
+.wireframe-wrapper:hover{
+    height: fit-content;
+}
+
+.wireframe-wrapper img{
+    width: 100%;
+    object-fit: cover;
 }
