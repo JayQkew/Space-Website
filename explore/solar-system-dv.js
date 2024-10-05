@@ -429,13 +429,19 @@ function createBubbles() {
         .range([window.innerWidth / 4, window.innerWidth - window.innerWidth/4]);
     const forceMass = d3.forceX(d => mScale(massNum(d)));
 
-    let _rScale = d3.scaleLinear()
+    const _rScale = d3.scaleLinear()
         .domain(d3.extent(selectedPlanets, d => d.meanRadius))
         .range([window.innerWidth / 4, window.innerWidth - window.innerWidth/4]);
     const forceRadius = d3.forceX(d => _rScale(d.meanRadius));
 
+    const vScale = d3.scaleLinear()
+        .domain(d3.extent(selectedPlanets, d => volumeNum(d)))
+        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth/4]);
+    const forceVolume = d3.forceX(d => vScale(volumeNum(d)));
+    
+
     const simulation = d3.forceSimulation()
-        .force('x', forceRadius)
+        .force('x', forceVolume)
         .force('y', forceY)
         .force('collide', collideForce)
         .force('manyBody', manyBody);
@@ -468,4 +474,12 @@ function createBubbles() {
  */
 function massNum(planet){
     return planet.mass.massValue * Math.pow(10, planet.mass.massExponent);
+}
+
+/**
+ * @param {Object} planet 
+ * @returns numerical value of the scientific notation
+ */
+function volumeNum(planet){
+    return planet.vol.volValue * Math.pow(10, planet.vol.volExponent);
 }
