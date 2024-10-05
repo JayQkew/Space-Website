@@ -419,35 +419,62 @@ function createBubbles() {
         .domain(d3.extent(_planetData, d => d.meanRadius))
         .range([18, 210]);
 
+    let Xforces = [];
+
+    // Force configuration for different parameters
     const forceX = d3.forceX(window.innerWidth / 2).strength(0.04);
     const forceY = d3.forceY(window.innerHeight / 2).strength(0.05);
     const collideForce = d3.forceCollide(d => rScale(d.meanRadius));
     const manyBody = d3.forceManyBody().strength(-100);
-
+    Xforces.push({ name: 'Regular', force: forceX });
+    
+    // Create scales for different properties
     const mScale = d3.scaleLinear()
         .domain(d3.extent(selectedPlanets, d => massNum(d)))
-        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth/4]);
+        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
     const forceMass = d3.forceX(d => mScale(massNum(d)));
-
+    Xforces.push({ name: 'Mass', force: forceMass });
+    
     const _rScale = d3.scaleLinear()
         .domain(d3.extent(selectedPlanets, d => d.meanRadius))
-        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth/4]);
+        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
     const forceRadius = d3.forceX(d => _rScale(d.meanRadius));
-
+    Xforces.push({ name: 'Radius', force: forceRadius });  // Added name for radius force
+    
     const vScale = d3.scaleLinear()
         .domain(d3.extent(selectedPlanets, d => volumeNum(d)))
-        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth/4]);
+        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
     const forceVolume = d3.forceX(d => vScale(volumeNum(d)));
+    Xforces.push({ name: 'Volume', force: forceVolume });  // Added name for volume force
     
     const dScale = d3.scaleLinear()
         .domain(d3.extent(selectedPlanets, d => d.density))
-        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth/4]);
+        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
     const forceDensity = d3.forceX(d => dScale(d.density));
-
+    Xforces.push({ name: 'Density', force: forceDensity });  // Added name for density force
+    
     const gScale = d3.scaleLinear()
         .domain(d3.extent(selectedPlanets, d => d.gravity))
-        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth/4]);
+        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
     const forceGravity = d3.forceX(d => gScale(d.gravity));
+    Xforces.push({ name: 'Gravity', force: forceGravity });  // Added name for gravity force
+    
+
+    const sortBtns = document.querySelector('.sort-btn-container');
+    sortBtns.innerHTML = '';
+    Xforces.map(force =>{
+        // let btn = `<button class="sort-btn" data-type="${force.name}">${force.name}</button>`
+        let btn = document.createElement('button');
+        btn.classList.add('sort-btn');
+        btn.setAttribute('data-type', force.name);
+        btn.innerHTML = force.name;
+        btn.addEventListener('click', () =>{
+            simulation.force('x', force.force)
+            .alpha(1)
+            .restart();
+        })
+        sortBtns.appendChild(btn);
+    })
 
     const simulation = d3.forceSimulation()
         .force('x', forceDensity)
