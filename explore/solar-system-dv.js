@@ -546,11 +546,28 @@ function createBubbles() {
             exit => exit.remove()  // Remove unneeded circles
         );
 
+    let labels = svg
+    .selectAll('text.planet-label')
+    .data(selectedPlanets, d => d.englishName)
+    .join(
+        enter => enter.append('text')
+            .attr('class', 'planet-label')
+            .style('fill', 'white')
+            .style('font-size', '14px')
+            .attr('text-anchor', 'middle')
+            .text(d => d.englishName),
+        update => update,
+        exit => exit.remove()
+    );
     // Update the positions of bubbles on each tick of the simulation
     simulation.nodes(selectedPlanets).on('tick', () => {
         bubbles
             .attr('cx', d => d.x)
             .attr('cy', d => d.y);
+        labels
+            .attr('x', d => d.x)
+            .attr('y', d => d.y + rScale(d.meanRadius) + 15);  // Position the label slightly below the bubble
+
     });
 
     simulation.alpha(1).restart();
