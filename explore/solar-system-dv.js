@@ -254,9 +254,14 @@ function renderSolarSystem(planetData){
             .attr('height', RADIUS*2.5);
 
             planetDataViz = false;
+            document.querySelector('.sort-btn-container').style.display = 'none';
+            document.querySelector('aside').style.left = '75%';
+
         }
         else{
             planetStatsCard.style.display = 'none';
+            document.querySelector('.sort-btn-container').style.display = 'flex';
+            document.querySelector('aside').style.left = '50%';
 
             d3.select('.ss-inner')
             .transition()
@@ -272,7 +277,7 @@ function renderSolarSystem(planetData){
             d3.select('.solar-system')
             .transition()
             .duration(1200)
-            .attr('height', RADIUS*1.5);
+            .attr('height', RADIUS*2);
 
             if(planetDataViz === false){
                 createBubbles();
@@ -411,7 +416,7 @@ function createBubbles() {
     if (svg.empty()) {
         svg = svgContainer
             .append('svg')
-            .attr('height', window.innerHeight)
+            .attr('height', window.innerHeight/1.5)
             .attr('width', window.innerWidth);
     }
 
@@ -423,7 +428,7 @@ function createBubbles() {
 
     // Force configuration for different parameters
     const forceX = d3.forceX(window.innerWidth / 2).strength(0.04);
-    const forceY = d3.forceY(window.innerHeight / 2).strength(0.05);
+    const forceY = d3.forceY(window.innerHeight / 3).strength(0.01);
     const collideForce = d3.forceCollide(d => rScale(d.meanRadius));
     const manyBody = d3.forceManyBody().strength(-100);
     Xforces.push({ name: 'Regular', force: forceX });
@@ -432,31 +437,31 @@ function createBubbles() {
     const mScale = d3.scaleLinear()
         .domain(d3.extent(selectedPlanets, d => massNum(d)))
         .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-    const forceMass = d3.forceX(d => mScale(massNum(d)));
+    const forceMass = d3.forceX(d => mScale(massNum(d))).strength(0.15);
     Xforces.push({ name: 'Mass', force: forceMass });
     
     const _rScale = d3.scaleLinear()
         .domain(d3.extent(selectedPlanets, d => d.meanRadius))
         .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-    const forceRadius = d3.forceX(d => _rScale(d.meanRadius));
+    const forceRadius = d3.forceX(d => _rScale(d.meanRadius)).strength(0.15);
     Xforces.push({ name: 'Radius', force: forceRadius });  // Added name for radius force
     
     const vScale = d3.scaleLinear()
         .domain(d3.extent(selectedPlanets, d => volumeNum(d)))
         .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-    const forceVolume = d3.forceX(d => vScale(volumeNum(d)));
+    const forceVolume = d3.forceX(d => vScale(volumeNum(d))).strength(0.15);
     Xforces.push({ name: 'Volume', force: forceVolume });  // Added name for volume force
     
     const dScale = d3.scaleLinear()
         .domain(d3.extent(selectedPlanets, d => d.density))
         .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-    const forceDensity = d3.forceX(d => dScale(d.density));
+    const forceDensity = d3.forceX(d => dScale(d.density)).strength(0.15);
     Xforces.push({ name: 'Density', force: forceDensity });  // Added name for density force
     
     const gScale = d3.scaleLinear()
         .domain(d3.extent(selectedPlanets, d => d.gravity))
         .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-    const forceGravity = d3.forceX(d => gScale(d.gravity));
+    const forceGravity = d3.forceX(d => gScale(d.gravity)).strength(0.15);
     Xforces.push({ name: 'Gravity', force: forceGravity });  // Added name for gravity force
     
 
@@ -477,7 +482,7 @@ function createBubbles() {
     })
 
     const simulation = d3.forceSimulation()
-        .force('x', forceDensity)
+        .force('x', forceX)
         .force('y', forceY)
         .force('collide', collideForce)
         .force('manyBody', manyBody);
