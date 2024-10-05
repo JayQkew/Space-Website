@@ -89,10 +89,25 @@ h2{
     width: 70%;
 }
 
-/* #color{
-    width: 30%;
+.theory{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-#text{
-    width: 50%;
-} */
+.pdf-parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    width: 75vw; /* Full viewport width */
+    margin: auto; /* Remove default margins */
+    padding: 0; /* Remove default padding */
+    overflow: hidden; /* Prevent scrollbars if the content overflows */
+}
+
+.pdf-parent embed {
+    height: 100%; /* Full height of the container */
+    width: 100%; /* Full width of the container */
+    border: none; /* Remove any default borders */
+}
