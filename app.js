@@ -113,4 +113,5 @@ function decoratePage(){
 console.log(window.location.href);
 
 createNav(currPage);
+createFooter();
 decoratePage();
