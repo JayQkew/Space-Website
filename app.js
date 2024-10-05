@@ -67,7 +67,7 @@ function createFooter(){
         </article>
     
         <div class="footer-bottom">
-            <p>&copy; 2024 Space Explorer | Designed by Jay-Lee Shih. All Rights Reserved.</p>
+            <p>&copy; 2024 Space Webiste | Designed by Jay-Lee Shih. All Rights Reserved.</p>
         </div>
     `
 }
