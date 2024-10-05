@@ -439,9 +439,18 @@ function createBubbles() {
         .range([window.innerWidth / 4, window.innerWidth - window.innerWidth/4]);
     const forceVolume = d3.forceX(d => vScale(volumeNum(d)));
     
+    const dScale = d3.scaleLinear()
+        .domain(d3.extent(selectedPlanets, d => d.density))
+        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth/4]);
+    const forceDensity = d3.forceX(d => dScale(d.density));
+
+    const gScale = d3.scaleLinear()
+        .domain(d3.extent(selectedPlanets, d => d.gravity))
+        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth/4]);
+    const forceGravity = d3.forceX(d => gScale(d.gravity));
 
     const simulation = d3.forceSimulation()
-        .force('x', forceVolume)
+        .force('x', forceDensity)
         .force('y', forceY)
         .force('collide', collideForce)
         .force('manyBody', manyBody);
