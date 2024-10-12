@@ -1,6 +1,7 @@
 const nav = document.querySelector('.navbar');
 const footer = document.querySelector('footer');
 const currPage = document.querySelector('title').innerText;
+const body = document.querySelector('body');
 
 const pages = [
     {page: 'Home', url: 'index.html'},
@@ -8,6 +9,20 @@ const pages = [
     {page: 'Design', url: 'design/design.html'},
     {page: 'About', url: 'about/about.html'}
 ];
+
+function setBackground() {
+    const randNum = Math.floor(Math.random() * 4);
+
+    // Set the background images (SVG + random Space image)
+    document.body.style.backgroundImage = `
+        url("data:image/svg+xml;base64,ICAgICAgICA8c3ZnICB3aWR0aD0iMTAwdnciIGhlaWdodD0iMTAwdmgiPgogICAgICAgICAgICA8ZmlsdGVyIGlkPSJub2lzZS1maWx0ZXIiPgogICAgICAgICAgICAgICAgPGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjEuMyI+PC9mZVR1cmJ1bGVuY2U+CiAgICAgICAgICAgIDwvZmlsdGVyPgogICAgICAgICAgICA8cmVjdCB3aWR0aD0iMTAwdnciIGhlaWdodD0iMTAwdmgiIGZpbHRlcj0idXJsKCNub2lzZS1maWx0ZXIpIj48L3JlY3Q+"), 
+        url('/images/Space${randNum}.png')`;
+
+    // Apply background settings
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundPosition = "center center";
+}
 
 /**
  * creates a 'ul' of links to other pages of the website
@@ -47,6 +62,9 @@ function createNav(currPage){
 
 }
 
+/**
+ * creates the footer for every page
+ */
 function createFooter(){
     footer.innerHTML = `
         <article class="footer-content">
@@ -101,6 +119,9 @@ function addDecoration(side, node){
     (side === 'left') ? node.parentElement.insertBefore(decoration,node) : node.parentElement.appendChild(decoration);
 }
 
+/**
+ * decorates all elements that have the 'decorate' class
+ */
 function decoratePage(){
     const decorateElements = document.querySelectorAll('.decorate');
     Array.from(decorateElements).map(element =>{
@@ -110,8 +131,7 @@ function decoratePage(){
     })
 }
 
-console.log(window.location.href);
-
+setBackground();
 createNav(currPage);
 createFooter();
 decoratePage();

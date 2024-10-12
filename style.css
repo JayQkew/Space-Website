@@ -38,9 +38,9 @@
 }
 
 body{
-    background: 
+    /* background: 
         url("data:image/svg+xml;base64,ICAgICAgICA8c3ZnICB3aWR0aD0iMTAwdnciIGhlaWdodD0iMTAwdmgiPgogICAgICAgICAgICA8ZmlsdGVyIGlkPSJub2lzZS1maWx0ZXIiPgogICAgICAgICAgICAgICAgPGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjEuMyI+PC9mZVR1cmJ1bGVuY2U+CiAgICAgICAgICAgIDwvZmlsdGVyPgogICAgICAgICAgICA8cmVjdCB3aWR0aD0iMTAwdnciIGhlaWdodD0iMTAwdmgiIGZpbHRlcj0idXJsKCNub2lzZS1maWx0ZXIpIj48L3JlY3Q+CiAgICAgICAgPC9zdmc+"), 
-        url('/images/Space1.png') no-repeat center center;
+        url('/images/Space0.png') no-repeat center center; */
     background-size: cover;
     font-family: 'ClashDisplay-Regular', 'CabinetGrotesk-Regular', 'DM Sans';
     font-weight: 400;
