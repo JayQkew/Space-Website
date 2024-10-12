@@ -7,7 +7,7 @@
 }
 
 :root{
-    --background-gradient: linear-gradient(180deg, rgba(5,2,23,1) 54%, rgba(13,5,67,1) 100%);
+    --background-gradient: linear-gradient(180deg, rgba(5,2,23,1) 54%, rgba(13,5,67,1));
 
     /* Tones */
     --rich-black: #050217;
@@ -38,11 +38,11 @@
 }
 
 body{
-    background: var(--background-gradient);
-    background-repeat:round;
-    font-family: 'ClashDisplay-Regular',
-        'CabinetGrotesk-Regular',
-        'DM Sans';
+    background: 
+        url("data:image/svg+xml;base64,ICAgICAgICA8c3ZnICB3aWR0aD0iMTAwdnciIGhlaWdodD0iMTAwdmgiPgogICAgICAgICAgICA8ZmlsdGVyIGlkPSJub2lzZS1maWx0ZXIiPgogICAgICAgICAgICAgICAgPGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjEuMyI+PC9mZVR1cmJ1bGVuY2U+CiAgICAgICAgICAgIDwvZmlsdGVyPgogICAgICAgICAgICA8cmVjdCB3aWR0aD0iMTAwdnciIGhlaWdodD0iMTAwdmgiIGZpbHRlcj0idXJsKCNub2lzZS1maWx0ZXIpIj48L3JlY3Q+CiAgICAgICAgPC9zdmc+"), 
+        url('/images/Space.png') no-repeat center center;
+    background-size: cover;
+    font-family: 'ClashDisplay-Regular', 'CabinetGrotesk-Regular', 'DM Sans';
     font-weight: 400;
     color: var(--titanium-white);
 }
