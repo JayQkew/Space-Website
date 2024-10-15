@@ -121,16 +121,19 @@ header{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    font-family: 'ClashDisplay-Medium';
 }
 .navbar li{
     margin-inline: 0.5rem;
+    padding: 0.5rem;
     z-index: 1;
 }
 .navbar a{
-    font-weight: bold;
+    font-weight:bolder;
     border: var(--stroke-width) solid transparent;
     border-radius: var(--border-radius);
     padding-inline: 0.5rem;
+    padding-block: 0.25rem;
     z-index: 1;
 }
 .navbar a:hover{
