@@ -131,7 +131,7 @@ function decoratePage(){
     })
 }
 
-setBackground();
+//setBackground();
 createNav(currPage);
 createFooter();
 decoratePage();
