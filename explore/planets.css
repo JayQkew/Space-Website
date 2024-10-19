@@ -66,8 +66,8 @@
     /* border:  var(--stroke-width) solid var(--titanium-white); */
     width: 35rem;
     padding: 1rem;
-    background-color: hsla(0, 0%, 100%, 0.175);
-    backdrop-filter: blur(var(--glass-blur));
+    background-color: var(--glass-color);
+    backdrop-filter: var(--glass-blur);
 }
 
 .planet-stats-card h3{
@@ -120,7 +120,6 @@
 
 /* #region Buttons */
 .banana-stat-btn{
-    font-family: 'ClashDisplay-Semibold';
     font-size: 1.25rem;
     color: var(--rich-black);
     background-color: var(--banana-yellow);
@@ -131,7 +130,6 @@
 }
 
 .stat-btn{
-    font-family: 'ClashDisplay-Semibold';
     font-size: 1.25rem;
     color: var(--rich-black);
     background-color: var(--titanium-white);
@@ -161,8 +159,8 @@
     bottom: 80%;
     right: 50%;
     transform: translate(50%, 50%);
-    background-color: hsla(0, 0%, 100%, 0.175);
-    backdrop-filter: blur(var(--glass-blur));
+    background-color: var(--glass-color);
+    backdrop-filter: var(--glass-blur);
     border-radius: var(--border-radius);
     padding: 1rem;
     margin-inline: auto;
@@ -178,8 +176,8 @@
 
 .planet-basket ul{
     list-style: none;
+    border:  var(--border);
     border-radius: var(--border-radius);
-    border:  var(--stroke-width) solid var(--titanium-white);
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -216,18 +214,17 @@ aside{
 }
 
 .sort-btn{
-    font-family: 'ClashDisplay-Regular';
     font-size: 1rem;
     color: var(--titanium-white);
     background-color: transparent;
-    border: var(--stroke-width) solid var(--titanium-white);
+    border: var(--border);
     border-radius: var(--border-radius);
     padding: 0.5rem;
     margin-inline-start: 0.5rem;
     cursor: pointer;
 }
 .sort-btn:hover{
-    background-color: hsla(0, 0%, 100%, 0.175);
-    backdrop-filter: blur(var(--glass-blur));
+    background-color: var(--glass-color);
+    backdrop-filter: var(--glass-blur);
     border: transparent;
 }
