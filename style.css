@@ -240,3 +240,10 @@ button{
     font-display: swap;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'ClashDisplay-Hero';
+    src: url('fonts/ClashDisplay-Bold.otf') format('opentype');
+    font-display: swap;
+    font-style: none;
+}

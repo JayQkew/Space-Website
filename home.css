@@ -31,13 +31,9 @@ hgroup p{
     gap: 0;
 }
 
-blockquote{
-    width: fit-content;
-    margin: 0;
-}
-
 .hero-section hgroup h2{
-    font-family: 'ClashDisplay';
+    font-family: 'ClashDisplay-Hero';
+    font-weight: bold;
     font-size: var(--hero-fs);
     margin-block: 0;
 }
