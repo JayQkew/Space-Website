@@ -37,7 +37,7 @@ blockquote{
 }
 
 .hero-section hgroup h2{
-    font-family: 'ClashDisplay-Bold';
+    font-family: 'ClashDisplay';
     font-size: var(--hero-fs);
     margin-block: 0;
 }

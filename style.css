@@ -32,9 +32,13 @@
     --glass-blur: 1rem;
     --border-radius: 1.5rem;
 
-    --hero-fs: 6rem;
+    --hero-fs: 5rem;
     --heading-fs: 2rem;
     --subheading-fs: 1.5rem;
+
+    --hero-fw: 700;
+    --heading-fw: 600;
+    --subheading-fw: 400;
 }
 
 body{
@@ -43,7 +47,7 @@ body{
         url('/images/Space0.png') no-repeat center center; */
     background: var(--background-gradient);
     background-size: cover;
-    font-family: 'ClashDisplay-Regular', 'CabinetGrotesk-Regular', 'DM Sans';
+    font-family: 'ClashDisplay', 'CabinetGrotesk', 'DM Sans';
     font-weight: 400;
     color: var(--titanium-white);
 }
@@ -99,7 +103,7 @@ a:hover{
 header{
     position: fixed;
     width: 100vw;
-    top: 1rem;
+    top: 0;
     z-index: 1;
 }
 
@@ -123,7 +127,6 @@ header{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    font-family: 'ClashDisplay-Medium';
 }
 .navbar li{
     margin-inline: 0.5rem;
@@ -153,7 +156,6 @@ header{
 }
 
 .banana-btn{
-    font-family: 'ClashDisplay-Semibold';
     font-size: var(--subheading-fs);
     color: var(--rich-black);
     background-color: var(--banana-yellow);
@@ -164,7 +166,6 @@ header{
 }
 
 button{
-    font-family: 'ClashDisplay-Semibold';
     font-size: var(--subheading-fs);
     color: var(--rich-black);
     background-color: var(--titanium-white);
@@ -216,154 +217,20 @@ button{
 
 /* #endregion */
 
-
-
-/* #region CabinetGrotesk */
 @font-face {
-    font-family: 'CabinetGrotesk-Thin';
-    src: url('fonts/CabinetGrotesk-Thin.woff2') format('woff2'),
-         url('fonts/CabinetGrotesk-Thin.woff') format('woff'),
-         url('fonts/CabinetGrotesk-Thin.ttf') format('truetype');
-    font-weight: 100;
-    font-display: swap;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'CabinetGrotesk-Extralight';
-    src: url('fonts/CabinetGrotesk-Extralight.woff2') format('woff2'),
-        url('fonts/CabinetGrotesk-Extralight.woff') format('woff'),
-        url('fonts/CabinetGrotesk-Extralight.ttf') format('truetype');
-    font-weight: 200;
-    font-display: swap;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'CabinetGrotesk-Light';
-    src: url('fonts/CabinetGrotesk-Light.woff2') format('woff2'),
-        url('fonts/CabinetGrotesk-Light.woff') format('woff'),
-        url('fonts/CabinetGrotesk-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-display: swap;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'CabinetGrotesk-Regular';
+    font-family: 'CabinetGrotesk';
     src: url('fonts/CabinetGrotesk-Regular.woff2') format('woff2'),
         url('fonts/CabinetGrotesk-Regular.woff') format('woff'),
         url('fonts/CabinetGrotesk-Regular.ttf') format('truetype');
-    font-weight: 400;
     font-display: swap;
     font-style: normal;
 }
-@font-face {
-    font-family: 'CabinetGrotesk-Medium';
-    src: url('ts/CabinetGrotesk-Medium.woff2') format('woff2'),
-        url('fonts/CabinetGrotesk-Medium.woff') format('woff'),
-        url('fonts/CabinetGrotesk-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-display: swap;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'CabinetGrotesk-Bold';
-    src: url('fonts/CabinetGrotesk-Bold.woff2') format('woff2'),
-        url('fonts/CabinetGrotesk-Bold.woff') format('woff'),
-        url('fonts/CabinetGrotesk-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-display: swap;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'CabinetGrotesk-Extrabold';
-    src: url('fonts/CabinetGrotesk-Extrabold.woff2') format('woff2'),
-        url('fonts/CabinetGrotesk-Extrabold.woff') format('woff'),
-        url('fonts/CabinetGrotesk-Extrabold.ttf') format('truetype');
-    font-weight: 800;
-    font-display: swap;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'CabinetGrotesk-Black';
-    src: url('fonts/CabinetGrotesk-Black.woff2') format('woff2'),
-        url('fonts/CabinetGrotesk-Black.woff') format('woff'),
-        url('fonts/CabinetGrotesk-Black.ttf') format('truetype');
-    font-weight: 900;
-    font-display: swap;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'CabinetGrotesk-Variable';
-    src: url('fonts/CabinetGrotesk-Variable.woff2') format('woff2'),
-        url('fonts/CabinetGrotesk-Variable.woff') format('woff'),
-        url('fonts/CabinetGrotesk-Variable.ttf') format('truetype');
-    font-weight: 100 900;
-    font-display: swap;
-    font-style: normal;
-}
-/* #endregion CabinetGrotesk*/
 
-/* #region ClashDisplay */
 @font-face {
-    font-family: 'ClashDisplay-Extralight';
-    src: url('fonts/ClashDisplay-Extralight.woff2') format('woff2'),
-            url('fonts/ClashDisplay-Extralight.woff') format('woff'),
-            url('fonts/ClashDisplay-Extralight.ttf') format('truetype');
-    font-weight: 200;
-    font-display: swap;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'ClashDisplay-Light';
-    src: url('fonts/ClashDisplay-Light.woff2') format('woff2'),
-            url('fonts/ClashDisplay-Light.woff') format('woff'),
-            url('fonts/ClashDisplay-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-display: swap;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'ClashDisplay-Regular';
+    font-family: 'ClashDisplay';
     src: url('fonts/ClashDisplay-Regular.woff2') format('woff2'),
             url('fonts/ClashDisplay-Regular.woff') format('woff'),
             url('fonts/ClashDisplay-Regular.ttf') format('truetype');
-    font-weight: 400;
     font-display: swap;
     font-style: normal;
 }
-@font-face {
-    font-family: 'ClashDisplay-Medium';
-    src: url('fonts/ClashDisplay-Medium.woff2') format('woff2'),
-            url('fonts/ClashDisplay-Medium.woff') format('woff'),
-            url('fonts/ClashDisplay-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-display: swap;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'ClashDisplay-Semibold';
-    src: url('fonts/ClashDisplay-Semibold.woff2') format('woff2'),
-            url('fonts/ClashDisplay-Semibold.woff') format('woff'),
-            url('fonts/ClashDisplay-Semibold.ttf') format('truetype');
-    font-weight: 600;
-    font-display: swap;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'ClashDisplay-Bold';
-    src: url('fonts/ClashDisplay-Bold.woff2') format('woff2'),
-            url('fonts/ClashDisplay-Bold.woff') format('woff'),
-            url('fonts/ClashDisplay-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-display: swap;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'ClashDisplay-Variable';
-    src: url('fonts/ClashDisplay-Variable.woff2') format('woff2'),
-            url('fonts/ClashDisplay-Variable.woff') format('woff'),
-            url('fonts/ClashDisplay-Variable.ttf') format('truetype');
-    font-weight: 200 700;
-    font-display: swap;
-    font-style: normal;
-}
-/* #endregion ClashDisplay*/
