@@ -113,6 +113,12 @@ function fillBananaData(){
         "max-glare": 0.2,
         reverse: true
     });
+
+    VanillaTilt.init(document.querySelector('.the-banana'),{
+        max: 25,
+        speed: 400,
+        reverse: true
+    });
 }
 
 fillBananaData();
