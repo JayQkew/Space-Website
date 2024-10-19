@@ -32,7 +32,7 @@
     --glass-blur: 1rem;
     --border-radius: 1.5rem;
 
-    --hero-fs: 5rem;
+    --hero-fs: 6rem;
     --heading-fs: 2rem;
     --subheading-fs: 1.5rem;
 }
@@ -97,7 +97,8 @@ a:hover{
 
 /* #region navbar styling */
 header{
-    position: sticky;
+    position: fixed;
+    width: 100vw;
     top: 1rem;
     z-index: 1;
 }
