@@ -53,6 +53,14 @@ function createPlanetCards(){
 
         cardContainer.innerHTML += content;
     });
+
+    VanillaTilt.init(document.querySelectorAll('.card'),{
+        max: 15,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.2,
+        reverse: true
+    });
 }
 
 exploreBtn.addEventListener('click', () =>{
@@ -98,6 +106,13 @@ function fillBananaData(){
         ul.innerHTML += stat;
     })
     bananaStatCard.appendChild(ul);
+    VanillaTilt.init(document.querySelectorAll('.banana-card'),{
+        max: 15,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.2,
+        reverse: true
+    });
 }
 
 fillBananaData();
