@@ -149,6 +149,18 @@ blockquote{
 }
 /* #endregion */
 
+/* #region text */
+#small-stage{
+    font-size: 2.5rem;
+}
+
+#cosmic-arena{
+    margin-left: 0.5rem;
+    text-transform: uppercase;
+    font-size: 6rem;
+}
+/* #endregion */
+
 .button-wrapper{
     display: flex;
     justify-content: center;

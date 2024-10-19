@@ -46,9 +46,6 @@
 }
 
 body{
-    /* background: 
-        url("data:image/svg+xml;base64,ICAgICAgICA8c3ZnICB3aWR0aD0iMTAwdnciIGhlaWdodD0iMTAwdmgiPgogICAgICAgICAgICA8ZmlsdGVyIGlkPSJub2lzZS1maWx0ZXIiPgogICAgICAgICAgICAgICAgPGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjEuMyI+PC9mZVR1cmJ1bGVuY2U+CiAgICAgICAgICAgIDwvZmlsdGVyPgogICAgICAgICAgICA8cmVjdCB3aWR0aD0iMTAwdnciIGhlaWdodD0iMTAwdmgiIGZpbHRlcj0idXJsKCNub2lzZS1maWx0ZXIpIj48L3JlY3Q+CiAgICAgICAgPC9zdmc+"), 
-        url('/images/Space0.png') no-repeat center center; */
     background: var(--background-gradient);
     background-size: cover;
     font-family: 'ClashDisplay', 'CabinetGrotesk', 'DM Sans';
@@ -154,10 +151,6 @@ header{
 }
 /* #endregion */
 
-.banana-text{
-    color: var(--banana-yellow);
-}
-
 .banana-btn{
     font-size: var(--subheading-fs);
     color: var(--rich-black);
@@ -179,11 +172,18 @@ button{
     cursor: pointer;
 }
 
+/* #region text */
+.banana-text{
+    font-family: 'Willful';
+    color: var(--banana-yellow);
+    letter-spacing: 0.25rem;
+}
+/* #endregion */
+
 /* #region footer */
 
 .footer-content{
     display: flex;
-    /* justify-content: space-between; */
     align-items: start;
     flex-direction: row;
     border-top: var(--border);
