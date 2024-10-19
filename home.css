@@ -8,7 +8,7 @@ hgroup:not(.card-headings){
 }
 
 .page-section{
-    margin-block: 21.5rem;
+    margin-block: 18rem;
 }
 
 hgroup h2{
@@ -36,11 +36,12 @@ hgroup p{
     font-weight: bold;
     font-size: var(--hero-fs);
     margin-block: 0;
+    height: fit-content;
 }
 
 .hero-section hgroup p{
     font-size: var(--heading-fs);
-    margin-block: 1rem;
+    margin-bottom: 3.5rem;
 }
 
 .hero-section svg{
@@ -147,13 +148,13 @@ hgroup p{
 
 /* #region text */
 #small-stage{
-    font-size: 2.5rem;
+    font-size: 3rem;
 }
 
 #cosmic-arena{
     margin-left: 0.5rem;
     text-transform: uppercase;
-    font-size: 6rem;
+    font-size: 8rem;
 }
 /* #endregion */
 

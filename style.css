@@ -34,7 +34,7 @@
     --glass-blur: blur(1rem);
     --glass-color: hsla(0, 0%, 100%, 0.175);
 
-    --hero-fs: 5rem;
+    --hero-fs: 7rem;
     --heading-fs: 2rem;
     --subheading-fs: 1.5rem;
     --regualar-fs: 1rem;
@@ -152,12 +152,15 @@ header{
 /* #endregion */
 
 .banana-btn{
-    font-size: var(--subheading-fs);
+    font-family: 'Willful';
+    font-size: var(--heading-fs);
+    font-weight: 700;
     color: var(--rich-black);
     background-color: var(--banana-yellow);
     border: transparent;
-    border-radius: var(--border-radius);
-    padding: 0.5rem;
+    border-radius: 2rem;
+    padding-inline: 2rem;
+    letter-spacing: 0.15rem;
     cursor: pointer;
 }
 
