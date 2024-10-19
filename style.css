@@ -75,13 +75,6 @@ a:hover{
 .star-wrapper{
     display: contents;
 }
-.star-decoration{
-    display: flex;
-    flex-direction: row;
-    flex-grow: 2;
-    align-items: center;
-    margin-block: 1rem;
-}
 
 .line-decoration{
     height: 0;
@@ -89,7 +82,15 @@ a:hover{
     margin-inline: 1rem;
     border-bottom: var(--border);
     background-color: var(--titanium-white);
-    flex-grow: 2;
+    flex-grow: 1;
+}
+
+.star-decoration{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    align-items: center;
+    margin-block: 1rem;
 }
 
 .decorate-parent{
