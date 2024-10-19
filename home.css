@@ -65,8 +65,8 @@ blockquote{
 
 .card{
     width: var(--card-img-dimensions);
-    border: var(--stroke-width) solid var(--titanium-white);
-    border-radius: 1.5rem;
+    border: var(--border);
+    border-radius: var(--border-radius);
     padding: 1rem;
 }
 
@@ -74,8 +74,8 @@ blockquote{
     z-index: 0;
     display: flex;
     height: var(--card-img-dimensions);
-    border-radius: 1.5rem;
-    border:  var(--stroke-width) solid var(--titanium-white);
+    border:  var(--border);
+    border-radius: var(--border-radius);
     justify-content: center;
     align-items: center;
 }
@@ -103,7 +103,7 @@ blockquote{
     display: flex;
     flex-direction: column;
     align-items: center;
-    border:  var(--stroke-width) solid var(--titanium-white);
+    border:  var(--border);
     border-radius: var(--border-radius);
     width: var(--card-img-dimensions);
     height: fit-content;
@@ -112,7 +112,7 @@ blockquote{
 
 .banana-card svg{
     padding: 1rem;
-    border: var(--stroke-width) solid var(--titanium-white);
+    border: var(--border);
     border-radius: var(--border-radius);
     width: 100%;
     height: 100%;
