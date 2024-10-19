@@ -169,6 +169,7 @@ header{
 }
 
 button{
+    font-family: 'ClashDisplay';
     font-size: var(--subheading-fs);
     color: var(--rich-black);
     background-color: var(--titanium-white);
@@ -217,23 +218,25 @@ button{
     margin: 1rem;
     padding: 1rem;
 }
-
 /* #endregion */
+
+@font-face{
+    font-family: 'Willful';
+    src: url('fonts/Willful.ttf') format('truetype');
+    font-display: swap;
+    font-style: normal;
+}
 
 @font-face {
     font-family: 'CabinetGrotesk';
-    src: url('fonts/CabinetGrotesk-Regular.woff2') format('woff2'),
-        url('fonts/CabinetGrotesk-Regular.woff') format('woff'),
-        url('fonts/CabinetGrotesk-Regular.ttf') format('truetype');
+    src: url('fonts/CabinetGrotesk-Regular.ttf') format('truetype');
     font-display: swap;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'ClashDisplay';
-    src: url('fonts/ClashDisplay-Regular.woff2') format('woff2'),
-            url('fonts/ClashDisplay-Regular.woff') format('woff'),
-            url('fonts/ClashDisplay-Regular.ttf') format('truetype');
+    src: url('fonts/ClashDisplay-Regular.ttf') format('truetype');
     font-display: swap;
     font-style: normal;
 }
