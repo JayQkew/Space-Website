@@ -60,12 +60,16 @@ hgroup p{
     gap: 3rem;
     padding: 1rem;
     margin-bottom: 2rem;
+    z-index: 3;
 }
 
 .card{
+    z-index: 3;
     width: var(--card-img-dimensions);
     border: var(--border);
     border-radius: var(--border-radius);
+    background-color: var(--glass-color);
+    backdrop-filter: var(--glass-blur);
     padding: 1rem;
     transform-style: preserve-3d;
     transform: perspective(1000px);
@@ -130,6 +134,8 @@ hgroup p{
     padding: 1rem;
     transform-style: preserve-3d;
     transform: perspective(1000px);
+    background-color: var(--glass-color);
+    backdrop-filter: var(--glass-blur);
 }
 
 .banana-card svg{
@@ -138,7 +144,7 @@ hgroup p{
     border-radius: var(--border-radius);
     width: 100%;
     height: 100%;
-    transform: translateZ(20px);
+    transform: translateZ(25px);
 }
 
 .banana-stats{
