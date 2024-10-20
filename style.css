@@ -105,7 +105,7 @@ header{
     position: fixed;
     width: 100vw;
     top: 0;
-    z-index: 1;
+    z-index: 10;
 }
 
 .navbar{
@@ -113,7 +113,7 @@ header{
     flex-direction: row;
     justify-content: space-between;
     margin-inline: 1rem;
-    z-index: 1;
+    z-index: 10;
 }
 .navbar ul{
     height: 3rem;
@@ -126,12 +126,12 @@ header{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    z-index: 1;
+    z-index: 10;
 }
 .navbar li{
     margin-inline: 0.5rem;
     padding: 0.5rem;
-    z-index: 1;
+    z-index: 10;
 }
 .navbar a{
     font-weight:bolder;
@@ -139,7 +139,7 @@ header{
     border-radius: var(--border-radius);
     padding-inline: 0.5rem;
     padding-block: 0.25rem;
-    z-index: 1;
+    z-index: 10;
 }
 .navbar a:hover{
     border: var(--border);
