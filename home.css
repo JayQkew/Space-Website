@@ -188,3 +188,62 @@ hgroup p{
     justify-content: center;
     align-items: center;
 }
+
+/* #region ring decoration */
+.ring-decoration-parent{
+    position: absolute;
+    transform: translate(-100%, -50%);
+    /* overflow-x: hidden;
+    overflow-y: hidden; */
+    pointer-events: none;
+    overflow-x: hidden;
+    height: 200vh;
+    width: 100vw;
+    top: 50vh;
+    left: 100vw;
+    content: "";
+}
+
+.ring-decoration{
+    position: fixed;
+    border: var(--border);
+    border-radius: 100%;
+    top: 100%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    content: "";
+}
+
+.ring-decoration:nth-child(1){
+    height: 10rem;
+    width: 10rem;
+}
+.ring-decoration:nth-child(2){
+    height: 30rem;
+    width: 30rem;
+}
+.ring-decoration:nth-child(3){
+    height: 31rem;
+    width: 31rem;
+}
+.ring-decoration:nth-child(4){
+    height: 34rem;
+    width: 34rem;
+}
+.ring-decoration:nth-child(5){
+    height: 40rem;
+    width: 40rem;
+}
+.ring-decoration:nth-child(6){
+    height: 45rem;
+    width: 45rem;
+}
+.ring-decoration:nth-child(7){
+    height: 53rem;
+    width: 53rem;
+}
+.ring-decoration:nth-child(8){
+    height: 60rem;
+    width: 60rem;
+}
+/* #endregion */
