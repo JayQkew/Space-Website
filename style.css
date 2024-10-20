@@ -46,7 +46,7 @@
 }
 
 body{
-    background: var(--background-gradient);
+    /* background: var(--background-gradient); */
     background-size: cover;
     font-family: 'ClashDisplay', 'CabinetGrotesk', 'DM Sans';
     font-weight: var(--regular-fw);
