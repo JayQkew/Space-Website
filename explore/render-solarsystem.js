@@ -47,6 +47,7 @@ function renderSolarSystem(){
     .attr('cy', 0)
     .attr('r', d => dScale(d.semimajorAxis));
 
+    //create the planets
     planets = svg.selectAll('circle.planet')
     .data(planetData)
     .enter()
@@ -62,6 +63,32 @@ function renderSolarSystem(){
         return (d.englishName === 'Sun') ? SUNRADIUS : rScale(d.meanRadius);
     })
 
+    addPlanetEvents();
+}
+
+function addPlanetEvents(){
+    planets.map(p =>{
+        const planet = document.querySelector(`.${p.englishName.toLowerCase()}`)
+
+        planet.addEventListener('click', () =>{
+            //add the planet to the planetBasket
+        });
+
+        // display the planet name when hovering over planet
+        planet.addEventListener('mouseover', () =>{
+            d3.select(`.${d.englishName.toLowerCase()}-label`)
+            .style('display', () =>{
+                if(window.scrollY / RADIUS*2 < 1) return 'block';
+                else return 'none';
+            });
+        });
+
+        // make the name disapear when hovering off planet
+        planet.addEventListener('mouseout', () =>{
+            d3.select(`.${d.englishName.toLowerCase()}-label`)
+            .style('display', 'none');
+        })
+    })
 }
 
 // distance scale
