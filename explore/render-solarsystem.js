@@ -4,6 +4,8 @@ import { planetBasket } from "./planet-basket.js";
 const planetData = await getPlanetData();
 
 const SUNRADIUS = 100;
+const ZOOM = d3.zoom().on('zoom', e => svg.attr('transform', e.transform));
+
 let extentRadius = getRadiusExtent(),
     extentDistance = getDistanceExtent();
 
@@ -75,7 +77,6 @@ function renderSolarSystem(){
         return (d.englishName === 'Sun') ? SUNRADIUS : rScale(d.meanRadius);
     });
 
-    console.log(planets);
     addPlanetEvents();
 
     planetTexts = svg.selectAll('text.planet')
