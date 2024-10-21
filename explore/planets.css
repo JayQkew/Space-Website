@@ -45,6 +45,8 @@ body{
 }
 
 .semimajorAxis{
+    fill: none;
+    stroke: white;
     z-index: -1;
 }
 /* #endregion */

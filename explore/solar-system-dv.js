@@ -72,7 +72,7 @@ function renderSolarSystem(planetData){
     .select('.solar-system')
     .attr('height', RADIUS*2.5)
     .attr('width', RADIUS)
-    .attr('transform-origin', 'top left')
+    // .attr('transform-origin', 'top left')
     .attr('transform', `translate(0,${-RADIUS/1.75})`)
     .append('g')
     .attr('class', 'ss-inner')
@@ -109,8 +109,6 @@ function renderSolarSystem(planetData){
         .attr('cx', 0)
         .attr('cy', 0)
         .attr('r', d => dScale(d.semimajorAxis)) // Use scaled semimajor axis as radius
-        .style('fill', 'none')  // No fill for outline effect
-        .style('stroke', 'white')  // Outline color
 
     //create planets on the lines
     planets = svg
