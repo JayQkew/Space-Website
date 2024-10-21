@@ -1,10 +1,11 @@
 import { getPlanetData } from "./planet-data.js";
+import { planetBasket } from "./planet-basket.js";
 
 const planetData = await getPlanetData();
 
 const SUNRADIUS = 100;
-let extentRadius = getExtent('meanRadius'),
-    extentDistance = getExtent('semimajorAxis');
+let extentRadius = getRadiusExtent(),
+    extentDistance = getDistanceExtent();
 
 let RADIUS = window.innerWidth,
     MARGIN = 50;
@@ -14,13 +15,23 @@ let planets;
 let planetTexts;
 
 /**
- * gets extent of the specific data in the array of objects
- * @param {string} property the data that the array should be sorted by
- * @returns extents of the array
+ * gets the extents of the distance from the sun
+ * @returns extent of planetData's semimajorAxis
  */
-function getExtent(property){
-    [...planetData].sort((a,b) => a[property] - b[property]);
-    return d3.extent(planetData, d => d[property]);   
+function getDistanceExtent(){
+    [...planetData].sort((a,b) => a.semimajorAxis - b.semimajorAxis);
+    return d3.extent(planetData, d => d.semimajorAxis);   
+}
+
+/**
+ * gets the extents of the planets radius excluding the sun
+ * @returns extent of planetData's radius
+ */
+function getRadiusExtent(){
+    let sortedPlanets = [...planetData].sort((a,b) => a.meanRadius - b.meanRadius);
+    let minRadius = d3.min(sortedPlanets, d => d.meanRadius);
+    let maxRadius = sortedPlanets[sortedPlanets.length-2].meanRadius;
+    return [minRadius, maxRadius];
 }
 
 /**
@@ -55,15 +66,16 @@ function renderSolarSystem(){
     .append('circle')
     .attr('class', d => d.englishName.toLowerCase() + ' planet')
     .attr('cx', d => {
-        return (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(d.semimajorAxis)*Math.PI/2)
+        return (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(d.semimajorAxis)*Math.PI/2);
     })
-    .attr('cx', d => {
-        return (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.sin(aScale(d.semimajorAxis)*Math.PI/2)
+    .attr('cy', d => {
+        return (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.sin(aScale(d.semimajorAxis)*Math.PI/2);
     })
     .attr('r', d => {
         return (d.englishName === 'Sun') ? SUNRADIUS : rScale(d.meanRadius);
-    })
+    });
 
+    console.log(planets);
     addPlanetEvents();
 
     planetTexts = svg.selectAll('text.planet')
@@ -86,25 +98,26 @@ function renderSolarSystem(){
  * adds all mouse events to the planets
  */
 function addPlanetEvents(){
-    planets.map(p =>{
+    planets.each(p =>{
         const planet = document.querySelector(`.${p.englishName.toLowerCase()}`)
 
+        // add/remove the planet to/from the planetBasket
         planet.addEventListener('click', () =>{
-            //add the planet to the planetBasket
+            if (!planetBasket.includes(p)) planetBasket.push(p);
+            else planetBasket.splice(planetBasket.indexOf(p), 1);
         });
 
         // display the planet name when hovering over planet
         planet.addEventListener('mouseover', () =>{
-            d3.select(`.${d.englishName.toLowerCase()}-label`)
+            d3.select(`.${p.englishName.toLowerCase()}-label`)
             .style('display', () =>{
-                if(window.scrollY / RADIUS*2 < 1) return 'block';
-                else return 'none';
+                return (window.scrollY / RADIUS*2 < 1) ? 'block' : 'none';
             });
         });
 
         // make the name disapear when hovering off planet
         planet.addEventListener('mouseout', () =>{
-            d3.select(`.${d.englishName.toLowerCase()}-label`)
+            d3.select(`.${p.englishName.toLowerCase()}-label`)
             .style('display', 'none');
         })
     })
@@ -124,3 +137,5 @@ const rScale = d3.scaleLinear()
 const aScale = d3.scaleLinear()
 .domain([extentDistance[0], extentDistance[1]])
 .range([4, 3.75]);
+
+renderSolarSystem();
