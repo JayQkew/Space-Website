@@ -1,5 +1,8 @@
 const url = 'https://api.le-systeme-solaire.net/rest/bodies/';
 let planetData;
+
+fetchPlanetData();
+
 /**
  * fetches the data from the API and caches it.
  * @returns planet data fetched from solar API
@@ -14,6 +17,7 @@ async function fetchPlanetData(){
 
         planetData = planets.filter(body => body.isPlanet || body.englishName === 'Sun');
 
+        console.table(planetData);
         return planetData;
     }
     catch(error){
