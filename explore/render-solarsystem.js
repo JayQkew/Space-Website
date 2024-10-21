@@ -10,6 +10,7 @@ let RADIUS = window.innerWidth,
     MARGIN = 50;
 
 let svg;
+let planets;
 
 /**
  * gets extent of the specific data in the array of objects
@@ -45,6 +46,22 @@ function renderSolarSystem(){
     .attr('cx', 0)
     .attr('cy', 0)
     .attr('r', d => dScale(d.semimajorAxis));
+
+    planets = svg.selectAll('circle.planet')
+    .data(planetData)
+    .enter()
+    .append('circle')
+    .attr('class', d => d.englishName.toLowerCase() + ' planet')
+    .attr('cx', d => {
+        return (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(d.semimajorAxis)*Math.PI/2)
+    })
+    .attr('cx', d => {
+        return (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.sin(aScale(d.semimajorAxis)*Math.PI/2)
+    })
+    .attr('r', d => {
+        return (d.englishName === 'Sun') ? SUNRADIUS : rScale(d.meanRadius);
+    })
+
 }
 
 // distance scale
