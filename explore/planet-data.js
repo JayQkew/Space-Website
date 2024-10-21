@@ -16,8 +16,7 @@ async function fetchPlanetData(){
         const planets = data.bodies;
 
         planetData = planets.filter(body => body.isPlanet || body.englishName === 'Sun');
-
-        console.table(planetData);
+        planetData.sort((a,b) => a.semimajorAxis - b.semimajorAxis);
         return planetData;
     }
     catch(error){
