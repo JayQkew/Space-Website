@@ -11,6 +11,7 @@ let RADIUS = window.innerWidth,
 
 let svg;
 let planets;
+let planetTexts;
 
 /**
  * gets extent of the specific data in the array of objects
@@ -64,8 +65,26 @@ function renderSolarSystem(){
     })
 
     addPlanetEvents();
+
+    planetTexts = svg.selectAll('text.planet')
+    .data(planetData)
+    .enter()
+    .append('text')
+    .attr('class', d => `${d.englishName.toLowerCase()}-label planet-label`)
+    .attr('x', d => {
+        return (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.cos(aScale(d.semimajorAxis) * Math.PI / 2);
+    })
+    .attr('y', d => {
+        let yPos = (d.englishName === 'Sun') ? 0 : dScale(d.semimajorAxis) * Math.sin(aScale(d.semimajorAxis) * Math.PI / 2);
+        let r = (d.englishName == 'Sun') ? SUNRADIUS : rScale(d.meanRadius);
+        return yPos - r - 15;
+    })
+    .text(d => d.englishName);
 }
 
+/**
+ * adds all mouse events to the planets
+ */
 function addPlanetEvents(){
     planets.map(p =>{
         const planet = document.querySelector(`.${p.englishName.toLowerCase()}`)

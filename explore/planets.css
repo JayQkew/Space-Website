@@ -49,6 +49,12 @@ body{
     stroke: white;
     z-index: -1;
 }
+
+.planet-label{
+    display: none;
+    fill: white;
+    font-size: 1rem;
+}
 /* #endregion */
 
 /* #region Planet Stat Card */
