@@ -168,23 +168,6 @@ function solarSystemZoomStart(){
     .attr('height', RADIUS*2.5);
 }
 
-function solarSystemZoomEnd(){
-    d3.select('.ss-inner')
-    .transition()
-    .duration(1200)
-    .attr('transform', `translate(${MARGIN/2},${RADIUS})`)
-    .call(ZOOM.transform, d3.zoomIdentity.translate(0, 0))
-    .on('start', () => {
-        d3.zoomIdentity.x = MARGIN/2;
-        d3.zoomIdentity.y = RADIUS;
-    });
-
-    d3.select('.solar-systlem')
-    .transition()
-    .duration(1200)
-    .attr('height', RADIUS*2);
-}
-
 /**
  * updates the positions of the planets and planetTexts
  */
@@ -314,12 +297,16 @@ window.addEventListener('scroll', () => {
     }
     else if(scrollValue < ZOOMTHRESHOLD){
         statCard.style.display = 'flex';
+        document.querySelector('.sort-btn-container').style.display = 'none';
+        document.querySelector('aside').style.left = '75%';
         focusOnPlanet();
         createStatCard();
         zoomOnFocusPlanet();
     }
     else{
         statCard.style.display = 'none';
-        solarSystemZoomEnd();
+        document.querySelector('.sort-btn-container').style.display = 'flex';
+        document.querySelector('aside').style.left = '50%';
+        solarSystemZoomStart();
     }
 })
