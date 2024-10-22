@@ -2,11 +2,11 @@ import { getPlanetData } from "./planet-data.js";
 export let planetBasket = [];
 
 const planetData = await getPlanetData();
+let svg = svgContainer.select('svg');
 let Xforces = [];
 
 function createSVG(){
     const svgContainer = d3.select('.planet-data-viz');
-    let svg = svgContainer.select('svg');
     if(svg.empty()){
         svg = svgContainer.append('svg')
         .attr('height', window.innerHeight/1.5)
@@ -62,17 +62,13 @@ function updateForces(){
  * @param {Object} planet 
  * @returns numerical value of the scientific notation
  */
-function massNum(planet){
-    return planet.mass.massValue * Math.pow(10, planet.mass.massExponent);
-}
+function massNum(planet){ return planet.mass.massValue * Math.pow(10, planet.mass.massExponent)}
 
 /**
  * @param {Object} planet 
  * @returns numerical value of the scientific notation
  */
-function volumeNum(planet){
-    return planet.vol.volValue * Math.pow(10, planet.vol.volExponent);
-}
+function volumeNum(planet){ return planet.vol.volValue * Math.pow(10, planet.vol.volExponent);}
 
 const rScale = d3.scaleLinear()
 .domain(d3.extent(planetData, d => d.meanRadius))
@@ -82,5 +78,8 @@ const collideForce = d3.forceCollide(d => rScale(d.meanRadius));
 const manyBody = d3.forceManyBody().strength(-100);
 
 const forceY = d3.forceY(window.innerHeight / 3).strength(0.01);
+
+
+
 createSVG();
 updateForces();
