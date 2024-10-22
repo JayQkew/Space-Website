@@ -6,6 +6,7 @@ const planetData = await getPlanetData();
 const SUNRADIUS = 100;
 const ZOOM = d3.zoom().on('zoom', e => svg.attr('transform', e.transform));
 const SCROLLTHRESHHOLD = 1; // scrollValue threshold before zoom transition
+const ZOOMTHRESHOLD = 2.8;
 
 let extentRadius = getRadiusExtent(),
     extentDistance = getDistanceExtent();
@@ -14,7 +15,7 @@ let RADIUS = window.innerWidth,
     MARGIN = 50;
 
 let svg;
-let planets, planetTexts;
+let planets, planetTexts, focusPlanet;
 let minPlanetAngle = 4,
     maxPlanetAngle = 3.75,
     planetAngleBarrier = 5;
@@ -198,6 +199,87 @@ function updatePositions(){
     }
 }
 
+/**
+ * assigns a planet to focus on based on the scrollValue
+ */
+function focusOnPlanet(){
+    let zoomThreshDelta = (ZOOMTHRESHOLD-SCROLLTHRESHHOLD)/planetData.length;
+    console.log(focusPlanet)
+    if (scrollValue < SCROLLTHRESHHOLD + zoomThreshDelta) focusPlanet = findPlanet('Sun');
+    else if (scrollValue < SCROLLTHRESHHOLD + (2*zoomThreshDelta)) focusPlanet = findPlanet('Mercury');
+    else if (scrollValue < SCROLLTHRESHHOLD + (3*zoomThreshDelta)) focusPlanet = findPlanet('Venus');
+    else if (scrollValue < SCROLLTHRESHHOLD + (4*zoomThreshDelta)) focusPlanet = findPlanet('Earth');
+    else if (scrollValue < SCROLLTHRESHHOLD + (5*zoomThreshDelta)) focusPlanet = findPlanet('Mars');
+    else if (scrollValue < SCROLLTHRESHHOLD + (6*zoomThreshDelta)) focusPlanet = findPlanet('Jupiter');
+    else if (scrollValue < SCROLLTHRESHHOLD + (7*zoomThreshDelta)) focusPlanet = findPlanet('Saturn');
+    else if (scrollValue < SCROLLTHRESHHOLD + (8*zoomThreshDelta)) focusPlanet = findPlanet('Uranus');
+    else if (scrollValue < SCROLLTHRESHHOLD + (9*zoomThreshDelta)) focusPlanet = findPlanet('Neptune');
+}
+
+/**
+ * searches and returns the planet 
+ * @param {String} planetName name of the planet
+ * @returns {Object} selected planed that matched englishName
+ */
+function findPlanet(planetName){
+    let selectPlanet;
+
+    planetData.map(planet => {
+        d3.select(`.${planet.englishName.toLowerCase()}`)
+        .attr('class', `${planet.englishName.toLowerCase()}`); //remove the focusPlanet class
+
+        if(planet.englishName == planetName){
+            selectPlanet = planet;
+            d3.select(`.${planetName.toLowerCase()}`)
+                .attr('class', `${planetName.toLowerCase()} focusPlanet`);
+        } 
+    })
+
+    return selectPlanet;
+}
+
+function zoomOnFocusPlanet(){
+    const planetY = (focusPlanet.englishName === 'Sun') ? 0 : dScale(focusPlanet.semimajorAxis);
+    let zoomScale = calcZoomScale((focusPlanet.englishName === 'Sun') ? SUNRADIUS : rScale(focusPlanet.meanRadius));
+    const windowCenterHeight = window.innerHeight/2;
+
+    d3.select('.ss-inner')
+    .transition()
+    .duration(1200)
+    .call(ZOOM.transform, d3.zoomIdentity
+        .translate(RADIUS/3, windowCenterHeight + MARGIN * 1.225)
+        .scale(zoomScale))
+    .on('start', () =>{
+        d3.zoomIdentity.x = MARGIN/2;
+        d3.zoomIdentity.y = window.scrollY + RADIUS/2 - planetY*zoomScale;
+    })
+
+    d3.select('.solar-system')
+    .transition()
+    .duration(500)
+    .attr('height', RADIUS*2.5);
+}
+
+/**
+ * calculates the scale of within a range based on a radius
+ * @param {Number} radius radius to base the scale on
+ * @returns the scale 
+ */
+function calcZoomScale(radius){
+    const MAX_ZOOMSCALE = 20;
+    const MIN_ZOOMSCALE = 4;
+    let diffScale = MAX_ZOOMSCALE-MIN_ZOOMSCALE;
+    
+    const MAX_RADIUS = SUNRADIUS;
+    const MIN_RADIUS = 5;
+    let diffRadius = MAX_RADIUS-MIN_RADIUS;
+
+    let percentage = radius/diffRadius;
+    let scaleDelta = diffScale*percentage;
+
+    return MAX_ZOOMSCALE-scaleDelta;
+}
+
 renderSolarSystem();
 
 window.addEventListener('scroll', () => {
@@ -206,5 +288,11 @@ window.addEventListener('scroll', () => {
     if(scrollValue <= SCROLLTHRESHHOLD){
         // planetStatsCard.style.display = 'none';
         solarSystemZoomStart();
+    }
+    else if(scrollValue < ZOOMTHRESHOLD){
+        // planetStatsCard.style.display = 'flex';
+        focusOnPlanet();
+        // createStatCard();
+        zoomOnFocusPlanet();
     }
 })
