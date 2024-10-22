@@ -16,9 +16,7 @@ let RADIUS = window.innerWidth,
     MARGIN = 50;
 
 let focusPlanet;
-export function getFocusPlanet(){
-    return focusPlanet;
-}
+export function getFocusPlanet() { return focusPlanet } //getter for focusPlanet
 let svg;
 let planets, planetTexts;
 let minPlanetAngle = 4,
@@ -170,6 +168,23 @@ function solarSystemZoomStart(){
     .attr('height', RADIUS*2.5);
 }
 
+function solarSystemZoomEnd(){
+    d3.select('.ss-inner')
+    .transition()
+    .duration(1200)
+    .attr('transform', `translate(${MARGIN/2},${RADIUS})`)
+    .call(ZOOM.transform, d3.zoomIdentity.translate(0, 0))
+    .on('start', () => {
+        d3.zoomIdentity.x = MARGIN/2;
+        d3.zoomIdentity.y = RADIUS;
+    });
+
+    d3.select('.solar-systlem')
+    .transition()
+    .duration(1200)
+    .attr('height', RADIUS*2);
+}
+
 /**
  * updates the positions of the planets and planetTexts
  */
@@ -209,7 +224,7 @@ function updatePositions(){
  */
 function focusOnPlanet(){
     let zoomThreshDelta = (ZOOMTHRESHOLD-SCROLLTHRESHHOLD)/planetData.length;
-    console.log(focusPlanet)
+
     if (scrollValue < SCROLLTHRESHHOLD + zoomThreshDelta) focusPlanet = findPlanet('Sun');
     else if (scrollValue < SCROLLTHRESHHOLD + (2*zoomThreshDelta)) focusPlanet = findPlanet('Mercury');
     else if (scrollValue < SCROLLTHRESHHOLD + (3*zoomThreshDelta)) focusPlanet = findPlanet('Venus');
@@ -243,6 +258,9 @@ function findPlanet(planetName){
     return selectPlanet;
 }
 
+/**
+ * zoom into focusPlanet
+ */
 function zoomOnFocusPlanet(){
     const planetY = (focusPlanet.englishName === 'Sun') ? 0 : dScale(focusPlanet.semimajorAxis);
     let zoomScale = calcZoomScale((focusPlanet.englishName === 'Sun') ? SUNRADIUS : rScale(focusPlanet.meanRadius));
@@ -299,5 +317,9 @@ window.addEventListener('scroll', () => {
         focusOnPlanet();
         createStatCard();
         zoomOnFocusPlanet();
+    }
+    else{
+        statCard.style.display = 'none';
+        solarSystemZoomEnd();
     }
 })
