@@ -1,5 +1,5 @@
 import { getPlanetData } from "./planet-data.js";
-import { planetBasket } from "./planet-basket.js";
+import { planetBasket, createBubbles } from "./planet-basket.js";
 import { createStatCard, statCard } from "./planet-stat-card.js";
 
 const planetData = await getPlanetData();
@@ -23,6 +23,7 @@ let minPlanetAngle = 4,
     maxPlanetAngle = 3.75,
     planetAngleBarrier = 5;
 let scrollValue;
+let planetDataViz =false;
 
 /**
  * gets the extents of the distance from the sun
@@ -308,5 +309,10 @@ window.addEventListener('scroll', () => {
         document.querySelector('.sort-btn-container').style.display = 'flex';
         document.querySelector('aside').style.left = '50%';
         solarSystemZoomStart();
+
+        if(planetDataViz === false){
+            createBubbles();
+            planetDataViz = true;
+        }
     }
 })

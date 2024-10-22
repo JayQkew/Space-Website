@@ -2,16 +2,49 @@ import { getPlanetData } from "./planet-data.js";
 export let planetBasket = [];
 
 const planetData = await getPlanetData();
-let svg = svgContainer.select('svg');
+let svg = d3.select('.planet-data-viz').select('svg');
 let Xforces = [];
+let bubbles, label;
 
 function createSVG(){
-    const svgContainer = d3.select('.planet-data-viz');
     if(svg.empty()){
-        svg = svgContainer.append('svg')
+        svg.append('svg')
         .attr('height', window.innerHeight/1.5)
         .attr('width', window.innerWidth);
     }
+}
+
+export function createBubbles(){
+    bubbles = svg.selectAll('circle')
+    .data(planetBasket, d => d.englishName)
+    .join(
+        enter => enter.append('circle')
+            .attr('r', d => rScale(d.meanRadius))
+            .attr('class', d => d.englishName.toLowerCase() + ' planet'),
+        update => update,
+        exit => exit.remove()
+    );
+
+    label = svg.selectAll('text.planet-label')
+    .data(planetBasket, d => d.englishName)
+    .join(
+        enter => enter.append('text')
+            .attr('class', 'planet-label')
+            .attr('text-anchor', 'middle')
+            .text(d => d.englishName),
+        update => update,
+        exit => exit.remove()
+    );
+
+    simulation.nodes(planetBasket).on('tick', () => {
+        bubbles.attr('cx', d => d.x)
+        .attr('cy', d => d.y);
+
+        labels.attr('x', d => d.x)
+        .attr('y', d => d.y + rScale(d.meanRadius) + 15);
+    })
+
+    simulation.alpha(1).restart();
 }
 
 /**
@@ -79,7 +112,25 @@ const manyBody = d3.forceManyBody().strength(-100);
 
 const forceY = d3.forceY(window.innerHeight / 3).strength(0.01);
 
+if (Xforces.length > 0) {
+    const simulation = d3.forceSimulation()
+    .force('x', Xforces[0].force)  // Safely access the first force
+    .force('y', forceY)
+    .force('collider', collideForce)
+    .force('manyBody', manyBody);
+    
+    simulation.nodes(planetBasket).on('tick', () => {
+        bubbles.attr('cx', d => d.x)
+        .attr('cy', d => d.y);
 
+        label.attr('x', d => d.x)
+        .attr('y', d => d.y + rScale(d.meanRadius) + 15);
+    });
+
+    simulation.alpha(1).restart();
+} else {
+    console.error('No forces found in Xforces array.');
+}
 
 createSVG();
 updateForces();
