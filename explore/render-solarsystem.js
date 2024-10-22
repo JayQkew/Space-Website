@@ -1,5 +1,6 @@
 import { getPlanetData } from "./planet-data.js";
 import { planetBasket } from "./planet-basket.js";
+import { createStatCard, statCard } from "./planet-stat-card.js";
 
 const planetData = await getPlanetData();
 
@@ -14,8 +15,12 @@ let extentRadius = getRadiusExtent(),
 let RADIUS = window.innerWidth,
     MARGIN = 50;
 
+let focusPlanet;
+export function getFocusPlanet(){
+    return focusPlanet;
+}
 let svg;
-let planets, planetTexts, focusPlanet;
+let planets, planetTexts;
 let minPlanetAngle = 4,
     maxPlanetAngle = 3.75,
     planetAngleBarrier = 5;
@@ -286,13 +291,13 @@ window.addEventListener('scroll', () => {
     updatePlanetAngle();
     updatePositions();
     if(scrollValue <= SCROLLTHRESHHOLD){
-        // planetStatsCard.style.display = 'none';
+        statCard.style.display = 'none';
         solarSystemZoomStart();
     }
     else if(scrollValue < ZOOMTHRESHOLD){
-        // planetStatsCard.style.display = 'flex';
+        statCard.style.display = 'flex';
         focusOnPlanet();
-        // createStatCard();
+        createStatCard();
         zoomOnFocusPlanet();
     }
 })

@@ -1,7 +1,7 @@
-import { fetchPlanetData, getFocusPlanet } from "./solar-system-dv.js";
 import bananaData from "../banana-data.js";
+import { getFocusPlanet } from "./render-solarsystem.js";
 
-const statCard = document.querySelector('.planet-stats-card');
+export const statCard = document.querySelector('.planet-stats-card');
 
 
 const STATMODE_BANANA = 'banana',
@@ -40,9 +40,9 @@ const statTypes = [
  * creates the stat card for the current planet
  */
 export function createStatCard(){
-    let focusPlanet = getFocusPlanet();
+    let focusPlanet = getFocusPlanet()
 
-    let cardInnerHTML = `
+    statCard.innerHTML = `
         <div class="decorate-parent">
         <div class="star-decoration"><div class="star-wrapper"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 0C20.3795 19.3127 20.6874 19.6204 40 20C20.6874 20.3796 20.3795 20.6873 20 40C19.6205 20.6873 19.3129 20.3796 0 20C19.3129 19.6204 19.6205 19.3127 20 0Z" fill="white"></path>
@@ -57,9 +57,6 @@ export function createStatCard(){
                 <button class="stat-btn">Regular</button>
             </div>
     `
-
-    statCard.innerHTML = cardInnerHTML;
-
     const bananaStatBtn = document.querySelector('.banana-stat-btn');
     const statBtn = document.querySelector('.stat-btn');
 
