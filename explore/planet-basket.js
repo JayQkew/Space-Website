@@ -19,163 +19,144 @@ function createSVG(){
     }
 }
 
-// //#region
-// function createBubble(){
-//     bubbles = svg.selectAll('circle')
-//     .data(planetBasket, d => d.englishName)
-//     .join(
-//         enter => enter.append('circle')
-//             .attr('r', d => rScale(d.meanRadius))
-//             .attr('class', d => d.englishName.toLowerCase() + ' planet'),
-//         update => update,
-//         exit => exit.remove()
-//     );
+//#region
+function createBubble(){
+    bubbles = svg.selectAll('circle')
+    .data(planetBasket, d => d.englishName)
+    .join(
+        enter => enter.append('circle')
+            .attr('r', d => rScale(d.meanRadius))
+            .attr('class', d => d.englishName.toLowerCase() + ' planet'),
+        update => update,
+        exit => exit.remove()
+    );
 
-//     labels = svg.selectAll('text.planet-label')
-//     .data(planetBasket, d => d.englishName)
-//     .join(
-//         enter => enter.append('text')
-//             .attr('class', 'planet-label')
-//             .attr('text-anchor', 'middle')
-//             .text(d => d.englishName),
-//         update => update,
-//         exit => exit.remove()
-//     );
+    labels = svg.selectAll('text.planet-label')
+    .data(planetBasket, d => d.englishName)
+    .join(
+        enter => enter.append('text')
+            .attr('class', 'planet-label')
+            .attr('text-anchor', 'middle')
+            .text(d => d.englishName),
+        update => update,
+        exit => exit.remove()
+    );
 
-//     simulation.nodes(planetBasket).on('tick', () => {
-//         bubbles.attr('cx', d => d.x)
-//         .attr('cy', d => d.y);
+    simulation.nodes(planetBasket).on('tick', () => {
+        bubbles.attr('cx', d => d.x)
+        .attr('cy', d => d.y);
 
-//         labels.attr('x', d => d.x)
-//         .attr('y', d => d.y + rScale(d.meanRadius) + 15);
-//     })
+        labels.attr('x', d => d.x)
+        .attr('y', d => d.y + rScale(d.meanRadius) + 15);
+    })
 
-//     simulation.alpha(1).restart();
-// }
+    simulation.alpha(1).restart();
+}
 
-// /**
-//  * adds the force or updates the force if it exists already
-//  * @param {String} name name of the force
-//  * @param {Object} force force Object
-//  */
-// function addForce(name, force){
-//     const existingForce = Xforces.find(f => f.name === name);
-//     if (!existingForce) {
-//         Xforces.push({ name, force });
-//     }
-// }
+/**
+ * adds the force or updates the force if it exists already
+ * @param {String} name name of the force
+ * @param {Object} force force Object
+ */
+function addForce(name, force){
+    const existingForce = Xforces.find(f => f.name === name);
+    if (!existingForce) {
+        Xforces.push({ name, force });
+    }
+}
 
-// /**
-//  * update all the forces based on the planetBasket
-//  */
-// function updateForces(){
-//     addForce('Regular', d3.forceX(window.innerWidth / 2).strength(0.04));
+/**
+ * update all the forces based on the planetBasket
+ */
+function updateForces(){
+    addForce('Regular', d3.forceX(window.innerWidth / 2).strength(0.04));
 
-//     const mScale = d3.scaleLinear()
-//     .domain(d3.extent(planetBasket, d => massNum(d)))
-//     .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-//     addForce('Mass', d3.forceX(d => mScale(massNum(d))).strength(0.15));
+    const mScale = d3.scaleLinear()
+    .domain(d3.extent(planetBasket, d => massNum(d)))
+    .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
+    addForce('Mass', d3.forceX(d => mScale(massNum(d))).strength(0.15));
 
-//     const _rScale = d3.scaleLinear()
-//     .domain(d3.extent(planetBasket, d => d.meanRadius))
-//     .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-//     addForce('Radius', d3.forceX(d => _rScale(d.meanRadius)).strength(0.15));
+    const _rScale = d3.scaleLinear()
+    .domain(d3.extent(planetBasket, d => d.meanRadius))
+    .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
+    addForce('Radius', d3.forceX(d => _rScale(d.meanRadius)).strength(0.15));
 
-//     const vScale = d3.scaleLinear()
-//     .domain(d3.extent(planetBasket, d => volumeNum(d)))
-//     .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-//     addForce('Volume', d3.forceX(d => vScale(volumeNum(d))).strength(0.15))
+    const vScale = d3.scaleLinear()
+    .domain(d3.extent(planetBasket, d => volumeNum(d)))
+    .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
+    addForce('Volume', d3.forceX(d => vScale(volumeNum(d))).strength(0.15))
 
-//     const dScale = d3.scaleLinear()
-//     .domain(d3.extent(planetBasket, d => d.density))
-//     .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-//     addForce('Density', d3.forceX(d => dScale(d.density)).strength(0.15));
+    const dScale = d3.scaleLinear()
+    .domain(d3.extent(planetBasket, d => d.density))
+    .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
+    addForce('Density', d3.forceX(d => dScale(d.density)).strength(0.15));
 
-//     const gScale = d3.scaleLinear()
-//     .domain(d3.extent(planetBasket, d => d.gravity))
-//     .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-//     addForce('Force', d3.forceX(d => gScale(d.gravity)).strength(0.15));
-// }
+    const gScale = d3.scaleLinear()
+    .domain(d3.extent(planetBasket, d => d.gravity))
+    .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
+    addForce('Force', d3.forceX(d => gScale(d.gravity)).strength(0.15));
+}
 
-// /**
-//  * @param {Object} planet 
-//  * @returns numerical value of the scientific notation
-//  */
-// function massNum(planet){ return planet.mass.massValue * Math.pow(10, planet.mass.massExponent)}
+const rScale = d3.scaleLinear()
+.domain(d3.extent(planetData, d => d.meanRadius))
+.range([18, 210]);
 
-// /**
-//  * @param {Object} planet 
-//  * @returns numerical value of the scientific notation
-//  */
-// function volumeNum(planet){ return planet.vol.volValue * Math.pow(10, planet.vol.volExponent);}
+const collideForce = d3.forceCollide(d => rScale(d.meanRadius));
+const manyBody = d3.forceManyBody().strength(-100);
 
-// const rScale = d3.scaleLinear()
-// .domain(d3.extent(planetData, d => d.meanRadius))
-// .range([18, 210]);
+const forceY = d3.forceY(window.innerHeight / 3).strength(0.01);
 
-// const collideForce = d3.forceCollide(d => rScale(d.meanRadius));
-// const manyBody = d3.forceManyBody().strength(-100);
-
-// const forceY = d3.forceY(window.innerHeight / 3).strength(0.01);
-
-// const simulation = d3.forceSimulation()
-// .force('x', d3.forceX(window.innerWidth / 2).strength(0.04))  // Safely access the first force
-// .force('y', forceY)
-// .force('collider', collideForce)
-// .force('manyBody', manyBody);
+const simulation = d3.forceSimulation()
+.force('x', d3.forceX(window.innerWidth / 2).strength(0.04))  // Safely access the first force
+.force('y', forceY)
+.force('collider', collideForce)
+.force('manyBody', manyBody);
 
 
-// simulation.alpha(1).restart();
-// createSVG();
-// updateForces();
-// //#endregion
+simulation.alpha(1).restart();
+createSVG();
+updateForces();
+//#endregion
 
 export function createBubbles() {
     createSVG();
 
     let rScale = d3.scaleLinear()
-        .domain(d3.extent(planetData, d => d.meanRadius))
-        .range([18, 210]);
-
-    let Xforces = [];
+    .domain(d3.extent(planetData, d => d.meanRadius))
+    .range([18, 210]);
 
     // Force configuration for different parameters
-    const forceX = d3.forceX(window.innerWidth / 2).strength(0.04);
     const forceY = d3.forceY(window.innerHeight / 3).strength(0.01);
     const collideForce = d3.forceCollide(d => rScale(d.meanRadius));
     const manyBody = d3.forceManyBody().strength(-100);
-    Xforces.push({ name: 'Regular', force: forceX });
     
     // Create scales for different properties
     const mScale = d3.scaleLinear()
-        .domain(d3.extent(planetBasket, d => massNum(d)))
-        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-    const forceMass = d3.forceX(d => mScale(massNum(d))).strength(0.15);
-    Xforces.push({ name: 'Mass', force: forceMass });
+    .domain(d3.extent(planetBasket, d => massNum(d)))
+    .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
     
     const _rScale = d3.scaleLinear()
-        .domain(d3.extent(planetBasket, d => d.meanRadius))
-        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-    const forceRadius = d3.forceX(d => _rScale(d.meanRadius)).strength(0.15);
-    Xforces.push({ name: 'Radius', force: forceRadius });  // Added name for radius force
+    .domain(d3.extent(planetBasket, d => d.meanRadius))
+    .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
     
     const vScale = d3.scaleLinear()
-        .domain(d3.extent(planetBasket, d => volumeNum(d)))
-        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-    const forceVolume = d3.forceX(d => vScale(volumeNum(d))).strength(0.15);
-    Xforces.push({ name: 'Volume', force: forceVolume });  // Added name for volume force
+    .domain(d3.extent(planetBasket, d => volumeNum(d)))
+    .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
     
     const dScale = d3.scaleLinear()
-        .domain(d3.extent(planetBasket, d => d.density))
-        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-    const forceDensity = d3.forceX(d => dScale(d.density)).strength(0.15);
-    Xforces.push({ name: 'Density', force: forceDensity });  // Added name for density force
+    .domain(d3.extent(planetBasket, d => d.density))
+    .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
     
     const gScale = d3.scaleLinear()
-        .domain(d3.extent(planetBasket, d => d.gravity))
-        .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-    const forceGravity = d3.forceX(d => gScale(d.gravity)).strength(0.15);
-    Xforces.push({ name: 'Gravity', force: forceGravity });  // Added name for gravity force
+    .domain(d3.extent(planetBasket, d => d.gravity))
+    .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
+
+    addForce('Regular', d3.forceX(window.innerWidth / 2).strength(0.04));
+    addForce('Mass', d3.forceX(d => mScale(massNum(d))).strength(0.15));
+    addForce('Radius', d3.forceX(d => _rScale(d.meanRadius)).strength(0.15));
+    addForce('Volume', d3.forceX(d => vScale(volumeNum(d))).strength(0.15));
+    addForce('Density', d3.forceX(d => dScale(d.density)).strength(0.15));
+    addForce('Gravity', d3.forceX(d => gScale(d.gravity)).strength(0.15));
     
 
     const sortBtns = document.querySelector('.sort-btn-container');
@@ -195,7 +176,7 @@ export function createBubbles() {
     })
 
     const simulation = d3.forceSimulation()
-        .force('x', forceX)
+        .force('x', d3.forceX(window.innerWidth / 2).strength(0.04))
         .force('y', forceY)
         .force('collide', collideForce)
         .force('manyBody', manyBody);
