@@ -103,6 +103,8 @@ function addPlanetEvents(){
         planet.addEventListener('click', () =>{
             if (!planetBasket.includes(p)) planetBasket.push(p);
             else planetBasket.splice(planetBasket.indexOf(p), 1);
+
+            createBubbles();
         });
 
         // display the planet name when hovering over planet
@@ -310,8 +312,8 @@ window.addEventListener('scroll', () => {
         document.querySelector('aside').style.left = '50%';
         solarSystemZoomStart();
 
+        createBubbles();
         if(planetDataViz === false){
-            createBubbles();
             planetDataViz = true;
         }
     }
