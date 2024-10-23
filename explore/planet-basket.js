@@ -121,16 +121,11 @@ updateForces();
 export function createBubbles() {
     createSVG();
 
-    let rScale = d3.scaleLinear()
+    // #region Scales
+    const rScale = d3.scaleLinear()
     .domain(d3.extent(planetData, d => d.meanRadius))
     .range([18, 210]);
 
-    // Force configuration for different parameters
-    const forceY = d3.forceY(window.innerHeight / 3).strength(0.01);
-    const collideForce = d3.forceCollide(d => rScale(d.meanRadius));
-    const manyBody = d3.forceManyBody().strength(-100);
-    
-    // Create scales for different properties
     const mScale = d3.scaleLinear()
     .domain(d3.extent(planetBasket, d => massNum(d)))
     .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
@@ -150,19 +145,24 @@ export function createBubbles() {
     const gScale = d3.scaleLinear()
     .domain(d3.extent(planetBasket, d => d.gravity))
     .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
+    // #endregion
 
+    // #region adding forces
+    const forceY = d3.forceY(window.innerHeight / 3).strength(0.01);
+    const collideForce = d3.forceCollide(d => rScale(d.meanRadius));
+    const manyBody = d3.forceManyBody().strength(-100);
+    
     addForce('Regular', d3.forceX(window.innerWidth / 2).strength(0.04));
     addForce('Mass', d3.forceX(d => mScale(massNum(d))).strength(0.15));
     addForce('Radius', d3.forceX(d => _rScale(d.meanRadius)).strength(0.15));
     addForce('Volume', d3.forceX(d => vScale(volumeNum(d))).strength(0.15));
     addForce('Density', d3.forceX(d => dScale(d.density)).strength(0.15));
     addForce('Gravity', d3.forceX(d => gScale(d.gravity)).strength(0.15));
-    
+    // #endregion
 
     const sortBtns = document.querySelector('.sort-btn-container');
     sortBtns.innerHTML = '';
     Xforces.map(force =>{
-        // let btn = `<button class="sort-btn" data-type="${force.name}">${force.name}</button>`
         let btn = document.createElement('button');
         btn.classList.add('sort-btn');
         btn.setAttribute('data-type', force.name);
