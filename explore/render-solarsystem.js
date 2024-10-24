@@ -1,5 +1,5 @@
 import { getPlanetData } from "./planet-data.js";
-import { planetBasket, createBubbles } from "./planet-basket.js";
+import { planetBasket, createBubbles, updatePlanetBasket } from "./planet-basket.js";
 import { createStatCard, statCard } from "./planet-stat-card.js";
 
 const planetData = await getPlanetData();
@@ -9,8 +9,8 @@ const ZOOM = d3.zoom().on('zoom', e => svg.attr('transform', e.transform));
 const SCROLLTHRESHHOLD = 1; // scrollValue threshold before zoom transition
 const ZOOMTHRESHOLD = 2.8;
 
-let extentRadius = getRadiusExtent(),
-    extentDistance = getDistanceExtent();
+export let extentRadius = getRadiusExtent();
+let extentDistance = getDistanceExtent();
 
 let RADIUS = window.innerWidth,
     MARGIN = 50;
@@ -104,6 +104,7 @@ function addPlanetEvents(){
             if (!planetBasket.includes(p)) planetBasket.push(p);
             else planetBasket.splice(planetBasket.indexOf(p), 1);
 
+            updatePlanetBasket();
             createBubbles();
         });
 

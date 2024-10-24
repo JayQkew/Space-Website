@@ -1,4 +1,5 @@
 import { getPlanetData } from "./planet-data.js";
+import { extentRadius } from "./render-solarsystem.js";
 export let planetBasket = [];
 
 const planetData = await getPlanetData();
@@ -160,3 +161,46 @@ function massNum(planet){ return planet.mass.massValue * Math.pow(10, planet.mas
  * @returns numerical value of the scientific notation
  */
 function volumeNum(planet){ return planet.vol.volValue * Math.pow(10, planet.vol.volExponent);}
+
+export function updatePlanetBasket(){
+    let ul = d3.select('.planet-basket ul');
+    ul.selectAll('li').remove();
+
+    const rScale = d3.scalePow()
+    .exponent(1)
+    .domain([extentRadius[0], extentRadius[1]])
+    .range([4, 10])
+
+    let li = ul.selectAll('li')
+    .data(planetBasket)
+    .enter()
+    .append('li')
+    .style('display', 'flex')
+    .style('align-items', 'center')
+    .style('gap', '10px');
+
+    li.append('svg')
+    .attr('width', d => {
+        return (d.englishName === 'Sun') ? 15 : rScale(d.meanRadius);
+    })
+    .attr('height', d => {
+        return (d.englishName === 'Sun') ? 15 : rScale(d.meanRadius);
+    })
+    .attr('class', 'planet-svg-container')
+    .append('circle')
+    .attr('cx', '50%')
+    .attr('cy', '50%')
+    .attr('r', d => {
+        return (d.englishName === 'Sun') ? 15 / 2 : rScale(d.meanRadius) / 2;
+    })
+    .attr('class', d => d.englishName.toLowerCase())
+    .on('click', (e, d) => {
+        if(!planetBasket.includes(d)) planetBasket.push(planet);
+        else planetBasket = planetBasket.filter(p => p !== d);
+
+        updatePlanetBasket();
+        createBubbles();
+    })
+
+    createBubbles();
+}
