@@ -27,18 +27,44 @@ h3{
     display: flex;
     flex-direction: row;
     margin: 1rem;
-    padding: 1rem;
     border: var(--border);
     border-radius: var(--border-radius);
 }
 
 .wireframe-img-container{
+    width: 60%;
+    height: 25rem;
     display: flex;
+    gap: 1rem;
+    margin: 1rem;
     flex-direction: row;
     justify-content: center;
     align-items: start;
 }
 
+.wireframe-wrapper{
+    width: auto;
+    height: 100%;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    flex-grow: 1;
+}
+.focus{
+    width: 30vw;
+    flex-grow: 2;
+}
+
+.wireframe-img{
+    width: 100%;
+    border-radius: var(--border-radius);
+    object-fit: contain;
+}
+
+.wireframe-description{
+    margin: 1rem;
+    width: 30%;
+}
 /* #region */
 .style-guide{
     display: flex;
