@@ -45,9 +45,10 @@ function createSortBtns(){
  */
 function addForce(name, force){
     const existingForce = Xforces.find(f => f.name === name);
-    if (!existingForce) {
-        Xforces.push({ name, force });
-        console.log(force);
+    if (existingForce) {
+        existingForce.force = force;  // Update the existing force
+    } else {
+        Xforces.push({ name, force });  // Add a new force if it doesn't exist
     }
 }
 
@@ -55,6 +56,8 @@ function addForce(name, force){
  * update all the forces based on the planetBasket
  */
 function updateForces(){
+    Xforces = [];
+
     addForce('Regular', d3.forceX(window.innerWidth / 2).strength(0.04));
 
     const mScale = d3.scaleLinear()
@@ -80,7 +83,7 @@ function updateForces(){
     const gScale = d3.scaleLinear()
     .domain(d3.extent(planetBasket, d => d.gravity))
     .range([window.innerWidth / 4, window.innerWidth - window.innerWidth / 4]);
-    addForce('Force', d3.forceX(d => gScale(d.gravity)).strength(0.15));
+    addForce('Gravity', d3.forceX(d => gScale(d.gravity)).strength(0.15));
 }
 
 const rScale = d3.scaleLinear()
