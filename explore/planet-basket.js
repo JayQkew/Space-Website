@@ -6,9 +6,11 @@ let svg;
 let Xforces = [];
 let bubbles, labels;
 
+/**
+ * creates the svg that the data viz will appear in
+ */
 function createSVG(){
     const svgContainer = d3.select('.planet-data-viz');
-
     // Check if the svg already exists, if not, create a new one
     svg = svgContainer.select('svg');
     if (svg.empty()) {
@@ -19,6 +21,9 @@ function createSVG(){
     }
 }
 
+/**
+ * creates the sort buttons for the different value comparisons
+ */
 function createSortBtns(){
     const sortBtns = document.querySelector('.sort-btn-container');
     sortBtns.innerHTML = '';
@@ -36,8 +41,6 @@ function createSortBtns(){
     })
 }
 
-//#region
-
 /**
  * adds the force or updates the force if it exists already
  * @param {String} name name of the force
@@ -51,6 +54,7 @@ function addForce(name, force){
         Xforces.push({ name, force });  // Add a new force if it doesn't exist
     }
 }
+
 
 /**
  * update all the forces based on the planetBasket
@@ -96,10 +100,9 @@ let simulation = d3.forceSimulation()
 .force('collide', d3.forceCollide(d => rScale(d.meanRadius)))
 .force('manyBody', d3.forceManyBody().strength(-100));
 
-// createSVG();
-// updateForces();
-//#endregion
-
+/**
+ * creates force bubbles in a D3 physics simulation
+ */
 export function createBubbles() {
     createSVG();
     updateForces();
