@@ -74,10 +74,12 @@ function addWireframeEvents(){
         w.addEventListener('mouseenter', () => {
             Array.from(w.parentElement.children).forEach( c => {
                 c.classList.remove('focus');
-                c.children[0].classList.remove('focus')
+                c.children[0].classList.remove('focus');
+                c.children[0].style.overflowY = 'hidden';
             });
             w.classList.add('focus');
             w.children[0].classList.add('focus');
+            c.children[0].style.overflowY = 'auto'
         })
     })
 }

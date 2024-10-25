@@ -223,6 +223,19 @@ button{
 }
 /* #endregion */
 
+::-webkit-scrollbar{
+    width: 0.5rem;
+}
+::-webkit-scrollbar-track{
+    border-radius: 100vw;
+    margin-inline: 0.5rem;
+    margin-block: 1.5rem;
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 100vw;
+    background-color: var(--titanium-white);
+}
+
 @font-face{
     font-family: 'Willful';
     src: url('fonts/Willful.ttf') format('truetype');
