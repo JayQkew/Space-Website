@@ -98,5 +98,5 @@ function addWireframeEvents(){
     })
 }
 
-createWireframes();
-addWireframeEvents();
+//createWireframes();
+//addWireframeEvents();

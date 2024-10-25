@@ -52,7 +52,9 @@ h3{
     width: 4rem;
     height: 100%;
     justify-content: baseline;
-    border: var(--border);
+    /* border: var(--border); */
+    background-color: var(--glass-color);
+    backdrop-filter: var(--glass-blur);
     border-radius: var(--border-radius);
     overflow-x: hidden;
     flex-grow: 1;
@@ -63,8 +65,36 @@ h3{
     flex-grow: 2;
 }
 
-.wireframe-img:not(.focus){
-    display: none;
+.wireframe-slides{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.slide-indicator{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0.5rem;
+}
+
+.slide-icon{
+    height: 0.5rem;
+    width: 0.5rem;
+    content: "";
+    background-color: var(--titanium-white);
+    border-radius: 100vw;
+}
+
+.focus-icon{
+    height: 0.5rem;
+    width: 3rem;
+}
+
+.wireframe-img{
+    /* display: none; */
     opacity: 0;
     width: 100%;
     border-radius: var(--border-radius);
@@ -72,7 +102,7 @@ h3{
     transition: opacity 0.5s ease;
 }
 .wireframe-img.focus{
-    opacity: 0;
+    opacity: 1;
     width: 100%;
     border-radius: var(--border-radius);
     object-fit: contain;
