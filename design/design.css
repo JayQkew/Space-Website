@@ -48,6 +48,7 @@ h3{
 .wireframe-wrapper{
     width: 4rem;
     height: 100%;
+    justify-content: baseline;
     border: var(--border);
     border-radius: var(--border-radius);
     overflow-x: hidden;
@@ -59,7 +60,8 @@ h3{
     flex-grow: 2;
 }
 
-.wireframe-img{
+.wireframe-img:not(.focus){
+    display: none;
     opacity: 0;
     width: 100%;
     border-radius: var(--border-radius);
@@ -67,6 +69,11 @@ h3{
     transition: opacity 0.5s ease;
 }
 .wireframe-img.focus{
+    opacity: 0;
+    width: 100%;
+    border-radius: var(--border-radius);
+    object-fit: contain;
+    transition: opacity 0.5s ease;
     opacity: 1;
 }
 
@@ -82,6 +89,16 @@ h3{
 
 .wireframe-description p{
     font-size: 1.25rem;
+}
+
+.wireframe-label{
+    font-size: var(--heading-fs);
+    position: relative;
+    transform: rotateZ(270deg);
+    text-align: center;
+    width: 12rem;
+    top: 45%;
+    left: -100%;
 }
 
 /* #region */

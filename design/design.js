@@ -41,15 +41,28 @@ const wireframes = [
  */
 function createWireframes(){
     wireframes.map( w => {
-        let imgContainer = `
-        <div class="wireframe-img-container">
+        let imgContainer = (wireframeArticle.childElementCount % 2 === 1) ? 
+        `<div class="wireframe-img-container">
             <div class="wireframe-wrapper">
                 <img src="${w.midFid}" alt="${w.midAlt}" class="wireframe-img mid-fid">
+                <p class="wireframe-label">Mid-fidelity</p>
             </div>
             <div class="wireframe-wrapper focus">
                 <img src="${w.highFid}" alt="${w.highAlt}" class="wireframe-img high-fid focus">
+                <p class="wireframe-label">High-fidelity</p>
             </div>
-        </div>`;
+        </div>` 
+        :
+        `<div class="wireframe-img-container">
+            <div class="wireframe-wrapper focus">
+                <img src="${w.midFid}" alt="${w.midAlt}" class="wireframe-img mid-fid focus">
+                <p class="wireframe-label">Mid-fidelity</p>
+            </div>
+            <div class="wireframe-wrapper">
+                <img src="${w.highFid}" alt="${w.highAlt}" class="wireframe-img high-fid">
+                <p class="wireframe-label">High-fidelity</p>
+            </div>
+        </div>` 
 
         let descriptionContainer =`
         <div class="wireframe-description">
@@ -70,15 +83,17 @@ function addWireframeEvents(){
     let wrappers = wireframeArticle.querySelectorAll('.wireframe-wrapper');
 
     wrappers.forEach(w => {
-        w.addEventListener('mouseenter', () => {
+        w.addEventListener('mouseover', () => {
             Array.from(w.parentElement.children).forEach( c => {
+                c.children[0].style.display = 'none';
                 c.classList.remove('focus');
                 c.children[0].classList.remove('focus');
                 c.children[0].style.overflowY = 'hidden';
             });
             w.classList.add('focus');
+            w.children[0].style.display = 'block';
             w.children[0].classList.add('focus');
-            c.children[0].style.overflowY = 'auto'
+            w.children[0].style.overflowY = 'auto'
         })
     })
 }
