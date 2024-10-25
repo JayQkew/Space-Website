@@ -60,8 +60,7 @@ function createWireframes(){
         let section = document.createElement('section');
         section.classList.add('page-section');
 
-        if(wireframeArticle.childElementCount % 2 !== 0) section.innerHTML = imgContainer + descriptionContainer;
-        else section.innerHTML = descriptionContainer + imgContainer;
+        section.innerHTML = imgContainer + descriptionContainer;
 
         wireframeArticle.appendChild(section);
     })

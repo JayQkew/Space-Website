@@ -10,6 +10,7 @@ h1{
 
 h2{
     margin: 1.5rem;
+    font-size: var(--boldheading-fs);
     text-align: center;
 }
 
@@ -71,8 +72,18 @@ h3{
 
 .wireframe-description{
     margin: 1rem;
-    width: 40%;
+    width: 50vw;
 }
+
+.wireframe-description h3{
+    font-size: var(--heading-fs);
+    margin-block: 1rem;
+}
+
+.wireframe-description p{
+    font-size: 1.25rem;
+}
+
 /* #region */
 .style-guide{
     display: flex;
