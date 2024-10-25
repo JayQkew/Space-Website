@@ -21,6 +21,9 @@ h3{
 .wireframes,
 .style-sheet
 .theory{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     margin-block: 5rem;
 }
 

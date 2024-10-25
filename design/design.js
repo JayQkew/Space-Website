@@ -3,7 +3,7 @@ const wireframeArticle = document.querySelector('.wireframes');
 const wireframes = [
     {
         pageName: "Home Page",
-        description: "This is a brief description of the design.",
+        description: "Users are welcomed by an inspiring hero section featuring a quote from Carl Sagan, inviting them to explore the site’s ideas.<br> As they scroll, a data narrative unfolds through a sequence of engaging statements, gradually immersing them in the site’s purpose and content. This approach not only guides users intuitively but also deepens their curiosity and connection to the story the site aims to tell.",
         midFid: "/images/Home Page-mid-fid.png",
         highFid: "/images/Home Page-high-fid.png",
         midAlt: "Mid-fidelity wireframe for the Home Page",
@@ -77,6 +77,12 @@ function createWireframes(){
 
         wireframeArticle.appendChild(section);
     })
+
+    VanillaTilt.init(document.querySelectorAll('.wireframe-wrapper'),{
+        max: 5,
+        speed: 400,
+        reverse: true
+    });
 }
 
 function addWireframeEvents(){
