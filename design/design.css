@@ -32,8 +32,8 @@ h3{
 }
 
 .wireframe-img-container{
-    width: 60%;
-    height: 25rem;
+    width: fit-content;
+    height: 30rem;
     display: flex;
     gap: 1rem;
     margin: 1rem;
@@ -43,7 +43,7 @@ h3{
 }
 
 .wireframe-wrapper{
-    width: auto;
+    width: 4rem;
     height: 100%;
     border: var(--border);
     border-radius: var(--border-radius);
@@ -51,7 +51,7 @@ h3{
     flex-grow: 1;
 }
 .focus{
-    width: 30vw;
+    width: 50rem;
     flex-grow: 2;
 }
 
