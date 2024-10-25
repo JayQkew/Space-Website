@@ -82,6 +82,8 @@ function addSliderEvents(){
     let sliders = document.querySelectorAll('.slide-icon');
     sliders.forEach(s => {
         let wireframeWrapper = s.parentElement.parentElement.children[0];
+        let type = s.parentElement.parentElement.parentElement.children[0];
+        console.log(type);
         s.addEventListener('click', () => {
             Array.from(s.parentElement.children).forEach(c => {
                 c.classList.remove('focus-icon');
@@ -94,12 +96,16 @@ function addSliderEvents(){
                 wireframeWrapper.querySelector('.mid-fid').style.display = 'block';
                 wireframeWrapper.querySelector('.high-fid').classList.remove('showing');
                 wireframeWrapper.querySelector('.high-fid').style.display = 'none';
+
+                type.children[0].textContent = 'Mid-fidelity';
             }
             else{
                 wireframeWrapper.querySelector('.mid-fid').classList.remove('showing');
                 wireframeWrapper.querySelector('.mid-fid').style.display = 'none';
                 wireframeWrapper.querySelector('.high-fid').classList.add('showing');
                 wireframeWrapper.querySelector('.high-fid').style.display = 'block';
+
+                type.children[0].textContent = 'High-fidelity';
             }
         })
     })
@@ -111,3 +117,9 @@ function removeImageDisplay(){
 
 createWireframes();
 addSliderEvents();
+
+VanillaTilt.init(document.querySelectorAll('.wireframe-wrapper'),{
+    max: 5,
+    speed: 400,
+    reverse: true
+});
