@@ -48,8 +48,17 @@ h3{
     align-items: start;
 }
 
-.wireframe-wrapper{
+.wireframe-type{
     width: 4rem;
+    height: 100%;
+    justify-content: baseline;
+    background-color: var(--glass-color);
+    backdrop-filter: var(--glass-blur);
+    border-radius: var(--border-radius);
+}
+
+.wireframe-wrapper{
+    width: 50rem;
     height: 100%;
     justify-content: baseline;
     /* border: var(--border); */
@@ -57,12 +66,8 @@ h3{
     backdrop-filter: var(--glass-blur);
     border-radius: var(--border-radius);
     overflow-x: hidden;
-    flex-grow: 1;
-    transition: width 0.5s ease, flex-grow 0.5s ease;
-}
-.wireframe-wrapper.focus{
-    width: 50rem;
     flex-grow: 2;
+    transition: width 0.5s ease, flex-grow 0.5s ease;
 }
 
 .wireframe-slides{
@@ -85,29 +90,28 @@ h3{
     width: 0.5rem;
     content: "";
     background-color: var(--titanium-white);
+    cursor: pointer;
     border-radius: 100vw;
+    transition: width 0.5s ease,
+        background-color 0.5s ease;
+}
+.slide-icon:hover:not(.focus-icon){
+    width: 1.5rem;
 }
 
 .focus-icon{
     height: 0.5rem;
     width: 3rem;
+    background-color: var(--banana-yellow);
 }
 
 .wireframe-img{
     /* display: none; */
-    opacity: 0;
-    width: 100%;
-    border-radius: var(--border-radius);
-    object-fit: contain;
-    transition: opacity 0.5s ease;
-}
-.wireframe-img.focus{
     opacity: 1;
     width: 100%;
     border-radius: var(--border-radius);
     object-fit: contain;
     transition: opacity 0.5s ease;
-    opacity: 1;
 }
 
 .wireframe-description{
