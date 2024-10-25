@@ -37,5 +37,31 @@ const wireframes = [
 
 
 function createWireframes(){
+    wireframes.map( w => {
+        let imgContainer = `
+        <div class="wireframe-img-container">
+            <div class="wireframe-wrapper focus">
+                <img src="${w.midFid}" alt="${w.midAlt}" class="wireframe-img mid-fid">
+            </div>
+            <div class="wireframe-wrapper">
+                <img src="${w.highFid}" alt="${w.highAlt}" class="wireframe-img high-fid">
+            </div>
+        </div>`;
 
+        let descriptionContainer =`
+        <div class="wireframe-description">
+            <h3>${w.pageName}</h3>
+            <p>${w.description}</p>
+        </div>`
+
+        let section = document.createElement('section');
+        section.classList.add('page-section');
+
+        if(wireframeArticle.childElementCount % 2 !== 0) section.innerHTML = imgContainer + descriptionContainer;
+        else section.innerHTML = descriptionContainer + imgContainer;
+
+        wireframeArticle.appendChild(section);
+    })
 }
+
+createWireframes();

@@ -26,6 +26,7 @@ h3{
 .page-section{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     margin: 1rem;
     border: var(--border);
     border-radius: var(--border-radius);
