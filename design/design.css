@@ -103,14 +103,15 @@ h3{
 }
 
 .wireframe-img{
-    opacity: 0;
+    opacity: 1;
+    display: none;
     width: 100%;
     border-radius: var(--border-radius);
     object-fit: contain;
 }
 
 .showing{
-    opacity: 1;
+    display: block;
 }
 
 .wireframe-description{
