@@ -47,7 +47,7 @@ function createWireframes(){
                 <img src="${w.midFid}" alt="${w.midAlt}" class="wireframe-img mid-fid">
             </div>
             <div class="wireframe-wrapper focus">
-                <img src="${w.highFid}" alt="${w.highAlt}" class="wireframe-img high-fid">
+                <img src="${w.highFid}" alt="${w.highAlt}" class="wireframe-img high-fid focus">
             </div>
         </div>`;
 
@@ -74,8 +74,10 @@ function addWireframeEvents(){
         w.addEventListener('mouseenter', () => {
             Array.from(w.parentElement.children).forEach( c => {
                 c.classList.remove('focus');
+                c.children[0].classList.remove('focus')
             });
             w.classList.add('focus');
+            w.children[0].classList.add('focus');
         })
     })
 }

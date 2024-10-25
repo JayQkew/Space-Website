@@ -51,7 +51,7 @@ h3{
     border-radius: var(--border-radius);
     overflow: hidden;
     flex-grow: 1;
-    transition: width 0.4s ease, flex-grow 0.4s ease;
+    transition: width 0.5s ease, flex-grow 0.5s ease;
 }
 .wireframe-wrapper.focus{
     width: 50rem;
@@ -59,9 +59,14 @@ h3{
 }
 
 .wireframe-img{
+    opacity: 0;
     width: 100%;
     border-radius: var(--border-radius);
     object-fit: contain;
+    transition: opacity 0.5s ease;
+}
+.wireframe-img.focus{
+    opacity: 1;
 }
 
 .wireframe-description{
