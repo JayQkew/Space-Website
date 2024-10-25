@@ -41,7 +41,7 @@ const wireframes = [
  */
 function createWireframes(){
     wireframes.map( w => {
-        let imgContainer = (wireframeArticle.childElementCount % 2 === 1) ? 
+        let imgContainer = (wireframeArticle.childElementCount % 2 === 1) ?
         `<div class="wireframe-img-container">
             <div class="wireframe-wrapper">
                 <img src="${w.midFid}" alt="${w.midAlt}" class="wireframe-img mid-fid">
@@ -51,7 +51,7 @@ function createWireframes(){
                 <img src="${w.highFid}" alt="${w.highAlt}" class="wireframe-img high-fid focus">
                 <p class="wireframe-label">High-fidelity</p>
             </div>
-        </div>` 
+        </div>`
         :
         `<div class="wireframe-img-container">
             <div class="wireframe-wrapper focus">
@@ -62,7 +62,7 @@ function createWireframes(){
                 <img src="${w.highFid}" alt="${w.highAlt}" class="wireframe-img high-fid">
                 <p class="wireframe-label">High-fidelity</p>
             </div>
-        </div>` 
+        </div>`
 
         let descriptionContainer =`
         <div class="wireframe-description">
@@ -77,12 +77,6 @@ function createWireframes(){
 
         wireframeArticle.appendChild(section);
     })
-
-    VanillaTilt.init(document.querySelectorAll('.wireframe-wrapper'),{
-        max: 5,
-        speed: 400,
-        reverse: true
-    });
 }
 
 function addWireframeEvents(){
