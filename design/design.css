@@ -66,8 +66,6 @@ h3{
     backdrop-filter: var(--glass-blur);
     border-radius: var(--border-radius);
     overflow-x: hidden;
-    flex-grow: 2;
-    transition: width 0.5s ease, flex-grow 0.5s ease;
 }
 
 .wireframe-slides{
@@ -106,12 +104,14 @@ h3{
 }
 
 .wireframe-img{
-    /* display: none; */
-    opacity: 1;
+    opacity: 0;
     width: 100%;
     border-radius: var(--border-radius);
     object-fit: contain;
-    transition: opacity 0.5s ease;
+}
+
+.showing{
+    opacity: 1;
 }
 
 .wireframe-description{

@@ -52,8 +52,8 @@ function createWireframes(){
         let wireframeSlides = `
         <div class="wireframe-slides">
             <div class="wireframe-wrapper">
-                <img src="${w.midFid}" alt="${w.midAlt}" class="wireframe-img showing">
-                <img src="${w.highFid}" alt="${w.highAlt}" class="wireframe-img">
+                <img src="${w.midFid}" alt="${w.midAlt}" class="wireframe-img mid-fid showing">
+                <img src="${w.highFid}" alt="${w.highAlt}" class="wireframe-img high-fid">
             </div>
             <div class="slide-indicator">
                 <div class="slide-icon focus-icon" id="mid-fid"></div>
@@ -78,24 +78,36 @@ function createWireframes(){
     })
 }
 
-function addWireframeEvents(){
-    let wrappers = wireframeArticle.querySelectorAll('.wireframe-wrapper');
-
-    wrappers.forEach(w => {
-        w.addEventListener('mouseover', () => {
-            Array.from(w.parentElement.children).forEach( c => {
-                c.children[0].style.display = 'none';
-                c.classList.remove('focus');
-                c.children[0].classList.remove('focus');
-                c.children[0].style.overflowY = 'hidden';
+function addSliderEvents(){
+    let sliders = document.querySelectorAll('.slide-icon');
+    sliders.forEach(s => {
+        let wireframeWrapper = s.parentElement.parentElement.children[0];
+        s.addEventListener('click', () => {
+            Array.from(s.parentElement.children).forEach(c => {
+                c.classList.remove('focus-icon');
             });
-            w.classList.add('focus');
-            w.children[0].style.display = 'block';
-            w.children[0].classList.add('focus');
-            w.children[0].style.overflowY = 'auto'
+            console.log('clicked here!');
+            s.classList.add('focus-icon');
+
+            if(s.id === 'mid-fid'){
+                wireframeWrapper.querySelector('.mid-fid').classList.add('showing');
+                wireframeWrapper.querySelector('.mid-fid').style.display = 'block';
+                wireframeWrapper.querySelector('.high-fid').classList.remove('showing');
+                wireframeWrapper.querySelector('.high-fid').style.display = 'none';
+            }
+            else{
+                wireframeWrapper.querySelector('.mid-fid').classList.remove('showing');
+                wireframeWrapper.querySelector('.mid-fid').style.display = 'none';
+                wireframeWrapper.querySelector('.high-fid').classList.add('showing');
+                wireframeWrapper.querySelector('.high-fid').style.display = 'block';
+            }
         })
     })
 }
 
+function removeImageDisplay(){
+
+}
+
 createWireframes();
-//addWireframeEvents();
+addSliderEvents();
