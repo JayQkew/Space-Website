@@ -41,39 +41,38 @@ const wireframes = [
  */
 function createWireframes(){
     wireframes.map( w => {
-        let imgContainer = (wireframeArticle.childElementCount % 2 === 1) ?
-        `<div class="wireframe-img-container">
+        let section = document.createElement('section');
+        section.classList.add('page-section');
+
+        let wireframeType = `
+        <div class="wireframe-type">
+            <h3 class="wireframe-label">Mid-fidelity</h3>
+        </div>`;
+
+        let wireframeSlides = `
+        <div class="wireframe-slides">
             <div class="wireframe-wrapper">
-                <img src="${w.midFid}" alt="${w.midAlt}" class="wireframe-img mid-fid">
-                <p class="wireframe-label">Mid-fidelity</p>
+                <img src="${w.midFid}" alt="${w.midAlt}" class="wireframe-img showing">
+                <img src="${w.highFid}" alt="${w.highAlt}" class="wireframe-img">
             </div>
-            <div class="wireframe-wrapper focus">
-                <img src="${w.highFid}" alt="${w.highAlt}" class="wireframe-img high-fid focus">
-                <p class="wireframe-label">High-fidelity</p>
-            </div>
-        </div>`
-        :
-        `<div class="wireframe-img-container">
-            <div class="wireframe-wrapper focus">
-                <img src="${w.midFid}" alt="${w.midAlt}" class="wireframe-img mid-fid focus">
-                <p class="wireframe-label">Mid-fidelity</p>
-            </div>
-            <div class="wireframe-wrapper">
-                <img src="${w.highFid}" alt="${w.highAlt}" class="wireframe-img high-fid">
-                <p class="wireframe-label">High-fidelity</p>
+            <div class="slide-indicator">
+                <div class="slide-icon focus-icon" id="mid-fid"></div>
+                <div class="slide-icon" id="high-fid"></div>
             </div>
         </div>`
 
-        let descriptionContainer =`
+        let container = document.createElement('div');
+        container.classList.add('wireframe-img-container');
+        container.innerHTML = wireframeType + wireframeSlides;
+
+        let description = `
         <div class="wireframe-description">
             <h3>${w.pageName}</h3>
             <p>${w.description}</p>
         </div>`
 
-        let section = document.createElement('section');
-        section.classList.add('page-section');
-
-        section.innerHTML = imgContainer + descriptionContainer;
+        section.appendChild(container);
+        section.innerHTML += description;
 
         wireframeArticle.appendChild(section);
     })
@@ -98,5 +97,5 @@ function addWireframeEvents(){
     })
 }
 
-//createWireframes();
+createWireframes();
 //addWireframeEvents();
