@@ -27,7 +27,8 @@ h3{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 1rem;
+    margin-inline: 2rem;
+    margin-block: 1rem;
     border: var(--border);
     border-radius: var(--border-radius);
 }
@@ -50,8 +51,9 @@ h3{
     border-radius: var(--border-radius);
     overflow: hidden;
     flex-grow: 1;
+    transition: width 0.4s ease, flex-grow 0.4s ease;
 }
-.focus{
+.wireframe-wrapper.focus{
     width: 50rem;
     flex-grow: 2;
 }

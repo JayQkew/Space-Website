@@ -35,15 +35,18 @@ const wireframes = [
     }
 ];
 
-
+/**
+ * creates the html code for the wireframes and alternates the
+ * image and description depending if its an odd or even child
+ */
 function createWireframes(){
     wireframes.map( w => {
         let imgContainer = `
         <div class="wireframe-img-container">
-            <div class="wireframe-wrapper focus">
+            <div class="wireframe-wrapper">
                 <img src="${w.midFid}" alt="${w.midAlt}" class="wireframe-img mid-fid">
             </div>
-            <div class="wireframe-wrapper">
+            <div class="wireframe-wrapper focus">
                 <img src="${w.highFid}" alt="${w.highAlt}" class="wireframe-img high-fid">
             </div>
         </div>`;
@@ -64,4 +67,18 @@ function createWireframes(){
     })
 }
 
+function addWireframeEvents(){
+    let wrappers = wireframeArticle.querySelectorAll('.wireframe-wrapper');
+
+    wrappers.forEach(w => {
+        w.addEventListener('mouseenter', () => {
+            Array.from(w.parentElement.children).forEach( c => {
+                c.classList.remove('focus');
+            });
+            w.classList.add('focus');
+        })
+    })
+}
+
 createWireframes();
+addWireframeEvents();
