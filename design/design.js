@@ -11,7 +11,7 @@ const wireframes = [
     },
     {
         pageName: "Explore Page",
-        description: "This is a brief description of the design.",
+        description: "This page presents a captivating data visualization that immerses users in a cosmic experience. Using the Solar System API, the planets are scaled for distance, with adjustments made to the sizes to maintain relevance and perspective, given the Sun's vast size compared to even the largest planet (Jupiter). This interactive visualization lets users explore and compare various planetary metrics by adjusting the forces acting on each celestial body, adding a dynamic and immersive element to the experience.",
         midFid: "/images/Explore Page-mid-fid.png",
         highFid: "/images/Explore Page-high-fid.png",
         midAlt: "Mid-fidelity wireframe for the Explore Page",
@@ -19,7 +19,7 @@ const wireframes = [
     },
     {
         pageName: "Design Page",
-        description: "This is a brief description of the design.",
+        description: "The design page provides insight into the creative process and thought behind the website’s visual and functional elements. Wireframes reveal the iterative development of each page, while the style sheet breaks down each component and the design rationale. Additionally, the theory section highlights the research conducted on data visualization principles, informing the site's overall approach.",
         midFid: "/images/Design Page-mid-fid.png",
         highFid: "/images/Design Page-high-fid.png",
         midAlt: "Mid-fidelity wireframe for the Design Page",
@@ -27,7 +27,7 @@ const wireframes = [
     },
     {
         pageName: "About Page",
-        description: "This is a brief description of the design.",
+        description: "This page offers a look into my background and the inspiration behind creating this website.",
         midFid: "/images/About Page-mid-fid.png",
         highFid: "/images/About Page-high-fid.png",
         midAlt: "Mid-fidelity wireframe for the About Page",
