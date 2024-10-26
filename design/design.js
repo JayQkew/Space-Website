@@ -78,6 +78,9 @@ function createWireframes(){
     })
 }
 
+/**
+ * adds the swap slides events to the slider icons
+ */
 function addSliderEvents(){
     let sliders = document.querySelectorAll('.slide-icon');
     sliders.forEach(s => {
@@ -111,12 +114,56 @@ function addSliderEvents(){
     })
 }
 
-function removeImageDisplay(){
+/**
+ * rotates between slides at a set interval
+ * @param {Number} interval seconds between each interval
+ */
+function rotateBetweenSlides(interval) {
+    const sections = document.querySelectorAll('.page-section');
+    
+    sections.forEach(section => {
+        let isHovered = false;
 
+        // Add hover listeners to each section
+        section.addEventListener('mouseenter', () => isHovered = true);
+        section.addEventListener('mouseleave', () => isHovered = false);
+
+        setInterval(() => {
+            // Skip rotation if the user is hovering over the section
+            if (isHovered) return;
+
+            const midFid = section.querySelector('.mid-fid');
+            const highFid = section.querySelector('.high-fid');
+            const typeLabel = section.querySelector('.wireframe-label');
+            const midIcon = section.querySelector('#mid-fid');
+            const highIcon = section.querySelector('#high-fid');
+
+            if (midFid.classList.contains('showing')) { // Switch to high-fidelity
+                midFid.classList.remove('showing');
+                midFid.style.display = 'none';
+                highFid.classList.add('showing');
+                highFid.style.display = 'block';
+                
+                typeLabel.textContent = 'High-fidelity';
+                midIcon.classList.remove('focus-icon');
+                highIcon.classList.add('focus-icon');
+            } else { // Switch to mid-fidelity
+                highFid.classList.remove('showing');
+                highFid.style.display = 'none';
+                midFid.classList.add('showing');
+                midFid.style.display = 'block';
+
+                typeLabel.textContent = 'Mid-fidelity';
+                highIcon.classList.remove('focus-icon');
+                midIcon.classList.add('focus-icon');
+            }
+        }, interval*1000);
+    });
 }
 
 createWireframes();
 addSliderEvents();
+rotateBetweenSlides(7);
 
 VanillaTilt.init(document.querySelectorAll('.wireframe-wrapper'),{
     max: 5,

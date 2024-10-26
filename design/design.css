@@ -35,6 +35,14 @@ h3{
     margin-block: 1rem;
     border: var(--border);
     border-radius: var(--border-radius);
+    background-color: transparent;
+    backdrop-filter: blur(0px);
+    transition: background-color 0.5s ease,
+        backdrop-filter 0.5s ease;
+}
+.page-section:hover{
+    background-color: hsla(0, 0%, 100%, 0.08);
+    backdrop-filter: var(--glass-blur);
 }
 
 .wireframe-img-container{
