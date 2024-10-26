@@ -1,7 +1,7 @@
 import banana from './banana-data.js';
 
 const cardContainer = document.querySelector('.card-container');
-const exploreBtn = document.querySelector('.explore-btn');
+const exploreBtn = document.querySelectorAll('.explore-btn');
 const bananaStatCard = document.querySelector('.banana-stats');
 
 const planetCards = [
@@ -63,9 +63,9 @@ function createPlanetCards(){
     });
 }
 
-exploreBtn.addEventListener('click', () =>{
+exploreBtn.forEach(btn => btn.addEventListener('click', () =>{
     window.location.href = 'explore/explore.html';
-})
+}));
 
 
 function fillBananaData(){
