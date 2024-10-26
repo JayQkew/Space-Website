@@ -28,8 +28,11 @@ hgroup p{
 /* #region Hero Section */
 
 .hero-section{
+    position: relative;
     display: flex;
     flex-direction: column;
+    margin-top: 15rem;
+    margin-bottom: 10rem;
     align-items: center;
     justify-content: center;
     z-index: 3;
@@ -58,6 +61,10 @@ hgroup p{
     height: 20rem;
 }
 /* #endregion */
+
+.bellow-hero{
+    margin-top: 0rem;
+}
 
 /* #region planet cards */
 .card-container{
