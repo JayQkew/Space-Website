@@ -1,5 +1,11 @@
+footer{
+    display: none;
+}
+
 .loading-element{
-    position: relative;
+    position: fixed;
+    background-color: var(--glass-color);
+    backdrop-filter: var(--glass-blur);
     display: flex;
     justify-content: center;
     align-items: center;

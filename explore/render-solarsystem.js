@@ -25,6 +25,9 @@ let minPlanetAngle = 4,
 let scrollValue;
 let planetDataViz =false;
 
+const loadingElement = document.querySelector('.loading-element');
+const footer = document.querySelector('footer');
+
 /**
  * gets the extents of the distance from the sun
  * @returns extent of planetData's semimajorAxis
@@ -49,6 +52,7 @@ function getRadiusExtent(){
  * creates the data viz of the universe
  */
 function renderSolarSystem(){
+
     // creates the svg where the data vis will be
     svg = d3.select('.solar-system')
     .attr('height', RADIUS * 2.5)
@@ -90,6 +94,9 @@ function renderSolarSystem(){
     .text(d => d.englishName);
 
     updatePositions();
+
+    loadingElement.style.display = 'none';  // Hide loading element
+    footer.style.display = 'block';
 }
 
 /**
