@@ -1,0 +1,13 @@
+.loading-element{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9;
+    width: 100vw;
+    height: 100vh;
+}
+
+.loading-percentage{
+    font-size: 7rem;
+}

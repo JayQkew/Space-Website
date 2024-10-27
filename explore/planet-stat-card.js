@@ -1,4 +1,3 @@
-import bananaData from "../banana-data.js";
 import { getFocusPlanet } from "./render-solarsystem.js";
 
 export const statCard = document.querySelector('.planet-stats-card');
