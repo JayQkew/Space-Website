@@ -313,7 +313,7 @@ window.addEventListener('scroll', () => {
     else if(scrollValue < ZOOMTHRESHOLD){
         statCard.style.display = 'flex';
         document.querySelector('.sort-btn-container').style.display = 'none';
-        document.querySelector('aside').style.left = '75%';
+        // document.querySelector('aside').style.left = '75%';
         focusOnPlanet();
         createStatCard();
         zoomOnFocusPlanet();

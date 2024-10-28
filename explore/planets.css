@@ -166,24 +166,21 @@ aside{
     z-index: 10;
     position: fixed;
     justify-content: center;
-    height: 100%;
-    width: 30%;
+    flex-direction: row;
+    height: fit-content;
+    width: fit-content;
     align-items: center;
+    left: 100%;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-200%, -50%);
 }
 
 .planet-basket{
     z-index: 10;
     display: flex;
-    position:inherit;
+    position:relative;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    bottom: 80%;
-    right: 50%;
-    transform: translate(50%, 50%);
     background-color: var(--glass-color);
     backdrop-filter: var(--glass-blur);
     border-radius: var(--border-radius);
