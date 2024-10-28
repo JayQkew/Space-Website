@@ -192,6 +192,12 @@ aside{
     top: 15%;
 }
 
+.planet-aside-center{
+    left: 50%;
+    top: 2rem;
+    transform: translate(-56.5%);
+}
+
 .planet-basket{
     z-index: 10;
     display: flex;

@@ -269,7 +269,7 @@ function zoomOnFocusPlanet(){
     .transition()
     .duration(1200)
     .call(ZOOM.transform, d3.zoomIdentity
-        .translate(RADIUS/3, windowCenterHeight + MARGIN * 1.225)
+        .translate(RADIUS/3, windowCenterHeight + MARGIN * 2.5)
         .scale(zoomScale))
     .on('start', () =>{
         d3.zoomIdentity.x = MARGIN/2;
@@ -316,6 +316,7 @@ window.addEventListener('scroll', () => {
         statCard.style.display = 'flex';
         document.querySelector('.sort-btn-container').style.display = 'none';
         document.querySelector('aside').classList.add('planet-aside');
+        document.querySelector('aside').classList.remove('planet-aside-center');
         focusOnPlanet();
         createStatCard();
         zoomOnFocusPlanet();
@@ -323,7 +324,9 @@ window.addEventListener('scroll', () => {
     else{
         statCard.style.display = 'none';
         document.querySelector('.sort-btn-container').style.display = 'flex';
-        // document.querySelector('aside').style.left = '50%';
+        document.querySelector('aside').classList.remove('planet-aside');
+        document.querySelector('aside').classList.add('planet-aside-center');
+
         solarSystemZoomStart();
 
         createBubbles();
