@@ -321,7 +321,7 @@ window.addEventListener('scroll', () => {
     else{
         statCard.style.display = 'none';
         document.querySelector('.sort-btn-container').style.display = 'flex';
-        document.querySelector('aside').style.left = '50%';
+        // document.querySelector('aside').style.left = '50%';
         solarSystemZoomStart();
 
         createBubbles();

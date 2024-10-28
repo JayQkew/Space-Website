@@ -67,10 +67,7 @@ body{
 
 .planet-stats-card{
     z-index: inherit;
-    position: absolute;
-    bottom: 50%;
-    right: 50%;
-    transform: translate(50%, 50%);
+    position: relative;
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -79,6 +76,7 @@ body{
     /* border:  var(--stroke-width) solid var(--titanium-white); */
     width: 35rem;
     padding: 1rem;
+    margin-bottom: 50%;
     background-color: var(--glass-color);
     backdrop-filter: var(--glass-blur);
 }
@@ -167,18 +165,20 @@ aside{
     position: fixed;
     justify-content: center;
     flex-direction: row;
+    gap: 1rem;
     height: fit-content;
     width: fit-content;
     align-items: center;
-    left: 100%;
+    margin: 2rem;
+    right: 0%;
     top: 50%;
-    transform: translate(-200%, -50%);
+    transform: translate(0%, -50%);
 }
 
 .planet-basket{
     z-index: 10;
     display: flex;
-    position:relative;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     background-color: var(--glass-color);
@@ -186,6 +186,7 @@ aside{
     border-radius: var(--border-radius);
     padding: 1rem;
     margin-inline: auto;
+    margin-block: 1rem;
     width: fit-content;
 }
 
