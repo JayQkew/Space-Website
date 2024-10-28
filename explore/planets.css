@@ -199,10 +199,12 @@ aside{
 }
 
 .info-text{
+    position: absolute;
     display: none;
-    width: 50%;
+    width: 100%;
     left: 50%;
-    transform: translate(50%, 0%);
+    bottom: 100%;
+    transform: translate(-50%, 0%);
     text-align: center;
 }
 

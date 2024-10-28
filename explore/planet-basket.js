@@ -7,8 +7,16 @@ let svg;
 let Xforces = [];
 let bubbles, labels;
 
-const infoBtn = document.querySelector('info-btn');
+const infoBtn = document.querySelector('.info-btn');
 const infoText = document.querySelector('.info-text');
+
+infoBtn.addEventListener('mouseenter', () => {
+    infoText.style.display = 'inline';
+})
+infoBtn.addEventListener('mouseleave', () => {
+    infoText.style.display = 'none';
+})
+
 
 /**
  * creates the svg that the data viz will appear in
