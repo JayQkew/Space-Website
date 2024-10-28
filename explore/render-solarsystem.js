@@ -97,6 +97,9 @@ function renderSolarSystem(){
 
     document.querySelector('.solar-system').classList.remove('hide-solar-system');
     loadingElement.classList.remove('show-loading');
+    loadingElement.addEventListener('transitionend', () => {
+        loadingElement.style.display = 'none';
+    })
     footer.style.display = 'block';
 }
 
