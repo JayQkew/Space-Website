@@ -10,38 +10,47 @@ body{
 
 .sun{
     fill: var(--sun-yellow);
+    cursor: pointer;
 }
 
 .mercury{
     fill: var(--mercury-purple);
+    cursor: pointer;
 }
 
 .venus{
     fill: var(--venus-orange);
+    cursor: pointer;
 }
 
 .earth{
     fill: var(--earth-blue);
+    cursor: pointer;
 }
 
 .mars{
     fill: var(--mars-red);
+    cursor: pointer;
 }
 
 .jupiter{
     fill: var(--jupiter-orange);
+    cursor: pointer;
 }
 
 .saturn{
     fill: var(--saturn-yellow);
+    cursor: pointer;
 }
 
 .uranus{
     fill: var(--uranus-blue);
+    cursor: pointer;
 }
 
 .neptune{
     fill: var(--neptune-blue);
+    cursor: pointer;
 }
 
 .semimajorAxis{
@@ -161,6 +170,7 @@ body{
 }
 
 aside{
+    display: none;
     z-index: 10;
     position: fixed;
     justify-content: center;
