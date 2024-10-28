@@ -64,6 +64,10 @@ body{
     fill: white;
     font-size: 1rem;
 }
+
+.solar-system{
+    height: fit-content;
+}
 /* #endregion */
 
 /* #region Planet Stat Card */
@@ -305,4 +309,9 @@ aside{
     background-color: var(--glass-color);
     backdrop-filter: var(--glass-blur);
     border: transparent;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
 }

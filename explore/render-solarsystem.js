@@ -55,7 +55,7 @@ function renderSolarSystem(){
 
     // creates the svg where the data vis will be
     svg = d3.select('.solar-system')
-    .attr('height', RADIUS * 2.5)
+    .attr('height', RADIUS * 2)
     .attr('width', RADIUS)
     .attr('transform', `translate(0,${-RADIUS/1.75})`)
     .append('g')
@@ -181,7 +181,7 @@ function solarSystemZoomStart(){
     d3.select('.solar-system')
     .transition()
     .duration(1200)
-    .attr('height', RADIUS*2.5);
+    .attr('height', RADIUS*2);
 }
 
 /**
