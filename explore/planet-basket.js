@@ -28,7 +28,7 @@ function createSVG(){
     if (svg.empty()) {
         svg = svgContainer
             .append('svg')
-            .attr('height', window.innerHeight/1.5)
+            .attr('height', window.innerHeight)
             .attr('width', window.innerWidth);
     }
 }

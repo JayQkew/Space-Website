@@ -7,7 +7,7 @@ const planetData = await getPlanetData();
 const SUNRADIUS = 100;
 const ZOOM = d3.zoom().on('zoom', e => svg.attr('transform', e.transform));
 const SCROLLTHRESHHOLD = 1; // scrollValue threshold before zoom transition
-const ZOOMTHRESHOLD = 2.8;
+const ZOOMTHRESHOLD = 2.4;
 
 export let extentRadius = getRadiusExtent();
 let extentDistance = getDistanceExtent();
@@ -170,7 +170,7 @@ function updatePlanetAngle(){
 function solarSystemZoomStart(){
     d3.select('.ss-inner')
     .transition()
-    .duration(1200)
+    .duration(600)
     .attr('transform', `translate(${MARGIN/2},${RADIUS})`)
     .call(ZOOM.transform, d3.zoomIdentity.translate(0 ,0))
     .on('start', () => {
@@ -181,7 +181,7 @@ function solarSystemZoomStart(){
     d3.select('.solar-system')
     .transition()
     .duration(1200)
-    .attr('height', RADIUS*2);
+    .attr('height', RADIUS*1);
 }
 
 /**
