@@ -236,7 +236,7 @@ hgroup p{
     pointer-events: none;
     overflow-x: hidden;
     height: 300vw;
-    width: 100vw;
+    width: 100%;
     top: 50vh;
     left: 100vw;
     z-index: 1;
