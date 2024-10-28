@@ -7,6 +7,9 @@ let svg;
 let Xforces = [];
 let bubbles, labels;
 
+const infoBtn = document.querySelector('info-btn');
+const infoText = document.querySelector('.info-text');
+
 /**
  * creates the svg that the data viz will appear in
  */
