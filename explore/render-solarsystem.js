@@ -311,12 +311,17 @@ window.addEventListener('scroll', () => {
         statCard.style.display = 'none';
         solarSystemZoomStart();
         document.querySelector('aside').classList.remove('planet-aside');
+        document.querySelector('.info-text').classList.add('state-one');
+        document.querySelector('.info-text').classList.remove('state-two');
     }
     else if(scrollValue < ZOOMTHRESHOLD){
         statCard.style.display = 'flex';
         document.querySelector('.sort-btn-container').style.display = 'none';
         document.querySelector('aside').classList.add('planet-aside');
         document.querySelector('aside').classList.remove('planet-aside-center');
+        document.querySelector('.info-text').classList.remove('state-one');
+        document.querySelector('.info-text').classList.remove('state-three');
+        document.querySelector('.info-text').classList.add('state-two');
         focusOnPlanet();
         createStatCard();
         zoomOnFocusPlanet();
@@ -326,6 +331,8 @@ window.addEventListener('scroll', () => {
         document.querySelector('.sort-btn-container').style.display = 'flex';
         document.querySelector('aside').classList.remove('planet-aside');
         document.querySelector('aside').classList.add('planet-aside-center');
+        document.querySelector('.info-text').classList.remove('state-two');
+        document.querySelector('.info-text').classList.add('state-three');
 
         solarSystemZoomStart();
 

@@ -225,10 +225,25 @@ aside{
     position: absolute;
     display: none;
     width: 100%;
+    text-align: center;
+}
+
+.state-one{
     top: 50%;
     left: 0%;
     transform: translate(0%, 125%);
-    text-align: center;
+}
+
+.state-two{
+    top: 0%;
+    left: 0%;
+    transform: translate(0%, -75%);
+}
+
+.state-three{
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, 125%);
 }
 
 .info-btn{
