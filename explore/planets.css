@@ -180,9 +180,16 @@ aside{
     width: fit-content;
     align-items: center;
     margin: 2rem;
-    right: 0%;
-    top: 50%;
-    transform: translate(0%, -50%);
+    left: 50%;
+    top: 2rem;
+    transform: translateX(-60%);
+    transition: left 1.2s ease,
+        top 1.2s ease;
+}
+
+.planet-aside{
+    left: 75%;
+    top: 15%;
 }
 
 .planet-basket{
@@ -212,9 +219,9 @@ aside{
     position: absolute;
     display: none;
     width: 100%;
-    left: 50%;
-    bottom: 100%;
-    transform: translate(-50%, 0%);
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, 125%);
     text-align: center;
 }
 

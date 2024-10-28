@@ -310,11 +310,12 @@ window.addEventListener('scroll', () => {
     if(scrollValue <= SCROLLTHRESHHOLD){
         statCard.style.display = 'none';
         solarSystemZoomStart();
+        document.querySelector('aside').classList.remove('planet-aside');
     }
     else if(scrollValue < ZOOMTHRESHOLD){
         statCard.style.display = 'flex';
         document.querySelector('.sort-btn-container').style.display = 'none';
-        // document.querySelector('aside').style.left = '75%';
+        document.querySelector('aside').classList.add('planet-aside');
         focusOnPlanet();
         createStatCard();
         zoomOnFocusPlanet();
