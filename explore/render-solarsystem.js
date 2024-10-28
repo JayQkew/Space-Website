@@ -95,7 +95,8 @@ function renderSolarSystem(){
 
     updatePositions();
 
-    loadingElement.style.display = 'none';  // Hide loading element
+    document.querySelector('.solar-system').classList.remove('hide-solar-system');
+    loadingElement.classList.remove('show-loading');
     footer.style.display = 'block';
 }
 

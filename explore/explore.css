@@ -3,6 +3,7 @@ footer{
 }
 
 .loading-element{
+    opacity: 0;
     position: fixed;
     background-color: var(--glass-color);
     backdrop-filter: var(--glass-blur);
@@ -12,8 +13,21 @@ footer{
     z-index: 9;
     width: 100vw;
     height: 100vh;
+    transition: opacity 0.5s ease;
+}
+.show-loading{
+    opacity: 1;
 }
 
 .loading-percentage{
     font-size: 7rem;
+}
+
+.hide-solar-system{
+    opacity: 0;
+}
+
+.solar-system{
+    opacity: 1;
+    transition: opacity 0.5s ease;
 }
