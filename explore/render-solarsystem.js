@@ -7,7 +7,7 @@ const planetData = await getPlanetData();
 const SUNRADIUS = 100;
 const ZOOM = d3.zoom().on('zoom', e => svg.attr('transform', e.transform));
 const SCROLLTHRESHHOLD = 1; // scrollValue threshold before zoom transition
-const ZOOMTHRESHOLD = 2.4;
+let ZOOMTHRESHOLD = 3.8;
 
 export let extentRadius = getRadiusExtent();
 let extentDistance = getDistanceExtent();
@@ -24,6 +24,7 @@ let minPlanetAngle = 4,
     planetAngleBarrier = 5;
 let scrollValue;
 let planetDataViz =false;
+let solarSystemZoomed = false;
 
 const loadingElement = document.querySelector('.loading-element');
 const footer = document.querySelector('footer');
@@ -60,7 +61,7 @@ function renderSolarSystem(){
     .attr('transform', `translate(0,${-RADIUS/1.75})`)
     .append('g')
     .attr('class', 'ss-inner')
-    .attr('height', RADIUS*2)
+    .attr('height', RADIUS*2.5)
     .attr('width', RADIUS)
     .attr('transform', `translate(${MARGIN/2},${RADIUS})`);
 
@@ -156,7 +157,7 @@ const aScale = d3.scaleLinear()
  * the planets will move along their respective rings and eventually align bellow the sun
  */
 function updatePlanetAngle(){
-    scrollValue = window.scrollY / RADIUS*2;
+    scrollValue = window.scrollY / RADIUS*4;
 
     let angleRangeStart = minPlanetAngle + ((planetAngleBarrier-minPlanetAngle) * scrollValue);
     let angleRangeEnd = maxPlanetAngle + ((planetAngleBarrier-maxPlanetAngle) * scrollValue);
@@ -181,7 +182,25 @@ function solarSystemZoomStart(){
     d3.select('.solar-system')
     .transition()
     .duration(1200)
+    .attr('height', RADIUS*2.5);
+}
+
+function solarSystemZoomEnd(){
+    d3.select('.ss-inner')
+    .transition()
+    .duration(600)
+    .attr('transform', `translate(${MARGIN/2},${RADIUS})`)
+    .call(ZOOM.transform, d3.zoomIdentity.translate(0 ,0))
+    .on('start', () => {
+        d3.zoomIdentity.x = MARGIN/2;
+        d3.zoomIdentity.y = RADIUS;
+    });
+
+    d3.select('.solar-system')
+    .transition()
+    .duration(600)
     .attr('height', RADIUS*1);
+
 }
 
 /**
@@ -307,6 +326,7 @@ renderSolarSystem();
 window.addEventListener('scroll', () => {
     updatePlanetAngle();
     updatePositions();
+    console.log(scrollValue);
     if(scrollValue <= SCROLLTHRESHHOLD){
         statCard.style.display = 'none';
         solarSystemZoomStart();
@@ -314,7 +334,7 @@ window.addEventListener('scroll', () => {
         document.querySelector('.info-text').classList.add('state-one');
         document.querySelector('.info-text').classList.remove('state-two');
     }
-    else if(scrollValue < ZOOMTHRESHOLD){
+    else if(scrollValue <= ZOOMTHRESHOLD){
         statCard.style.display = 'flex';
         document.querySelector('.sort-btn-container').style.display = 'none';
         document.querySelector('aside').classList.add('planet-aside');
@@ -325,8 +345,9 @@ window.addEventListener('scroll', () => {
         focusOnPlanet();
         createStatCard();
         zoomOnFocusPlanet();
+        solarSystemZoomed = false;
     }
-    else{
+    else if (scrollValue > ZOOMTHRESHOLD){
         statCard.style.display = 'none';
         document.querySelector('.sort-btn-container').style.display = 'flex';
         document.querySelector('aside').classList.remove('planet-aside');
@@ -334,7 +355,10 @@ window.addEventListener('scroll', () => {
         document.querySelector('.info-text').classList.remove('state-two');
         document.querySelector('.info-text').classList.add('state-three');
 
-        solarSystemZoomStart();
+        if(solarSystemZoomed == false){
+            solarSystemZoomEnd();
+            solarSystemZoomed = true;
+        }
 
         createBubbles();
         if(planetDataViz === false){
