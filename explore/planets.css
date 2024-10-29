@@ -67,15 +67,15 @@ body{
 
 .solar-system{
     height: fit-content;
-    background-color: blue;
+    /* background-color: blue; */
 }
 
 .ss-inner{
-    background-color: azure;
+    /* background-color: azure; */
 }
 
 .planet-data-viz{
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
 }
 /* #endregion */
 

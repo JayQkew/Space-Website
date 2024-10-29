@@ -108,7 +108,7 @@ const rScale = d3.scaleLinear()
 
 let simulation = d3.forceSimulation()
 .force('x', d3.forceX(window.innerWidth / 2).strength(0.04))
-.force('y', d3.forceY(window.innerHeight / 3).strength(0.01))
+.force('y', d3.forceY(window.innerHeight / 1.5).strength(0.1))
 .force('collide', d3.forceCollide(d => rScale(d.meanRadius)))
 .force('manyBody', d3.forceManyBody().strength(-100));
 
