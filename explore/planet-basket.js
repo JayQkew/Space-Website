@@ -173,6 +173,9 @@ function massNum(planet){ return planet.mass.massValue * Math.pow(10, planet.mas
  */
 function volumeNum(planet){ return planet.vol.volValue * Math.pow(10, planet.vol.volExponent);}
 
+/**
+ * updates the planet baskets visuals and data
+ */
 export function updatePlanetBasket(){
     let ul = d3.select('.planet-basket ul');
     ul.selectAll('li').remove();
@@ -215,3 +218,15 @@ export function updatePlanetBasket(){
 
     createBubbles();
 }
+
+function addTilt(){
+    VanillaTilt.init(document.querySelector('.planet-basket'), {
+        max: 15,
+        speed: 400,
+        glare: true,
+        'max-glare': 0.2,
+        reverse: true
+    });
+}
+
+addTilt();

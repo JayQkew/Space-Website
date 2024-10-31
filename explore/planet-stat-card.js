@@ -182,3 +182,4 @@ function calcBananas(focusPlanet, stat) {
             return 'N/A';
     }
 }
+

@@ -366,3 +366,11 @@ window.addEventListener('scroll', () => {
         }
     }
 })
+
+VanillaTilt.init(statCard, {
+    max: 15,
+    speed: 400,
+    glare: true,
+    'max-glare': 0.2,
+    reverse: true
+})
