@@ -48,8 +48,7 @@ function createPlanetCards(){
                     <p>${planetFact}</p>
                     <p>${scale}</p>
                 </hgroup>
-            </article>        
-        `
+            </article>`
 
         cardContainer.innerHTML += content;
     });

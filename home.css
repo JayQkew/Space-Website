@@ -6,6 +6,9 @@ body{
     background: url(images/Space2.png);
     background-size: cover;
 }
+main{
+    z-index: 3;
+}
 
 hgroup:not(.card-headings){
     text-align: center;
@@ -78,10 +81,12 @@ hgroup p{
 
 .bellow-hero{
     margin-top: 0rem;
+    z-index: 3;
 }
 
 /* #region planet cards */
 .card-container{
+    z-index: 3;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -89,7 +94,6 @@ hgroup p{
     padding: 1rem;
     margin-bottom: 2rem;
     margin-inline: 3rem;
-    z-index: 3;
 }
 
 .card{
@@ -101,12 +105,10 @@ hgroup p{
     backdrop-filter: var(--glass-blur);
     padding: 1rem;
     flex-grow: 2;
-    transform-style: preserve-3d;
-    transform: perspective(1000px);
 }
 
 .card .svg-container{
-    z-index: 0;
+    z-index: 3;
     display: flex;
     height: var(--card-img-dimensions);
     border:  var(--border);
@@ -114,27 +116,29 @@ hgroup p{
     margin-bottom: 1rem;
     justify-content: center;
     align-items: center;
-    transform: translateZ(20px);
 }
 
 .card .svg-container svg{
-    transform: translateZ(30px);
+    z-index: 3;
 }
 
-/* .card-headings{
+.card-headings{
     margin-block: 1rem;
-} */
+    z-index: 3;
+}
 
 .card p{
     /* margin: 0.5rem; */
     font-size: 1rem;
     text-align: center;
+    z-index: 3;
 }
 
 .card h3{
     margin: 1rem;
     font-size: 1.5rem;
     text-align: center;
+    z-index: 3;
 }
 
 /* #endregion */
