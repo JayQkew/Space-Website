@@ -5,7 +5,17 @@ import { createStatCard, statCard } from "./planet-stat-card.js";
 const planetData = await getPlanetData();
 
 const SUNRADIUS = 100;
-const ZOOM = d3.zoom().on('zoom', e => svg.attr('transform', e.transform));
+
+const ringThicknessScale = d3.scaleLinear()
+    .domain([0, 20]) // Assuming zoom levels range from 1 to 20
+    .range([1, 0]); // Adjust the minimum and maximum ring thickness as needed
+
+const ZOOM = d3.zoom().on('zoom', e => {
+    svg.attr('transform', e.transform);
+    const zoomScale = e.transform.k; // `k` represents the current zoom level
+    svg.selectAll('circle.semimajorAxis') // Select all planet rings
+        .attr('opacity', ringThicknessScale(zoomScale)); // Apply dynamic thickness
+});
 const SCROLLTHRESHHOLD = 1; // scrollValue threshold before zoom transition
 let ZOOMTHRESHOLD = 3.8;
 
@@ -377,3 +387,4 @@ VanillaTilt.init(statCard, {
     'max-glare': 0.2,
     reverse: true
 })
+
