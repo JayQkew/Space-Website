@@ -145,12 +145,15 @@ export function createBubbles() {
     .data(planetBasket, d => d.englishName)
     .join(
         enter => enter.append('text')
-            .attr('class', 'planet-label')
+            .attr('class', 'planet-grav-label')
             .style('fill', 'white')
             .style('font-size', '14px')
             .attr('text-anchor', 'middle')
             .text(d => d.englishName),
-        update => update,
+        update => update
+            .text(d => d.englishName)  // Ensure updated label text
+            .attr('x', d => d.x)      // Update label position
+            .attr('y', d => d.y + rScale(d.meanRadius) + 15), // Adjust label position,
         exit => exit.remove()
     );
     // Update the positions of bubbles on each tick of the simulation
