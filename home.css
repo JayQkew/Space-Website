@@ -235,8 +235,6 @@ hgroup p{
 .ring-decoration-parent{
     position: absolute;
     transform: translate(-100%, -50%);
-    /* overflow-x: hidden;
-    overflow-y: hidden; */
     pointer-events: none;
     overflow-x: hidden;
     height: 300vw;
