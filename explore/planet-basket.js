@@ -44,10 +44,18 @@ function createSortBtns(){
         btn.classList.add('sort-btn');
         btn.setAttribute('data-type', force.name);
         btn.innerHTML = force.name;
+        if(force.name === 'None'){
+            btn.classList.add('active');
+        }
         btn.addEventListener('click', () =>{
             simulation.force('x', force.force)
             .alpha(1)
             .restart();
+            
+            document.querySelectorAll('.sort-btn').forEach(b => {
+                b.classList.remove('active');
+            })
+            btn.classList.add('active');
         })
         sortBtns.appendChild(btn);
     })
@@ -74,7 +82,7 @@ function addForce(name, force){
 function updateForces(){
     Xforces = [];
 
-    addForce('Regular', d3.forceX(window.innerWidth / 2).strength(0.04));
+    addForce('None', d3.forceX(window.innerWidth / 2).strength(0.04));
 
     const mScale = d3.scaleLinear()
     .domain(d3.extent(planetBasket, d => massNum(d)))

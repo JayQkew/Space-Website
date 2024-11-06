@@ -319,6 +319,10 @@ aside{
     backdrop-filter: var(--glass-blur);
     border: transparent;
 }
+.sort-btn.active{
+    background-color: var(--titanium-white);
+    color: var(--rich-black);
+}
 
 main{
     display: flex;
