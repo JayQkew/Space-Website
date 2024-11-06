@@ -120,8 +120,6 @@ export function createBubbles() {
     updateForces();
     createSortBtns();
 
-
-
     // Bind data to circles, using 'join' to handle enter, update, and exit selections
     bubbles = svg
         .selectAll('circle')
