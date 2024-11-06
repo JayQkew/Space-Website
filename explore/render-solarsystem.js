@@ -23,8 +23,9 @@ let minPlanetAngle = 4,
     maxPlanetAngle = 3.75,
     planetAngleBarrier = 5;
 let scrollValue;
-let planetDataViz =false;
+let planetDataViz = false;
 let solarSystemZoomed = false;
+let showPlanetTag = true;
 
 const loadingElement = document.querySelector('.loading-element');
 const footer = document.querySelector('footer');
@@ -125,7 +126,7 @@ function addPlanetEvents(){
         planet.addEventListener('mouseover', () =>{
             d3.select(`.${p.englishName.toLowerCase()}-label`)
             .style('display', () =>{
-                return (window.scrollY / RADIUS*2 < 1) ? 'block' : 'none';
+                return (showPlanetTag === true) ? 'block' : 'none';
             });
         });
 
@@ -333,8 +334,10 @@ window.addEventListener('scroll', () => {
         document.querySelector('aside').classList.remove('planet-aside');
         document.querySelector('.info-text').classList.add('state-one');
         document.querySelector('.info-text').classList.remove('state-two');
+        showPlanetTag = true;
     }
     else if(scrollValue <= ZOOMTHRESHOLD){
+        showPlanetTag = false;
         statCard.style.display = 'flex';
         document.querySelector('.sort-btn-container').style.display = 'none';
         document.querySelector('aside').classList.add('planet-aside');
