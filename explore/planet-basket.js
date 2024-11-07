@@ -6,6 +6,7 @@ const planetData = await getPlanetData();
 let svg;
 let Xforces = [];
 let bubbles, labels;
+let labelSpawned = false;
 
 const infoBtn = document.querySelector('.info-btn');
 const infoText = document.querySelector('.info-text');
@@ -140,22 +141,24 @@ export function createBubbles() {
             exit => exit.remove()  // Remove unneeded circles
         );
 
-    labels = svg
-    .selectAll('text.planet-label')
-    .data(planetBasket, d => d.englishName)
-    .join(
-        enter => enter.append('text')
-            .attr('class', 'planet-grav-label')
-            .style('fill', 'white')
-            .style('font-size', '14px')
-            .attr('text-anchor', 'middle')
-            .text(d => d.englishName),
-        update => update
-            .text(d => d.englishName)  // Ensure updated label text
-            .attr('x', d => d.x)      // Update label position
-            .attr('y', d => d.y + rScale(d.meanRadius) + 15), // Adjust label position,
-        exit => exit.remove()
-    );
+    if (labelSpawned === false){
+        labels = svg
+        .selectAll('text.planet-label')
+        .data(planetBasket, d => d.englishName)
+        .join(
+            enter => enter.append('text')
+                .attr('class', 'planet-grav-label')
+                .style('fill', 'white')
+                .style('font-size', '14px')
+                .attr('text-anchor', 'middle')
+                .text(d => d.englishName),
+            update => update
+                .text(d => d.englishName)  // Ensure updated label text
+                .attr('x', d => d.x)      // Update label position
+                .attr('y', d => d.y + rScale(d.meanRadius) + 15), // Adjust label position,
+            exit => exit.remove()
+        );
+    }
     // Update the positions of bubbles on each tick of the simulation
     simulation.nodes(planetBasket).on('tick', () => {
         bubbles
@@ -222,7 +225,7 @@ export function updatePlanetBasket(){
         else planetBasket = planetBasket.filter(p => p !== d);
 
         updatePlanetBasket();
-        createBubbles();
+        createBubbles(); //make it only update the planets and not spawn bubbles
     })
 
     // createBubbles();

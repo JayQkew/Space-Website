@@ -129,7 +129,6 @@ function addPlanetEvents(){
             else planetBasket.splice(planetBasket.indexOf(p), 1);
 
             updatePlanetBasket();
-            createBubbles();
         });
 
         // display the planet name when hovering over planet
