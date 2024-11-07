@@ -145,24 +145,28 @@ body{
 /* #endregion */
 
 /* #region Buttons */
-.banana-stat-btn{
-    font-size: 1.25rem;
-    color: var(--rich-black);
-    background-color: var(--banana-yellow);
-    border: transparent;
-    border-radius: var(--border-radius);
-    padding: 0.5rem;
-    cursor: pointer;
-}
-
 .stat-btn{
     font-size: 1.25rem;
+    font-weight: bold;
     color: var(--rich-black);
     background-color: var(--titanium-white);
     border: transparent;
     border-radius: var(--border-radius);
     padding: 0.5rem;
     cursor: pointer;
+    transition: all 0.5s ease;
+}
+.stat-btn:hover{
+    background-color: var(--banana-yellow);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.stat-btn.active{
+    background-color: var(--banana-yellow);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
 }
 /* #endregion */
 

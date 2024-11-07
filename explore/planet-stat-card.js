@@ -52,22 +52,28 @@ export function createStatCard(){
         </svg></div></div>
         </div>
             <div class="btn-container">
-                <button class="banana-stat-btn">Banana</button>
-                <button class="stat-btn">Regular</button>
+                <button class="stat-btn banana-one">Banana</button>
+                <button class="stat-btn chill-one active">Regular</button>
             </div>
     `
-    const bananaStatBtn = document.querySelector('.banana-stat-btn');
-    const statBtn = document.querySelector('.stat-btn');
+    const bananaStatBtn = document.querySelector('.banana-one');
+    const statBtn = document.querySelector('.chill-one');
 
     //changes the stat mode to banana
     bananaStatBtn.addEventListener('click', () =>{
         statMode = STATMODE_BANANA;
+        bananaStatBtn.classList.add('active');
+        statBtn.classList.remove('active');
+        console.log("CLicked ME!");
         updateStats(focusPlanet);
     })
     
     //changes the stat mode to regular
     statBtn.addEventListener('click', () =>{
         statMode = STATMODE_REGULAR;
+        statBtn.classList.add('active');
+        bananaStatBtn.classList.remove('active');
+        console.log("CLicked ME TOOO!");
         updateStats(focusPlanet);
     })
 
