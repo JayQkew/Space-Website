@@ -72,15 +72,16 @@ function createColors(colorArray){
     colorArray.map(c => {
         let tab = 
             `<div class="color-tab">
-                <d class="color-sample ${c.HEX}"></d>
+                <d class="color-sample" style="background-color: ${c.HEX};"></d>
                 <d class="color-values">
-                    <p class="hex-val">${c.HEX}</p>
-                    <p class="hsv-val">${c.HSV}</p>
+                    <p class="hex-val" style="color: ${(c.HEX === "#050217") ? '#FFFFFF' : c.HEX};">${c.HEX}</p>
+                    <p class="hsv-val" style="color: ${(c.HEX === "#050217") ? '#FFFFFF' : c.HEX};">${c.HSV}</p>
                 </d>
             </div>`;
         
         colorCol.innerHTML += tab;
-    })
+    });
+    
 
     container.appendChild(colorCol);
 }
