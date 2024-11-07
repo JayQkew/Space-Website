@@ -59,6 +59,7 @@ h3{
     }
 }
 
+/* #region Wireframes */
 .wireframe-img-container{
     width: fit-content;
     height: 30rem;
@@ -160,8 +161,43 @@ h3{
     left: -100%;
 }
 
-/* #region */
-.style-guide{
+
+.wireframe-wrapper::-webkit-scrollbar{
+    width: 0.5rem;
+}
+.wireframe-wrapper::-webkit-scrollbar-track{
+    border-radius: 100vw;
+    margin-inline: 0.5rem;
+    margin-block: 1.5rem;
+}
+.wireframe-wrapper::-webkit-scrollbar-thumb{
+    border-radius: 100vw;
+    background-color: var(--titanium-white);
+}
+/* #endregion */
+
+/* #region StyleSheets */
+.style-guide-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+.style-guide-main-explain{
+    font-size: 1.5rem;
+    width: 50%;
+    flex-grow: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.style-guide-section{
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -204,6 +240,8 @@ h3{
     width: 70%;
 }
 
+/* #endregion */
+
 .theory{
     display: flex;
     flex-direction: column;
@@ -228,16 +266,3 @@ h3{
 }
 
 /* #endregion */
-
-.wireframe-wrapper::-webkit-scrollbar{
-    width: 0.5rem;
-}
-.wireframe-wrapper::-webkit-scrollbar-track{
-    border-radius: 100vw;
-    margin-inline: 0.5rem;
-    margin-block: 1.5rem;
-}
-.wireframe-wrapper::-webkit-scrollbar-thumb{
-    border-radius: 100vw;
-    background-color: var(--titanium-white);
-}
