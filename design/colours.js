@@ -72,11 +72,9 @@ function createColors(colorArray){
     colorArray.map(c => {
         let tab = 
             `<div class="color-tab">
-                <d class="color-sample" style="background-color: ${c.HEX};"></d>
-                <d class="color-values">
-                    <p class="hex-val" style="color: ${(c.HEX === "#050217") ? '#FFFFFF' : c.HEX};">${c.HEX}</p>
-                    <p class="hsv-val" style="color: ${(c.HEX === "#050217") ? '#FFFFFF' : c.HEX};">${c.HSV}</p>
-                </d>
+                <div class="color-sample" style="background-color: ${c.HEX};">
+                    <p class="hex-val" style="color: ${(c.HEX === "#FFFFFF") ? '#050217' : '#FFFFFF'};">${c.HEX}</p>
+                </div>
             </div>`;
         
         colorCol.innerHTML += tab;
@@ -84,6 +82,25 @@ function createColors(colorArray){
     
 
     container.appendChild(colorCol);
+    let colorNodes = document.querySelectorAll('.color-sample');
+    
+    colorNodes.forEach(c => {
+        c.addEventListener('click', () => {
+            const hexValElem = c.querySelector('.hex-val');
+            const hexVal = hexValElem.textContent;
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(hexVal).then(() => {
+                // Show "Copied" and revert to HEX after a delay
+                hexValElem.textContent = "Copied";
+                setTimeout(() => {
+                    hexValElem.textContent = hexVal;
+                }, 1000); // 1-second delay
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        })
+    })
 }
 
 createColors(warmColors);
