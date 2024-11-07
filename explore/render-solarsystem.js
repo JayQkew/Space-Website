@@ -336,7 +336,6 @@ renderSolarSystem();
 window.addEventListener('scroll', () => {
     updatePlanetAngle();
     updatePositions();
-    console.log(scrollValue);
     if(scrollValue <= SCROLLTHRESHHOLD){
         statCard.style.display = 'none';
         solarSystemZoomStart();
@@ -386,4 +385,3 @@ VanillaTilt.init(statCard, {
     'max-glare': 0.2,
     reverse: true
 })
-

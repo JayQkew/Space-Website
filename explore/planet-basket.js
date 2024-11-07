@@ -147,7 +147,7 @@ export function createBubbles() {
         .data(planetBasket, d => d.englishName)
         .join(
             enter => enter.append('text')
-                .attr('class', 'planet-grav-label')
+                .attr('class', d => `planet-grav-label ${d.englishName}`)   //make it the planets englishName here!!!
                 .style('fill', 'white')
                 .style('font-size', '14px')
                 .attr('text-anchor', 'middle')
@@ -158,6 +158,7 @@ export function createBubbles() {
                 .attr('y', d => d.y + rScale(d.meanRadius) + 15), // Adjust label position,
             exit => exit.remove()
         );
+        labelSpawned = true;
     }
     // Update the positions of bubbles on each tick of the simulation
     simulation.nodes(planetBasket).on('tick', () => {
@@ -226,7 +227,12 @@ export function updatePlanetBasket(){
 
         updatePlanetBasket();
         createBubbles(); //make it only update the planets and not spawn bubbles
-    })
+
+        const labelToRemove = document.querySelector(`.planet-grav-label.${d.englishName}`);
+        if (labelToRemove) {
+            labelToRemove.remove();
+        }
+        })
 
     // createBubbles();
 }
