@@ -91,11 +91,10 @@ function createColors(colorArray){
             
             // Copy to clipboard
             navigator.clipboard.writeText(hexVal).then(() => {
-                // Show "Copied" and revert to HEX after a delay
                 hexValElem.textContent = "Copied";
                 setTimeout(() => {
                     hexValElem.textContent = hexVal;
-                }, 1000); // 1-second delay
+                }, 1000);
             }).catch(err => {
                 console.error('Failed to copy text: ', err);
             });
@@ -103,5 +102,4 @@ function createColors(colorArray){
     })
 }
 
-createColors(warmColors);
-createColors(coolColors);
+createColors(colors);
