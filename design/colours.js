@@ -99,6 +99,16 @@ function createColors(colorArray){
                 console.error('Failed to copy text: ', err);
             });
         })
+
+        c.addEventListener('mouseover', () =>{
+            const hexValElem = c.querySelector('.hex-val');
+            c.classList.add('focus');
+            hexValElem.style.opacity = 1;
+            setTimeout(() =>{
+                c.classList.remove('focus');
+                hexValElem.style.opacity = 0;
+            }, 2500)
+        })
     })
 }
 

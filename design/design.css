@@ -198,10 +198,20 @@ h3{
 
 .style-guide-section{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     width: fit-content;
+}
+
+.style-guide-section h3{
+    background-color: var(--glass-color);
+    backdrop-filter: var(--glass-blur);
+    border-radius: 100vh;
+    padding-block: 1rem;
+    padding-inline: 2rem;
+    margin-block: 2rem;
+    font-size: 2rem;
 }
 
 .style-guide-explain{
@@ -303,17 +313,25 @@ h3{
     content: "";
     width: 5rem;
     height: 5rem;
-    border-radius: 1.5rem;
+    border-radius: 100vh;
     transition: all 0.25s ease;
     cursor: pointer;
+    filter: blur(1rem);
 }
 .color-sample:hover{
     width: 10rem;
     height: 6rem;
+    filter: blur(0rem);
+}
+.color-sample.focus{
+    width: 10rem;
+    height: 6rem;
+    filter: blur(0rem);
 }
 
 .hex-val{
     opacity: 0;
+    font-weight: bold;
     transition: all 0.25s ease;
 }
 .color-sample:hover .hex-val {
