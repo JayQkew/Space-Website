@@ -216,7 +216,7 @@ h3{
 }
 
 .style-guide-explain{
-    font-size: 1.5rem;
+    font-size: var(--regular-fs);
     width: 50%;
     flex-grow: 1;
     display: flex;
@@ -363,6 +363,25 @@ h3{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin: 0.5rem;
+    padding: 0.5rem;
+}
+
+select{
+    height: inherit;
+    font-family: 'ClashDisplay', 'CabinetGrotesk', 'DM Sans';
+    border: var(--border);
+    background-color: transparent;
+    color: var(--titanium-white);
+    border-radius: var(--border-radius);
+    padding: 0.25rem;
+}
+
+select option{
+    padding: 0.25rem;
+    color: var(--rich-black);
+    border-radius: var(--border-radius);
+    background-color: transparent;
 }
 
 .font-vals{

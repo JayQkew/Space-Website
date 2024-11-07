@@ -1,5 +1,6 @@
 const colorContainer = document.querySelector('.color-container');
 const fontContainer = document.querySelector('.font-container');
+const fontSelect = document.querySelector('select');
 const colors = [
     {
         HEX: "#FFC700",
@@ -109,5 +110,60 @@ function createColors(colorArray){
         })
     })
 }
+
+fontSelect.addEventListener('change', () => {
+    const sampleText = document.querySelector('textarea');
+    const sizeVal = document.querySelector('#size');
+    const weightsVal = document.querySelector('#weight');
+    const selectedFont = fontSelect.value;
+    switch (selectedFont){
+        case 'hero':
+            sampleText.style.fontFamily = 'ClashDisplay-Hero';
+            sampleText.style.fontSize = '7rem';
+            sampleText.style.fontWeight = '700';
+            sampleText.style.color = 'var(--titanium-white)';
+            sampleText.style.letterSpacing = '0';
+            sizeVal.innerText = '7rem';
+            weightsVal.innerText  = '700';
+            break;
+        case 'heading':
+            sampleText.style.fontFamily = 'ClashDisplay';
+            sampleText.style.fontSize = '3rem';
+            sampleText.style.fontWeight = '600';
+            sampleText.style.color = 'var(--titanium-white)';
+            sampleText.style.letterSpacing = '0';
+            sizeVal.innerText = '3rem';
+            weightsVal.innerText  = '600';
+            break;
+        case 'subheading':
+            sampleText.style.fontFamily = 'ClashDisplay';
+            sampleText.style.fontSize = '1.5rem';
+            sampleText.style.fontWeight = '500';
+            sampleText.style.color = 'var(--titanium-white)';
+            sampleText.style.letterSpacing = '0';
+            sizeVal.innerText = '1.5rem';
+            weightsVal.innerText  = '500';
+            break;
+        case 'regular':
+            sampleText.style.fontFamily = 'ClashDisplay';
+            sampleText.style.fontSize = '1rem';
+            sampleText.style.fontWeight = '400';
+            sampleText.style.color = 'var(--titanium-white)';
+            sampleText.style.letterSpacing = '0';
+            sizeVal.innerText = '1rem';
+            weightsVal.innerText  = '400';
+            break;
+        case 'banana':
+            sampleText.style.fontFamily = 'Willful';
+            sampleText.style.fontSize = '3rem';
+            sampleText.style.fontWeight = '600';
+            sampleText.style.color = 'var(--banana-yellow)';
+            sampleText.style.letterSpacing = '0.25rem';
+            sizeVal.innerText = '3rem';
+            weightsVal.innerText  = '600';
+            break;
+    }
+})
+
 
 createColors(colors);
