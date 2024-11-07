@@ -221,8 +221,17 @@ h3{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem;
-    padding: 1rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+}
+
+.style-guide-tip{
+    font-size: 0.75rem;
+    width: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
 }
 
 .style-guide-container{
