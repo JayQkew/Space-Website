@@ -64,7 +64,6 @@ export function createStatCard(){
         statMode = STATMODE_BANANA;
         bananaStatBtn.classList.add('active');
         statBtn.classList.remove('active');
-        console.log("CLicked ME!");
         updateStats(focusPlanet);
     })
     
@@ -73,7 +72,6 @@ export function createStatCard(){
         statMode = STATMODE_REGULAR;
         statBtn.classList.add('active');
         bananaStatBtn.classList.remove('active');
-        console.log("CLicked ME TOOO!");
         updateStats(focusPlanet);
     })
 

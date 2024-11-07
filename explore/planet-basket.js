@@ -234,7 +234,7 @@ export function updatePlanetBasket(){
         }
         })
 
-    // createBubbles();
+    createBubbles();
 }
 
 function addTilt(){
