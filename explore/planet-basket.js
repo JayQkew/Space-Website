@@ -138,8 +138,7 @@ export function createBubbles() {
                 .attr('r', d => rScale(d.meanRadius))
                 .attr('class', d => d.englishName.toLowerCase() + ' planet'),
             update => update,  // Update existing circles
-            exit => exit.remove()  // Remove unneeded circles
-        );
+            exit => exit.remove());
 
     if (labelSpawned === false){
         labels = svg
@@ -234,7 +233,7 @@ export function updatePlanetBasket(){
         }
         })
 
-    createBubbles();
+    //createBubbles();
 }
 
 function addTilt(){
