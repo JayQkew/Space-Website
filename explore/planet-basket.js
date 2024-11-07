@@ -225,7 +225,7 @@ export function updatePlanetBasket(){
         createBubbles();
     })
 
-    createBubbles();
+    // createBubbles();
 }
 
 function addTilt(){

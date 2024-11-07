@@ -373,9 +373,9 @@ window.addEventListener('scroll', () => {
             solarSystemZoomed = true;
         }
 
-        createBubbles();
         if(planetDataViz === false){
-            planetDataViz = true;
+                planetDataViz = true;
+                createBubbles();
         }
     }
 })
