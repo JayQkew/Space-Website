@@ -1,4 +1,5 @@
-const container = document.querySelector('.color-container');
+const colorContainer = document.querySelector('.color-container');
+const fontContainer = document.querySelector('.font-container');
 const colors = [
     {
         HEX: "#FFC700",
@@ -61,9 +62,6 @@ const colors = [
       temp: "cold"
     }
 ];
-const warmColors = colors.filter(c => c.temp === 'hot' );
-const coolColors = colors.filter(c => c.temp === 'cold' );
-
 
 function createColors(colorArray){
     const colorCol = document.createElement('div');
@@ -81,7 +79,7 @@ function createColors(colorArray){
     });
     
 
-    container.appendChild(colorCol);
+    colorContainer.appendChild(colorCol);
     let colorNodes = document.querySelectorAll('.color-sample');
     
     colorNodes.forEach(c => {
