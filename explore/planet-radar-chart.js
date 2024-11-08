@@ -37,7 +37,7 @@ export function createSpiderChart() {
         gravity: d3.scaleLinear().domain(d3.extent(planetBasket, d => d.gravity)).range([0, RADIUS])
     };
 
-    console.log(scales.radius+ ' ' + typeof(scales.radius)); // is a function here
+    // console.log(scales.radius+ ' ' + typeof(scales.radius)); // is a function here
 
     // Draw the spider chart axes and labels
     attributes.forEach((attr, i) => {
@@ -69,7 +69,7 @@ export function createSpiderChart() {
             const rawValue = attr === 'mass' ? planet.mass.massValue :
                           attr === 'volume' ? planet.vol.volValue :
                           planet[attr];
-            const value = Number(rawValue).toFixed(2);
+            const value = Number(rawValue);
             console.log(planet.englishName + ' ' + attr + ': ' + value)
             const angle = (2 * Math.PI / attributes.length) * attributes.indexOf(attr);
             return [Math.cos(angle) * scale(value), Math.sin(angle) * scale(value)];
