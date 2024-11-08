@@ -231,6 +231,7 @@ button{
 /* #region back to top */
 .back-to-top{
     position: fixed;
+    opacity: 0;
     font-weight: bold;
     bottom: 3rem;
     right: 3rem;
@@ -243,6 +244,11 @@ button{
     cursor: pointer;
     pointer-events: auto;
     z-index: 100;
+    transition: opacity 0.5s ease;
+}
+
+.visible{
+    opacity: 1;
 }
 /* #endregion */
 

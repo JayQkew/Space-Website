@@ -136,6 +136,14 @@ backToTop.addEventListener('click', () => {
     window.scrollTo(0,0);
 })
 
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 200) {
+        backToTop.classList.add('visible'); // Add class to show
+    } else {
+        backToTop.classList.remove('visible'); // Remove class to hide
+    }
+});
+
 //setBackground();
 createNav(currPage);
 createFooter();
