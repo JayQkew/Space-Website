@@ -6,32 +6,40 @@ const wireframes = [
         description: "Users are welcomed by an inspiring hero section featuring a quote from Carl Sagan, inviting them to explore the site’s ideas.<br> As they scroll, a data narrative unfolds through a sequence of engaging statements, gradually immersing them in the site’s purpose and content. This approach not only guides users intuitively but also deepens their curiosity and connection to the story the site aims to tell.",
         midFid: "../images/Home Page-mid-fid.png",
         highFid: "../images/Home Page-high-fid.png",
+        highFidNew: "../images/Home Page-high-fid-new.png",
         midAlt: "Mid-fidelity wireframe for the Home Page",
-        highAlt: "High-fidelity wireframe for the Home Page"
+        highAlt: "High-fidelity wireframe for the Home Page",
+        highAltNew: "High-fidelity wireframe for the Home Page"
     },
     {
         pageName: "Explore Page",
         description: "This page presents a captivating data visualization that immerses users in a cosmic experience. Using the Solar System API, the planets are scaled for distance, with adjustments made to the sizes to maintain relevance and perspective, given the Sun's vast size compared to even the largest planet (Jupiter). This interactive visualization lets users explore and compare various planetary metrics by adjusting the forces acting on each celestial body, adding a dynamic and immersive element to the experience.",
         midFid: "../images/Explore Page-mid-fid.png",
         highFid: "../images/Explore Page-high-fid.png",
+        highFidNew: "../images/Explore Pagehigh-fid-new.png",
         midAlt: "Mid-fidelity wireframe for the Explore Page",
-        highAlt: "High-fidelity wireframe for the Explore Page"
+        highAlt: "High-fidelity wireframe for the Explore Page",
+        highAltNew: "High-fidelity wireframe for the Explore Page"
     },
     {
         pageName: "Design Page",
         description: "The design page provides insight into the creative process and thought behind the website’s visual and functional elements. Wireframes reveal the iterative development of each page, while the style sheet breaks down each component and the design rationale. Additionally, the theory section highlights the research conducted on data visualization principles, informing the site's overall approach.",
         midFid: "../images/Design Page-mid-fid.png",
         highFid: "../images/Design Page-high-fid.png",
+        highFidNew: "../images/Design Page-high-fid-new.png",
         midAlt: "Mid-fidelity wireframe for the Design Page",
-        highAlt: "High-fidelity wireframe for the Design Page"
+        highAlt: "High-fidelity wireframe for the Design Page",
+        highAltNew: "High-fidelity wireframe for the Design Page"
     },
     {
         pageName: "About Page",
         description: "This page offers a look into my background and the inspiration behind creating this website.",
         midFid: "../images/About Page-mid-fid.png",
         highFid: "../images/About Page-high-fid.png",
+        highFidNew: "../images/About Page-high-fid-new.png",
         midAlt: "Mid-fidelity wireframe for the About Page",
-        highAlt: "High-fidelity wireframe for the About Page"
+        highAlt: "High-fidelity wireframe for the About Page",
+        highAltNew: "High-fidelity wireframe for the About Page"
     }
 ];
 
@@ -54,10 +62,12 @@ function createWireframes(){
             <div class="wireframe-wrapper">
                 <img src="${w.midFid}" alt="${w.midAlt}" class="wireframe-img mid-fid showing">
                 <img src="${w.highFid}" alt="${w.highAlt}" class="wireframe-img high-fid">
+                <img src="${w.highFidNew}" alt="${w.highAltNew}" class="wireframe-img high-fid-new">
             </div>
             <div class="slide-indicator">
                 <div class="slide-icon focus-icon" id="mid-fid"></div>
                 <div class="slide-icon" id="high-fid"></div>
+                <div class="slide-icon" id="high-fid-new"></div>
             </div>
         </div>`
 
@@ -98,15 +108,28 @@ function addSliderEvents(){
                 wireframeWrapper.querySelector('.mid-fid').style.display = 'block';
                 wireframeWrapper.querySelector('.high-fid').classList.remove('showing');
                 wireframeWrapper.querySelector('.high-fid').style.display = 'none';
+                wireframeWrapper.querySelector('.high-fid-new').classList.remove('showing');
+                wireframeWrapper.querySelector('.high-fid-new').style.display = 'none';
 
                 type.children[0].textContent = 'Mid-fidelity';
             }
-            else{
+            else if (s.id === 'high-fid'){
                 wireframeWrapper.querySelector('.mid-fid').classList.remove('showing');
                 wireframeWrapper.querySelector('.mid-fid').style.display = 'none';
                 wireframeWrapper.querySelector('.high-fid').classList.add('showing');
                 wireframeWrapper.querySelector('.high-fid').style.display = 'block';
+                wireframeWrapper.querySelector('.high-fid-new').classList.remove('showing');
+                wireframeWrapper.querySelector('.high-fid-new').style.display = 'none';
 
+                type.children[0].textContent = 'High-fidelity';
+            }
+            else{
+                wireframeWrapper.querySelector('.mid-fid').classList.remove('showing');
+                wireframeWrapper.querySelector('.mid-fid').style.display = 'none';
+                wireframeWrapper.querySelector('.high-fid').classList.remove('showing');
+                wireframeWrapper.querySelector('.high-fid').style.display = 'none';
+                wireframeWrapper.querySelector('.high-fid-new').classList.add('showing');
+                wireframeWrapper.querySelector('.high-fid-new').style.display = 'block';
                 type.children[0].textContent = 'High-fidelity';
             }
         })
@@ -131,34 +154,55 @@ function rotateBetweenSlides(interval) {
             // Skip rotation if the user is hovering over the section
             if (isHovered) return;
 
-            const midFid = section.querySelector('.mid-fid');
-            const highFid = section.querySelector('.high-fid');
             const typeLabel = section.querySelector('.wireframe-label');
+            
+            const midFid = section.querySelector('.mid-fid');
             const midIcon = section.querySelector('#mid-fid');
+            
+            const highFid = section.querySelector('.high-fid');
             const highIcon = section.querySelector('#high-fid');
+            
+            const highFidNew = section.querySelector('.high-fid-new');
+            const highIconNew = section.querySelector('#high-fid-new');
 
-            if (midFid.classList.contains('showing')) { // Switch to high-fidelity
+            // Determine which one is currently showing and rotate to the next in sequence
+            if (midFid.classList.contains('showing')) {
+                // Switch from mid-fidelity to high-fidelity
                 midFid.classList.remove('showing');
                 midFid.style.display = 'none';
                 highFid.classList.add('showing');
                 highFid.style.display = 'block';
-                
+
                 typeLabel.textContent = 'High-fidelity';
                 midIcon.classList.remove('focus-icon');
                 highIcon.classList.add('focus-icon');
-            } else { // Switch to mid-fidelity
+                
+            } else if (highFid.classList.contains('showing')) {
+                // Switch from high-fidelity to high-fidelity-new
                 highFid.classList.remove('showing');
                 highFid.style.display = 'none';
+                highFidNew.classList.add('showing');
+                highFidNew.style.display = 'block';
+
+                typeLabel.textContent = 'High-fidelity New';
+                highIcon.classList.remove('focus-icon');
+                highIconNew.classList.add('focus-icon');
+                
+            } else {
+                // Switch from high-fidelity-new to mid-fidelity
+                highFidNew.classList.remove('showing');
+                highFidNew.style.display = 'none';
                 midFid.classList.add('showing');
                 midFid.style.display = 'block';
 
                 typeLabel.textContent = 'Mid-fidelity';
-                highIcon.classList.remove('focus-icon');
+                highIconNew.classList.remove('focus-icon');
                 midIcon.classList.add('focus-icon');
             }
-        }, interval*1000);
+        }, interval * 1000);
     });
 }
+
 
 createWireframes();
 addSliderEvents();
