@@ -1,19 +1,28 @@
 import { planetBasket, massNum, volumeNum } from "./planet-basket.js";
 
+const WIDTH = 500,
+    HEIGHT = 500,
+    RADIUS = Math.min(WIDTH, HEIGHT) / 2;
+
+/**
+ * creates the svg for the data viz
+ * @returns svg
+ */
+function creatSVG(){
+    return d3.select(".planet-spider-viz")
+    .append("svg")
+    .attr("class", "spider-chart")
+    .attr("width", WIDTH)
+    .attr("height", HEIGHT)
+    .append("g")
+    .attr("transform", `translate(${WIDTH / 2}, ${HEIGHT / 2})`);
+}
+
 export function createSpiderChart() {
     // Remove existing chart if there is one
     d3.select(".spider-chart").remove();
 
-    // Define the container for the spider chart
-    const width = 500, height = 500;
-    const radius = Math.min(width, height) / 2;
-    const chartContainer = d3.select(".planet-spider-viz")
-        .append("svg")
-        .attr("class", "spider-chart")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", `translate(${width / 2}, ${height / 2})`);
+    const chartContainer = creatSVG();
 
     // Define chart axes and scales
     const attributes = ['mass', 'radius', 'volume', 'density', 'gravity'];
@@ -25,18 +34,18 @@ export function createSpiderChart() {
         gravity: d3.max(planetBasket, d => d.gravity || 0)
     };
     const scales = {
-        mass: d3.scaleLinear().domain([0, maxValues.mass]).range([0, radius]),
-        radius: d3.scaleLinear().domain([0, maxValues.radius]).range([0, radius]),
-        volume: d3.scaleLinear().domain([0, maxValues.volume]).range([0, radius]),
-        density: d3.scaleLinear().domain([0, maxValues.density]).range([0, radius]),
-        gravity: d3.scaleLinear().domain([0, maxValues.gravity]).range([0, radius])
+        mass: d3.scaleLinear().domain([0, maxValues.mass]).range([0, RADIUS]),
+        radius: d3.scaleLinear().domain([0, maxValues.radius]).range([0, RADIUS]),
+        volume: d3.scaleLinear().domain([0, maxValues.volume]).range([0, RADIUS]),
+        density: d3.scaleLinear().domain([0, maxValues.density]).range([0, RADIUS]),
+        gravity: d3.scaleLinear().domain([0, maxValues.gravity]).range([0, RADIUS])
     };
 
     // Draw the spider chart axes and labels
     attributes.forEach((attr, i) => {
         const angle = (2 * Math.PI / attributes.length) * i;
-        const x = Math.cos(angle) * radius;
-        const y = Math.sin(angle) * radius;
+        const x = Math.cos(angle) * RADIUS;
+        const y = Math.sin(angle) * RADIUS;
 
         chartContainer.append("line")
             .attr("x1", 0)
