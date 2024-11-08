@@ -43,6 +43,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 2rem;
+    margin-bottom: 10rem;
 }
 
 form{
@@ -50,6 +52,9 @@ form{
     flex-direction: column;
     justify-content: center;
     align-items: baseline;
+    background-color: var(--glass-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
     gap: 1rem;
 }
 
@@ -70,8 +75,19 @@ form{
     gap: 0.5rem;
 }
 
+label{
+    font-size: 1.5rem;
+}
+
+h2{
+    font-family: 'ClashDisplay', 'CabinetGrotesk', 'DM Sans';
+    font-weight: 400;
+    font-size: 2rem;
+}
+
 textarea{
     font-family: 'ClashDisplay', 'CabinetGrotesk', 'DM Sans';
+    font-size: 1.5rem;
     width: 50vw;
     resize: none;
     padding: 1rem;
@@ -79,6 +95,7 @@ textarea{
 }
 
 input{
+    font-size: 1.5rem;
     width: 100%;
     display: flex;
     padding: 1rem;
