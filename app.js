@@ -2,6 +2,7 @@ const nav = document.querySelector('.navbar');
 const footer = document.querySelector('footer');
 const currPage = document.querySelector('title').innerText;
 const body = document.querySelector('body');
+const backToTop = document.querySelector('.back-to-top');
 
 const pages = [
     {page: 'Home', url: 'index.html'},
@@ -130,6 +131,10 @@ function decoratePage(){
         addDecoration('right', element);
     })
 }
+
+backToTop.addEventListener('click', () => {
+    window.scrollTo(0,0);
+})
 
 //setBackground();
 createNav(currPage);

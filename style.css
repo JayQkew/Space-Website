@@ -4,6 +4,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 :root{
@@ -52,6 +53,7 @@ body{
     font-family: 'ClashDisplay', 'CabinetGrotesk', 'DM Sans';
     font-weight: var(--regular-fw);
     color: var(--titanium-white);
+    scroll-behavior: smooth;
 }
 
 ::selection{
@@ -228,7 +230,19 @@ button{
 
 /* #region back to top */
 .back-to-top{
-    
+    position: fixed;
+    font-weight: bold;
+    bottom: 3rem;
+    right: 3rem;
+    background-color: var(--glass-color);
+    backdrop-filter: var(--glass-blur);
+    color: var(--titanium-white);
+    border-radius: 100vh;
+    padding-inline: 1rem;
+    padding-block: 1rem;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 100;
 }
 /* #endregion */
 
