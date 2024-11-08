@@ -47,7 +47,7 @@ attributes.forEach((attr, i) => {
 
 export function createSpiderChart() {
     // Remove existing chart if there is one
-    d3.select(".spider-chart").remove();
+    // d3.select(".spider-chart").remove();
 
 
     // Define chart axes and scales
