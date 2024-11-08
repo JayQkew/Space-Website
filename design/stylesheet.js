@@ -165,5 +165,12 @@ fontSelect.addEventListener('change', () => {
     }
 })
 
+VanillaTilt.init(document.querySelectorAll('.card-style'),{
+    max: 15,
+    speed: 400,
+    reverse: true,
+    glare: true,
+    "max-glare": 0.2
+});
 
 createColors(colors);

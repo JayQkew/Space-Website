@@ -414,3 +414,44 @@ select option{
     background-color: transparent;
 }
 /* #endregion */
+
+/* #region Card Tilt */
+.card-style-container{
+    display: grid;
+    grid-template-areas: 
+    "a a a b b"
+    "a a a b b"
+    "a a a c c"
+    "d d d d d";
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+    width: 50%;
+    height: 70vh;
+}
+
+.card-style{
+    border-radius: var(--border-radius);
+    background-color: var(--glass-color);
+    content: "";
+    color: transparent;
+    transition: all 0.5s ease;
+}
+
+.card-style:nth-child(1){
+    grid-area: a;
+}
+.card-style:nth-child(2){
+    grid-area: b;
+}
+.card-style:nth-child(3){
+    grid-area: c;
+}
+.card-style:nth-child(4){
+    grid-area: d;
+}
+/* #endregion */
+
+/* #region Solar System */
+
+/* #endregion */
