@@ -1,6 +1,34 @@
 const colorContainer = document.querySelector('.color-container');
+
 const fontContainer = document.querySelector('.font-container');
 const fontSelect = document.querySelector('select');
+
+const solarSystemContainer = document.querySelector('.solar-system-container');
+const rings = document.querySelectorAll('.ring-style');
+
+const planets = [
+    {
+        size: '0.4rem',
+        color: 'var(--earth-blue)'
+    },
+    {
+        size: '0.5rem',
+        color: 'var(--venus-orange)'
+    },
+    {
+        size: '0.8rem',
+        color: 'var(--saturn-yellow)'
+    },
+    {
+        size: '1.5rem',
+        color: 'var(--uranus-blue)'
+    },
+    {
+        size: '1.25rem',
+        color: 'var(--neptune-blue)'
+    }
+]
+
 const colors = [
     {
         HEX: "#FFC700",
@@ -64,6 +92,10 @@ const colors = [
     }
 ];
 
+/**
+ * creates the color elements in the style sheet section
+ * @param {Array} colorArray specifc array to create colors from
+ */
 function createColors(colorArray){
     const colorCol = document.createElement('div');
     colorCol.classList.add('color-col');
@@ -173,4 +205,18 @@ VanillaTilt.init(document.querySelectorAll('.card-style'),{
     "max-glare": 0.2
 });
 
+function createPlanets(){
+    for (let i = 1; i < rings.length; i++){
+        //planets[i-1]
+        const planet = document.createElement('div');
+        planet.classList.add('planet')
+        planet.style.backgroundColor = planets[i-1].color;
+        planet.style.height = planets[i-1].size;
+        planet.style.width = planets[i-1].size;
+
+        rings[i].appendChild(planet);
+    }
+}
+
 createColors(colors);
+createPlanets();

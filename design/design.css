@@ -498,10 +498,13 @@ select option{
     width: 25vw;
 }
 
-
 .ring-style:nth-child(6) { /* Neptune's orbit */
     height: 35vw;
     width: 35vw;
+}
+
+.planet{
+    border-radius: 100%;
 }
 
 /* #endregion */
