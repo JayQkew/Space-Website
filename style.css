@@ -226,6 +226,12 @@ button{
 }
 /* #endregion */
 
+/* #region back to top */
+.back-to-top{
+    
+}
+/* #endregion */
+
 @font-face{
     font-family: 'Willful';
     src: url('fonts/Willful.ttf') format('truetype');

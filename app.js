@@ -4,10 +4,10 @@ const currPage = document.querySelector('title').innerText;
 const body = document.querySelector('body');
 
 const pages = [
-    {page: 'Home Page', url: 'index.html'},
-    {page: 'Explore Page', url: 'explore/explore.html'},
-    {page: 'Design Page', url: 'design/design.html'},
-    {page: 'About Page', url: 'about/about.html'}
+    {page: 'Home', url: 'index.html'},
+    {page: 'Explore', url: 'explore/explore.html'},
+    {page: 'Design', url: 'design/design.html'},
+    {page: 'About', url: 'about/about.html'}
 ];
 
 function setBackground() {
@@ -35,20 +35,20 @@ function createNav(currPage){
     let allPages = '';
     pages.map( p => {
         let listItem;
-        let url = `${(currPage == 'Home Page') ? './':'../'}${p.url}`;   // manages the folder hierarchy for the url
+        let url = `${(currPage == 'Home') ? './':'../'}${p.url}`;   // manages the folder hierarchy for the url
 
         // ensures the the current page doesnt have a hyperlink
         if(p.page == currPage){
             listItem = `
                 <li>
-                    <a class="active-nav">${p.page.replace('Page', '')}</a>
+                    <a class="active-nav">${p.page}</a>
                 </li>
             `;
         }
         else{
             listItem = `
                 <li>
-                    <a href=${url}>${p.page.replace('Page', '')}</a>
+                    <a href=${url}>${p.page}</a>
                 </li>
             `;
         }
