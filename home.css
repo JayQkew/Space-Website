@@ -252,15 +252,18 @@ hgroup p{
     z-index: 1;
 }
 
+/* linear-gradient(180deg, rgba(255, 255, 255, 0.2) , rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.2)) */
 .ring-decoration{
     position: absolute;
-    border: var(--border);
+    border: 0.2rem solid var(--titanium-white);
     border-radius: 100%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     content: "";
     z-index: 1;
+    mask-image: linear-gradient(180deg, rgba(255, 255, 255, 0.01) , rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.01));
+    mask-size: 100% 100%;
 }
 
 .ring-decoration:nth-child(1){
@@ -268,22 +271,30 @@ hgroup p{
     width: 27.5vw;
 }
 .ring-decoration:nth-child(2){
+    height: 43vw;
+    width: 43vw;
+}
+.ring-decoration:nth-child(3){
+    height: 91vw;
+    width: 91vw;
+}
+.ring-decoration:nth-child(4){
     height: 95vw;
     width: 95vw;
 }
-.ring-decoration:nth-child(3){
+.ring-decoration:nth-child(5){
     height: 140vw;
     width: 140vw;
 }
-.ring-decoration:nth-child(4){
+.ring-decoration:nth-child(6){
     height: 155vw;
     width: 155vw;
 }
-.ring-decoration:nth-child(5){
+.ring-decoration:nth-child(7){
     height: 198vw;
     width: 198vw;
 }
-.ring-decoration:nth-child(6){
+.ring-decoration:nth-child(8){
     height: 250vw;
     width: 250vw;
 }
