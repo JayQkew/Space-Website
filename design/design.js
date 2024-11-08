@@ -86,7 +86,6 @@ function addSliderEvents(){
     sliders.forEach(s => {
         let wireframeWrapper = s.parentElement.parentElement.children[0];
         let type = s.parentElement.parentElement.parentElement.children[0];
-        console.log(type);
         s.addEventListener('click', () => {
             Array.from(s.parentElement.children).forEach(c => {
                 c.classList.remove('focus-icon');

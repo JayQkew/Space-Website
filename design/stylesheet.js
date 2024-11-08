@@ -9,25 +9,35 @@ const rings = document.querySelectorAll('.ring-style');
 const planets = [
     {
         size: '0.4rem',
-        color: 'var(--earth-blue)'
+        color: 'var(--earth-blue)',
+        speed: 1.2,
+        currAngle: 0
     },
     {
         size: '0.5rem',
-        color: 'var(--venus-orange)'
+        color: 'var(--venus-orange)',
+        speed: 0.8,
+        currAngle: 0
     },
     {
         size: '0.8rem',
-        color: 'var(--saturn-yellow)'
+        color: 'var(--saturn-yellow)',
+        speed: 1.4,
+        currAngle: 0
     },
     {
         size: '1.5rem',
-        color: 'var(--uranus-blue)'
+        color: 'var(--uranus-blue)',
+        speed: 1.0,
+        currAngle: 0
     },
     {
         size: '1.25rem',
-        color: 'var(--neptune-blue)'
+        color: 'var(--neptune-blue)',
+        speed: 0.7,
+        currAngle: 0
     }
-]
+];
 
 const colors = [
     {
@@ -143,6 +153,9 @@ function createColors(colorArray){
     })
 }
 
+/**
+ * changes the font that the user can play around with
+ */
 fontSelect.addEventListener('change', () => {
     const sampleText = document.querySelector('textarea');
     const sizeVal = document.querySelector('#size');
@@ -197,6 +210,9 @@ fontSelect.addEventListener('change', () => {
     }
 })
 
+/**
+ * adds tilt to the cards in the card section
+ */
 VanillaTilt.init(document.querySelectorAll('.card-style'),{
     max: 15,
     speed: 400,
@@ -205,18 +221,51 @@ VanillaTilt.init(document.querySelectorAll('.card-style'),{
     "max-glare": 0.2
 });
 
-function createPlanets(){
-    for (let i = 1; i < rings.length; i++){
-        //planets[i-1]
+/**
+ * creates the planets in the solar system section
+ */
+function createPlanets() {
+    for (let i = 1; i < rings.length; i++) {
         const planet = document.createElement('div');
-        planet.classList.add('planet')
-        planet.style.backgroundColor = planets[i-1].color;
-        planet.style.height = planets[i-1].size;
-        planet.style.width = planets[i-1].size;
+        planet.classList.add('planet');
+        planet.style.backgroundColor = planets[i - 1].color;
+        planet.style.height = planets[i - 1].size;
+        planet.style.width = planets[i - 1].size;
+
+        planet.style.position = 'absolute';
+        planet.style.left = '50%';
+        planet.style.top = '0%';
+        planet.style.transform = 'translate(-50%, -50%)';
 
         rings[i].appendChild(planet);
     }
+
+    updatePlanetPositions();
 }
 
+function updatePlanetPositions() {
+    const planetNodes = document.querySelectorAll('.planet');
+    planetNodes.forEach((planet, index) => {
+        const planetData = planets[index];
+        
+        const offsetX = Math.cos(planetData.currAngle) * 50;
+        const offsetY = Math.sin(planetData.currAngle) * 50;
+
+        planet.style.left = `${50 + offsetX}%`;
+        planet.style.top = `${50 + offsetY}%`;
+    });
+}
+
+function onMouseMove(event) {
+    const movementFactor = Math.abs(event.movementX || event.movementY);
+    planets.forEach(planet => {
+        planet.currAngle += movementFactor * 0.01 * planet.speed;
+        if (planet.currAngle > 2 * Math.PI) planet.currAngle -= 2 * Math.PI;
+    });
+
+    updatePlanetPositions();
+}
+
+solarSystemContainer.addEventListener('mousemove', onMouseMove);
 createColors(colors);
 createPlanets();
