@@ -325,3 +325,27 @@ main{
     display: flex;
     flex-direction: column;
 }
+
+/* #region spider graph */
+.data-point{
+    fill: white;
+}
+
+text{
+    fill: white;
+}
+
+.axis-line{
+    stroke: white;
+}
+
+.planet-data-polygon{
+    stroke: white;
+}
+
+.planet-data-polygon{
+    fill: blue;
+    stroke: white;
+}
+
+/* #endregion */

@@ -1,5 +1,6 @@
 import { getPlanetData } from "./planet-data.js";
 import { extentRadius } from "./render-solarsystem.js";
+import { createSpiderChart } from "./planet-radar-chart.js";
 export let planetBasket = [];
 
 const planetData = await getPlanetData();
@@ -177,13 +178,13 @@ export function createBubbles() {
  * @param {Object} planet 
  * @returns numerical value of the scientific notation
  */
-function massNum(planet){ return planet.mass.massValue * Math.pow(10, planet.mass.massExponent)}
+export function massNum(planet){ return planet.mass.massValue * Math.pow(10, planet.mass.massExponent)}
 
 /**
  * @param {Object} planet 
  * @returns numerical value of the scientific notation
  */
-function volumeNum(planet){ return planet.vol.volValue * Math.pow(10, planet.vol.volExponent);}
+export function volumeNum(planet){ return planet.vol.volValue * Math.pow(10, planet.vol.volExponent);}
 
 /**
  * updates the planet baskets visuals and data
@@ -233,7 +234,7 @@ export function updatePlanetBasket(){
         }
         })
 
-    //createBubbles();
+    createSpiderChart();
 }
 
 function addTilt(){
