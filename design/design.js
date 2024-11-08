@@ -184,7 +184,7 @@ function rotateBetweenSlides(interval) {
                 highFidNew.classList.add('showing');
                 highFidNew.style.display = 'block';
 
-                typeLabel.textContent = 'High-fidelity New';
+                typeLabel.textContent = 'High-fidelity';
                 highIcon.classList.remove('focus-icon');
                 highIconNew.classList.add('focus-icon');
                 
