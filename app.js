@@ -4,10 +4,10 @@ const currPage = document.querySelector('title').innerText;
 const body = document.querySelector('body');
 
 const pages = [
-    {page: 'Home', url: 'index.html'},
-    {page: 'Explore', url: 'explore/explore.html'},
-    {page: 'Design', url: 'design/design.html'},
-    {page: 'About', url: 'about/about.html'}
+    {page: 'Home Page', url: 'index.html'},
+    {page: 'Explore Page', url: 'explore/explore.html'},
+    {page: 'Design Page', url: 'design/design.html'},
+    {page: 'About Page', url: 'about/about.html'}
 ];
 
 function setBackground() {
