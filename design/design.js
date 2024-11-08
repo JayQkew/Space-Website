@@ -9,7 +9,7 @@ const wireframes = [
         highFidNew: "../images/Home Page-high-fid-new.png",
         midAlt: "Mid-fidelity wireframe for the Home Page",
         highAlt: "High-fidelity wireframe for the Home Page",
-        highAltNew: "High-fidelity wireframe for the Home Page"
+        highAltNew: "New High-fidelity wireframe for the Home Page"
     },
     {
         pageName: "Explore Page",
@@ -19,7 +19,7 @@ const wireframes = [
         highFidNew: "../images/Explore Pagehigh-fid-new.png",
         midAlt: "Mid-fidelity wireframe for the Explore Page",
         highAlt: "High-fidelity wireframe for the Explore Page",
-        highAltNew: "High-fidelity wireframe for the Explore Page"
+        highAltNew: "New High-fidelity wireframe for the Explore Page"
     },
     {
         pageName: "Design Page",
@@ -29,7 +29,7 @@ const wireframes = [
         highFidNew: "../images/Design Page-high-fid-new.png",
         midAlt: "Mid-fidelity wireframe for the Design Page",
         highAlt: "High-fidelity wireframe for the Design Page",
-        highAltNew: "High-fidelity wireframe for the Design Page"
+        highAltNew: "New High-fidelity wireframe for the Design Page"
     },
     {
         pageName: "About Page",
@@ -39,7 +39,7 @@ const wireframes = [
         highFidNew: "../images/About Page-high-fid-new.png",
         midAlt: "Mid-fidelity wireframe for the About Page",
         highAlt: "High-fidelity wireframe for the About Page",
-        highAltNew: "High-fidelity wireframe for the About Page"
+        highAltNew: "New High-fidelity wireframe for the About Page"
     }
 ];
 
