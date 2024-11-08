@@ -37,3 +37,55 @@ body{
 .description{
     margin: 2rem;
 }
+
+/* #region form */
+.feedback-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.user-input{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.user-comment{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+textarea{
+    font-family: 'ClashDisplay', 'CabinetGrotesk', 'DM Sans';
+    width: 50vw;
+    resize: none;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+}
+
+input{
+    width: 100%;
+    display: flex;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+}
+
+button{
+    margin-inline: auto;
+}
+/* #endregion */

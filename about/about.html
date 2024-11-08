@@ -33,6 +33,25 @@
                 </p>
             </section>
         </article>
+        <article class="feedback-form">
+            <form action="submit_feedback.php" method="post">
+                <div class="user-input">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+    
+                <div class="user-input">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="user-comment">
+                    <label for="comments">Comments</label>
+                    <textarea name="comments" id="comments" rows="4" placeholder="Lemme know what you think!"></textarea>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </article>
     </main>
     <footer></footer>
 </body>
