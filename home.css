@@ -87,12 +87,12 @@ hgroup p{
 
 .bellow-hero{
     margin-top: 0rem;
-    z-index: 3;
+    z-index: 4;
 }
 
 /* #region planet cards */
 .card-container{
-    z-index: 3;
+    z-index: 4;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -103,7 +103,7 @@ hgroup p{
 }
 
 .card{
-    z-index: 3;
+    z-index: 4;
     width: var(--card-img-dimensions);
     border: var(--border);
     border-radius: var(--border-radius);
@@ -114,7 +114,7 @@ hgroup p{
 }
 
 .card .svg-container{
-    z-index: 3;
+    z-index: 4;
     display: flex;
     height: var(--card-img-dimensions);
     border:  var(--border);
@@ -125,26 +125,26 @@ hgroup p{
 }
 
 .card .svg-container svg{
-    z-index: 3;
+    z-index: 4;
 }
 
 .card-headings{
     margin-block: 1rem;
-    z-index: 3;
+    z-index: 4;
 }
 
 .card p{
     /* margin: 0.5rem; */
     font-size: 1rem;
     text-align: center;
-    z-index: 3;
+    z-index: 4;
 }
 
 .card h3{
     margin: 1rem;
     font-size: 1.5rem;
     text-align: center;
-    z-index: 3;
+    z-index: 4;
 }
 
 /* #endregion */
