@@ -22,15 +22,36 @@ function creatSVG(){
     .attr("transform", `translate(${WIDTH / 2}, ${HEIGHT / 2})`);
 }
 
+const chartContainer = creatSVG();
+const attributes = ['mass', 'meanRadius', 'semimajorAxis', 'volume', 'density', 'gravity'];
+
+attributes.forEach((attr, i) => {
+    const angle = (2 * Math.PI / attributes.length) * i;
+    const x = Math.cos(angle) * RADIUS;
+    const y = Math.sin(angle) * RADIUS;
+
+    chartContainer.append("line")
+        .attr("x1", 0)
+        .attr("y1", 0)
+        .attr("x2", x)
+        .attr("y2", y)
+        .attr("class", "axis-line");
+
+    chartContainer.append("text")
+        .attr("x", x * 1.25)
+        .attr("y", y *1.25)
+        .attr("class", "axis-label")
+        .style('fill', 'white')
+        .text(attr);
+});
+
 export function createSpiderChart() {
     // Remove existing chart if there is one
     d3.select(".spider-chart").remove();
 
-    const chartContainer = creatSVG();
 
     // Define chart axes and scales
     const maxRadius = d3.max(planetData, d => d.meanRadius); // is a function here
-    const attributes = ['mass', 'meanRadius', 'semimajorAxis', 'volume', 'density', 'gravity'];
     const scales = {
         mass: d3.scaleLinear().domain([0, d3.max(planetData, d => d.mass.massValue)]).range([0, RADIUS]),
         meanRadius: d3.scaleLinear().domain([0, maxRadius]).range([0, RADIUS]),
@@ -42,25 +63,7 @@ export function createSpiderChart() {
 
 
     // Draw the spider chart axes and labels
-    attributes.forEach((attr, i) => {
-        const angle = (2 * Math.PI / attributes.length) * i;
-        const x = Math.cos(angle) * RADIUS;
-        const y = Math.sin(angle) * RADIUS;
 
-        chartContainer.append("line")
-            .attr("x1", 0)
-            .attr("y1", 0)
-            .attr("x2", x)
-            .attr("y2", y)
-            .attr("class", "axis-line");
-
-        chartContainer.append("text")
-            .attr("x", x * 1.25)
-            .attr("y", y *1.25)
-            .attr("class", "axis-label")
-            .style('fill', 'white')
-            .text(attr);
-    });
 
     // console.log(document.querySelectorAll('.axis-label'));
 
