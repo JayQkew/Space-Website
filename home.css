@@ -33,12 +33,18 @@ hgroup:not(.card-headings){
     }
 }
 
+hgroup{
+    z-index: 3;
+}
+
 hgroup h2{
     font-size: 2rem;
     margin-block: 0;
+    z-index: 3;
 }
 hgroup p{
     font-size: 1.5rem;
+    z-index: 3;
     margin-block: 0;
 }
 
@@ -215,6 +221,7 @@ hgroup p{
 /* #region text */
 #small-stage{
     font-size: 3rem;
+    z-index: 3;
 }
 
 #cosmic-arena{
@@ -234,24 +241,26 @@ hgroup p{
 /* #region ring decoration */
 .ring-decoration-parent{
     position: absolute;
-    transform: translate(-100%, -50%);
+    /* transform: translate(50%, 0%); */
     pointer-events: none;
     overflow-x: hidden;
-    height: 300vw;
+    height: 250vw;
     width: 100%;
-    top: 50vh;
-    left: 100vw;
+    top: -115vw;
+    left: 0%;
     content: "";
+    z-index: 1;
 }
 
 .ring-decoration{
     position: absolute;
     border: var(--border);
     border-radius: 100%;
-    top: 110vw;
-    left: 100%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     content: "";
+    z-index: 1;
 }
 
 .ring-decoration:nth-child(1){

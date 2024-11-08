@@ -164,6 +164,7 @@ header{
     padding-inline: 2rem;
     letter-spacing: 0.15rem;
     cursor: pointer;
+    z-index: 3;
 }
 
 button{
