@@ -199,13 +199,16 @@ h3{
 .style-guide-section{
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    width: fit-content;
+    /* width: fit-content; */
     margin: 2rem;
 }
 
 .style-guide-section h3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--glass-color);
     backdrop-filter: var(--glass-blur);
     border-radius: 100vh;
