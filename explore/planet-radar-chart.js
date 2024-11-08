@@ -26,19 +26,12 @@ export function createSpiderChart() {
 
     // Define chart axes and scales
     const attributes = ['mass', 'radius', 'volume', 'density', 'gravity'];
-    const maxValues = {
-        mass: d3.max(planetBasket, d => d.mass ? d.mass.massValue : 0),
-        radius: d3.max(planetBasket, d => d.meanRadius || 0),
-        volume: d3.max(planetBasket, d => d.vol ? d.vol.volVal : 0),
-        density: d3.max(planetBasket, d => d.density || 0),
-        gravity: d3.max(planetBasket, d => d.gravity || 0)
-    };
     const scales = {
-        mass: d3.scaleLinear().domain([0, maxValues.mass]).range([0, RADIUS]),
-        radius: d3.scaleLinear().domain([0, maxValues.radius]).range([0, RADIUS]),
-        volume: d3.scaleLinear().domain([0, maxValues.volume]).range([0, RADIUS]),
-        density: d3.scaleLinear().domain([0, maxValues.density]).range([0, RADIUS]),
-        gravity: d3.scaleLinear().domain([0, maxValues.gravity]).range([0, RADIUS])
+        mass: d3.scaleLinear().domain(d3.extent(planetBasket, d => d.mass.massValue)).range([0, RADIUS]),
+        radius: d3.scaleLinear().domain(d3.extent(planetBasket, d => d.meanRadius)).range([0, RADIUS]),
+        volume: d3.scaleLinear().domain(d3.extent(planetBasket, d => d.vol.volValue)).range([0, RADIUS]),
+        density: d3.scaleLinear().domain(d3.extent(planetBasket, d => d.density)).range([0, RADIUS]),
+        gravity: d3.scaleLinear().domain(d3.extent(planetBasket, d => d.gravity)).range([0, RADIUS])
     };
 
     // Draw the spider chart axes and labels
@@ -52,31 +45,35 @@ export function createSpiderChart() {
             .attr("y1", 0)
             .attr("x2", x)
             .attr("y2", y)
-            .attr("class", "axis-line")
-            .style("color", "white");
+            .attr("class", "axis-line");
 
         chartContainer.append("text")
-            .attr("x", x * 1.1)
-            .attr("y", y * 1.1)
+            .attr("x", x)
+            .attr("y", y )
             .attr("class", "axis-label")
+            .style('fill', 'white')
             .text(attr);
     });
+
+    // console.log(document.querySelectorAll('.axis-label'));
 
     // Draw the planets' data on the spider chart
     planetBasket.forEach(planet => {
         const dataPoints = attributes.map(attr => {
             const scale = scales[attr];
-            const value = attr === 'mass' ? massNum(planet) :
-                          attr === 'volume' ? volumeNum(planet) :
-                          planet[attr] || 0;
+            const rawValue = attr === 'mass' ? planet.mass.massValue :
+                          attr === 'volume' ? planet.vol.volValue :
+                          planet[attr];
+            const value = Number(rawValue);
             const angle = (2 * Math.PI / attributes.length) * attributes.indexOf(attr);
             return [Math.cos(angle) * scale(value), Math.sin(angle) * scale(value)];
         });
 
+        console.log(dataPoints);
+
         chartContainer.append("polygon")
             .attr("points", dataPoints.map(d => d.join(",")).join(" "))
-            .attr("class", "planet-data-polygon")
-            .style("fill", "rgba(0, 150, 255, 0.2)");
+            .attr("class", `planet-data-polygon ${planet.englishName.toLowerCase()}`);
 
         dataPoints.forEach(point => {
             chartContainer.append("circle")

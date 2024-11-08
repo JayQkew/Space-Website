@@ -327,11 +327,19 @@ main{
 }
 
 /* #region spider graph */
+.planet-spider-viz{
+    overflow: visible;
+}
+
+.planet-spider-viz svg{
+    overflow: visible;
+}
+
 .data-point{
     fill: white;
 }
 
-text{
+.axis-label{
     fill: white;
 }
 
@@ -340,12 +348,7 @@ text{
 }
 
 .planet-data-polygon{
-    stroke: white;
-}
-
-.planet-data-polygon{
-    fill: blue;
-    stroke: white;
+    opacity: 0.5;
 }
 
 /* #endregion */
