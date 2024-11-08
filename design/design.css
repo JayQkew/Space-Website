@@ -278,7 +278,8 @@ h3{
     align-items: center;
     height: 100vh; /* Full viewport height */
     width: 75vw; /* Full viewport width */
-    margin: auto; /* Remove default margins */
+    margin-block: 3rem; /* Remove default margins */
+    margin-inline: auto; /* Remove default margins */
     padding: 0; /* Remove default padding */
     overflow: hidden; /* Prevent scrollbars if the content overflows */
 }
