@@ -453,5 +453,55 @@ select option{
 /* #endregion */
 
 /* #region Solar System */
+.solar-system-container{
+    position: relative;
+    margin-bottom: 1rem;
+    width: 35vw;
+    height: 35vw;
+}
+
+.ring-style{
+    position: absolute;
+    border: var(--border);
+    border-radius: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: "";
+    color: transparent;
+}
+
+.ring-style:nth-child(1) { /* Sun */
+    height: 3vw;
+    width: 3vw;
+    background-color: var(--sun-yellow); /* Make it look like the sun */
+    border: none;
+}
+
+.ring-style:nth-child(2) { /* Mercury's orbit */
+    height: 6vw;
+    width: 6vw;
+}
+
+.ring-style:nth-child(3) { /* Venus's orbit */
+    height: 7.5vw;
+    width: 7.5vw;
+}
+
+.ring-style:nth-child(4) { /* Earth's orbit */
+    height: 10vw;
+    width: 10vw;
+}
+
+.ring-style:nth-child(5) { /* Saturn's orbit */
+    height: 25vw;
+    width: 25vw;
+}
+
+
+.ring-style:nth-child(6) { /* Neptune's orbit */
+    height: 35vw;
+    width: 35vw;
+}
 
 /* #endregion */
