@@ -28,11 +28,16 @@ export function createSpiderChart() {
     const attributes = ['mass', 'radius', 'volume', 'density', 'gravity'];
     const scales = {
         mass: d3.scaleLinear().domain(d3.extent(planetBasket, d => d.mass.massValue)).range([0, RADIUS]),
-        radius: d3.scaleLinear().domain(d3.extent(planetBasket, d => d.meanRadius)).range([0, RADIUS]),
+        radius: d3.scaleLinear().domain(d3.extent(planetBasket, d => {
+            console.log(d.meanRadius + ' ' + typeof(d.meanRadius));
+            return Number(d.meanRadius); //returns a number here
+        })).range([0, RADIUS]),
         volume: d3.scaleLinear().domain(d3.extent(planetBasket, d => d.vol.volValue)).range([0, RADIUS]),
         density: d3.scaleLinear().domain(d3.extent(planetBasket, d => d.density)).range([0, RADIUS]),
         gravity: d3.scaleLinear().domain(d3.extent(planetBasket, d => d.gravity)).range([0, RADIUS])
     };
+
+    console.log(scales.radius+ ' ' + typeof(scales.radius)); // is a function here
 
     // Draw the spider chart axes and labels
     attributes.forEach((attr, i) => {
@@ -64,12 +69,11 @@ export function createSpiderChart() {
             const rawValue = attr === 'mass' ? planet.mass.massValue :
                           attr === 'volume' ? planet.vol.volValue :
                           planet[attr];
-            const value = Number(rawValue);
+            const value = Number(rawValue).toFixed(2);
+            console.log(planet.englishName + ' ' + attr + ': ' + value)
             const angle = (2 * Math.PI / attributes.length) * attributes.indexOf(attr);
             return [Math.cos(angle) * scale(value), Math.sin(angle) * scale(value)];
         });
-
-        console.log(dataPoints);
 
         chartContainer.append("polygon")
             .attr("points", dataPoints.map(d => d.join(",")).join(" "))
