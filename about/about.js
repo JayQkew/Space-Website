@@ -15,10 +15,10 @@ submitBtn.addEventListener('click', (e) => {
 function checkEmail(){
     const emailPattern =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if(emailPattern.test(emailInput.value)){
-        emailInput.style.backgroundColor = 'lightgreen';
+        emailInput.style.backgroundColor = 'rgb(200, 250, 200)';
     }
     else{
-        emailInput.style.backgroundColor = 'red';
+        emailInput.style.backgroundColor = 'rgb(250, 200, 200';
     }
 
     return emailPattern.test(emailInput.value);
@@ -27,10 +27,10 @@ function checkEmail(){
 function checkName(){
     const namePattern = /^[A-Za-z\s-]+$/;
     if(namePattern.test(nameInput.value)){
-        nameInput.style.backgroundColor = 'lightgreen';
+        nameInput.style.backgroundColor = 'rgb(200, 250, 200)';
     }
     else{
-        nameInput.style.backgroundColor = 'red';
+        nameInput.style.backgroundColor = 'rgb(250, 200, 200';
     }
 
     return namePattern.test(nameInput.value);
