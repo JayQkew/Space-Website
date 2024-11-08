@@ -41,14 +41,14 @@ function createNav(currPage){
         if(p.page == currPage){
             listItem = `
                 <li>
-                    <a class="active-nav">${p.page}</a>
+                    <a class="active-nav">${p.page.replace('Page', '')}</a>
                 </li>
             `;
         }
         else{
             listItem = `
                 <li>
-                    <a href=${url}>${p.page}</a>
+                    <a href=${url}>${p.page.replace('Page', '')}</a>
                 </li>
             `;
         }
