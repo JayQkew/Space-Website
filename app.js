@@ -35,7 +35,7 @@ function createNav(currPage){
     let allPages = '';
     pages.map( p => {
         let listItem;
-        let url = `${(currPage == 'Home') ? './':'../'}${p.url}`;   // manages the folder hierarchy for the url
+        let url = `${(currPage == 'Home Page') ? './':'../'}${p.url}`;   // manages the folder hierarchy for the url
 
         // ensures the the current page doesnt have a hyperlink
         if(p.page == currPage){
