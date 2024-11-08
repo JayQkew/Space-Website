@@ -44,7 +44,7 @@ const footer = document.querySelector('footer');
  * gets the extents of the distance from the sun
  * @returns extent of planetData's semimajorAxis
  */
-function getDistanceExtent(){
+export function getDistanceExtent(){
     [...planetData].sort((a,b) => a.semimajorAxis - b.semimajorAxis);
     return d3.extent(planetData, d => d.semimajorAxis);   
 }
@@ -53,7 +53,7 @@ function getDistanceExtent(){
  * gets the extents of the planets radius excluding the sun
  * @returns extent of planetData's radius
  */
-function getRadiusExtent(){
+export function getRadiusExtent(){
     let sortedPlanets = [...planetData].sort((a,b) => a.meanRadius - b.meanRadius);
     let minRadius = d3.min(sortedPlanets, d => d.meanRadius);
     let maxRadius = sortedPlanets[sortedPlanets.length-2].meanRadius;

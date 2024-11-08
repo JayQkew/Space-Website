@@ -328,6 +328,8 @@ main{
 
 /* #region spider graph */
 .planet-spider-viz{
+    margin-inline: auto;
+    margin-block: 10rem;
     overflow: visible;
 }
 
